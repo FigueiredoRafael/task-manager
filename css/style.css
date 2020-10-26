@@ -1,0 +1,155 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Alata", sans-serif;
+}
+
+body table {
+  width: 100%;
+  margin-top: 10px;
+  border: solid 1px #e4e4e4;
+  border-radius: 3px;
+}
+
+body table thead {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+body table tr td,
+th {
+  /* border: solid 1px #e4e4e4; */
+  text-align: center;
+}
+
+#shifts {
+  min-width: 150px;
+}
+
+.endereco {
+  display: none;
+}
+
+table {
+  background-color: #f8f9fa;
+}
+
+td .btn {
+  min-width: 100px;
+  max-width: 100px;
+}
+
+div.scrollmenu {
+  background-color: #f8f9fa;
+  max-width: auto;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu tr {
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+#details-card {
+  display: none;
+}
+
+.user-cards {
+  height: 70px;
+  width: 100%;
+}
+
+.sm-btn {
+  float: none;
+}
+
+.user-cards-text {
+  font-size: 10px;
+  padding-top: 100px;
+}
+
+footer {
+  margin-top: 160px;
+}
+
+.user-image-circle {
+  max-width: 75px;
+  max-height: 75px;
+  border: 3px solid #fff;
+  border-radius: 150px;
+
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+}
+
+.active-circle {
+  box-shadow: 0 0 0 2px #09e04d;
+}
+
+@media (min-width: 576px) {
+  body {
+    /* background: red; */
+  }
+}
+
+/* Medium devices (tablets) */
+
+@media (min-width: 768px) {
+  body {
+    /* background: blue; */
+  }
+  #details-card {
+    display: block;
+    width: auto;
+  }
+}
+
+/* Large devices (desktops) */
+
+@media (min-width: 992px) {
+  body {
+    /* background: green; */
+  }
+  .user-cards {
+    height: 70px;
+    width: 33.33%;
+  }
+  footer {
+    margin-top: 0px;
+  }
+}
+
+/* Extra large devices (large desktops) */
+
+@media (min-width: 1200px) {
+  body {
+    /* background: yellow; */
+  }
+}
+
+/* The given screen size or smaller */
+
+/* Extra small devices (portrait phones)*/
+
+@media (max-width: 575px) {
+}
+
+/* Small devices (landscape phones)*/
+
+/* @media (max-width: 5775px) {
+  body {
+    background-color: purple;
+  }
+} */
+
+/* Medium devices (tablets)*/
+
+@media (max-width: 767px) {
+}
+
+/* Large devices (desktops)*/
+
+@media (max-width: 1199px) {
+}
