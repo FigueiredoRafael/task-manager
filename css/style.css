@@ -111,8 +111,8 @@ footer {
 }
 
 .image-preview {
-  width: 300px;
-  min-height: 100px;
+  width: 100%;
+  max-height: 500px;
   border: 2px solid #ddd;
   margin-top: 15px;
 
@@ -125,7 +125,8 @@ footer {
 
 .image-preview__image {
   display: none;
-  width: 100%;
+  max-height: 500px;
+  max-width: 270px;
 }
 
 @media (min-width: 576px) {
@@ -143,6 +144,14 @@ footer {
   #details-card {
     display: block;
     width: auto;
+  }
+  .image-preview {
+    width: 100%;
+    max-height: 800px;
+  }
+  .image-preview__image {
+    max-height: 100%;
+    max-width: 460px;
   }
 }
 
@@ -166,6 +175,11 @@ footer {
 @media (min-width: 1200px) {
   body {
     /* background: yellow; */
+  }
+  .image-preview__image {
+    display: none;
+    max-height: 500px;
+    max-width: 760px;
   }
 }
 

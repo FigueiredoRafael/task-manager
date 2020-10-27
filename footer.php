@@ -25,11 +25,14 @@
         <script type="text/javascript" src="js/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="js/busca-endereco.js"></script>
-        <script src="js/jquery-cropper-master/docs/js/cropper.js"></script><!-- Cropper.js is required -->
-        <link  href="js/jquery-cropper-master/docs/css/cropper.css" rel="stylesheet">
-        <script src="/js/jquery-cropper-master/docs/js/jquery-cropper.js"></script>
         <script src="js/app.js"></script>
         <script src="singup.js" type="text/javascript"> </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>       
+        <script src="https://unpkg.com/dropzone"></script>
+        <script src="https://unpkg.com/cropperjs"></script>		
+        <script src="js/cropper.js"></script>
+        
         <script>
             // Get the current year for the copyright
         $('#year').text(new Date().getFullYear());

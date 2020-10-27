@@ -1,7 +1,5 @@
 <?php
 
-
-
 if (isset($_POST['update-submit'])) {
 
     require 'dbh.inc.php';

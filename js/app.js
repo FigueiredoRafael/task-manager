@@ -32,6 +32,7 @@ realFileBtn.addEventListener("change", function () {
 
     reader.readAsDataURL(file);
   }
+
   if (file != undefined) {
     removeImgBtn.addEventListener("click", function () {
       previewDefaultText.style.display = null;

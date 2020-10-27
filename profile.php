@@ -172,16 +172,8 @@
         </div>
       </div>
       <div class="col-md-3">
-      <form action="includes/update-profile.inc.php" method="post" enctype="multipart/form-data">
-        <img id="profile-image" src="<?php echo $_SESSION['profileImg']; ?>" alt="" class="d-block img-fluid">        
-        <input class="form-control d-none" type="text" name="userId" value="<?php echo $_SESSION['userId'];?>" >
-          <div id="upload-photo-div" class="mb-2">
-              <input type="file" id="real-file" accept="image/*" class="inputfile" name="avatarpic" hidden="hidden">
-                <button src="#" class="btn" id="upload-photo" type="button" data-toggle="modal" data-target="#addImageModal">
-                  <i class="fas fa-folder-plus"></i> 
-                </button>
-          </div>
-        <button type="button" class="btn btn-danger btn-block image-preview__remove-Image">Remover imagem</button>
+  <?php include_once 'cropper.php'?>
+
       </div>
     </div>
   </div>
@@ -207,8 +199,6 @@
         </div>
       </div>
       <div class="modal-footer">
-          <input type="submit" class="btn btn-primary btn-block btn-file" name="avatarpic-submit">
-        </form>
       </div>
     </div>
   </div>
