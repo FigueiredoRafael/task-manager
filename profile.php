@@ -36,7 +36,7 @@
       </div>
       <div class="col-md-3">
         
-        <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#changePasswordModal">
+        <a href="" class="btn btn-success btn-block" data-toggle="modal" data-target="#changePasswordModal">
           <i class="fas fa-lock"></i> Mudar Senha
         </a>
       </div>
@@ -172,22 +172,47 @@
         </div>
       </div>
       <div class="col-md-3">
-        <h3>Your Avatar</h3>
-        <img src="<?php echo $_SESSION['profileImg']; ?>" alt="" class="d-block img-fluid mb-3">        
-        <form action="includes/update-profile.inc.php" method="post" enctype="multipart/form-data">
-          <input class="form-control d-none" type="text" name="userId" value="<?php echo $_SESSION['userId'];?>" >
-          <span class="btn btn-block btn-file">
-            Adicionar Imagem<input type="file" id="file" class="inputfile" name="avatarpic" />
-          </span>
-        <input type="submit" class="btn btn-primary btn-block btn-file" name="avatarpic-submit">
-        <button class="btn btn-danger btn-block">Remover imagem</button>
-        </form>
+      <form action="includes/update-profile.inc.php" method="post" enctype="multipart/form-data">
+        <img id="profile-image" src="<?php echo $_SESSION['profileImg']; ?>" alt="" class="d-block img-fluid">        
+        <input class="form-control d-none" type="text" name="userId" value="<?php echo $_SESSION['userId'];?>" >
+          <div id="upload-photo-div" class="mb-2">
+              <input type="file" id="real-file" accept="image/*" class="inputfile" name="avatarpic" hidden="hidden">
+                <button src="#" class="btn" id="upload-photo" type="button" data-toggle="modal" data-target="#addImageModal">
+                  <i class="fas fa-folder-plus"></i> 
+                </button>
+          </div>
+        <button type="button" class="btn btn-danger btn-block image-preview__remove-Image">Remover imagem</button>
       </div>
     </div>
   </div>
 </section>
 
 <!-- MODALS -->
+
+<!-- ADD IMAGE MODAL-->
+<div class="modal fade" id="addImageModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Adicionar Imagem</h5>
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span id="custom-upload-text" class="mb-5 ml-2 text-muted">Nenhuma foto selecionada</span>
+        <div class="image-preview" id="imagePreview">
+          <img src="" alt="Image Preview" class="image-preview__image">
+          <span class="image-preview__default-text">Image Preview</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <input type="submit" class="btn btn-primary btn-block btn-file" name="avatarpic-submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- CHANGE PASSWORD MODAL-->
 <div class="modal fade" id="changePasswordModal">
