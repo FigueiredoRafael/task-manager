@@ -1,0 +1,93 @@
+Here we gonna set the bases for this project.
+
+    STEPS
+        1. Create a Login Page
+            a. Must contain: E-mail, Password, Remember-me, Forgot Password, Sign-up Button. 
+            b. Set Database.
+            c. Remember-me system.*
+        2. Create Sign-Up Page
+            a. Must contain: Name, E-mail, CPF, Tel, Pwd and Pwd Confirmation.
+            b. Must have a validation of CPF and E-mail.
+            c. The Sign-up page has to hold informations given by the user, for the sake of UX.
+        3. Create a Forgotten Password Page
+            a. Must validate the user by the CPF.
+            b. It must send an e-mail for the user with a new temporary password.
+        4. Create the Colaborator Profile Page
+            a. It must have a button for edit registry informations of the user.
+            b. It must have a button for register a New Task.
+            c. The Tasks must be organized in a table, with options to see, edit, remove, and status change. CRUD
+            d. It must have a new table, for the tasks shared* with another colaborator.
+        5. Create a page for Sign-up Update
+            a. It must contain all informations from the user in a form
+        6. Create a page for Registration of New Task
+            a. It'll be in a form.
+            b. It must contain: Task Title, Conclusion Date, Task Responsible, Task Description, Task Status.
+            c. The Conclusion Date field, must be the Date type.
+            d. The Task Responsible field, must be a list with all colaborators, however the current logged-in user it has to be already selected.
+            e. The Task Description field, must be a textarea.
+            f. The Task Status field, must have the following options: Open, In Progress, Finished, Delayed. Open is the standard.
+        7. Create a table for vinculated colaborators tasks 
+
+        // COLABORATORS RULES
+
+        1. A colaborator can't be in more than one Sector per Shift.
+        2. A colaborator can't work more than 2 Shifts (dayShift) per day.
+        3. A colaborator can't work more than 2 Sundays (sundayRule) per month.
+        4. A colaborator can't work more than eleven (11) Shifts (weekShift) per week.
+        5. A colaborator must take one day off.
+
+
+        
+
+        $colaborator = [];
+        $colaborator [
+            nome: joão,
+            CPF: 123.123.123-00,
+            email: joaosilva123@gmail.com,
+            dayShift: '', // Can't be more than 2 per day
+            weekShifts: '', // Can't be more than 11 per week
+            sundayRule: '', // Can't be more than 2 per month
+        ]
+        $morningShift = 0; // Can't be more than 1 task per shift
+        $afternoonShift = 0; // Can't be more than 1 task per shift
+        $eveningShift = 0; // Can't be more than 1 task per shift
+
+        $colaboratorSwap = ''; // This will receive by the POST method which colaborator the person wants to swap with.
+
+        Table for Swapping
+
+        Has access => Database ['username']
+
+
+        $task = [
+            taskTitle = 'Clean Sector 3 - Morning',
+            conclusionDate = 'Tuesday (Date)',
+            taskResponsible = '$colaborator',
+            taskDescription = '',
+            taskStatus = ''
+        ]
+
+        Logic for the 2nd Rule:
+
+        if ($colaborator['dayShifts'] > 2) {
+            $print_r = 'Deu ruim, não pode';
+        } else {
+            ++$colaborator['dayShifts'];
+        }
+
+        Logic for the 3rd Rule:
+
+        if ($colaborator['weekShifts'] > 11) {
+            $print_r = 'Deu ruim, não pode';
+        } else {
+            ++$colaborator['weekShifts'];
+        }
+
+        Logic for the 4th Rule:
+
+        if ($colaborator['sundayRule'] > 2) {
+            $print_r = 'Deu ruim, não pode';
+        } else {
+            ++$colaborator['sundayRule'];
+        }
+
