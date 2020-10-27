@@ -186,7 +186,7 @@
     </div>
   </div>
 </section>
-
+<div class="alert">Opa</div>
 <!-- MODALS -->
 
 <!-- ADD IMAGE MODAL-->
