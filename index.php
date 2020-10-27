@@ -4,8 +4,6 @@
   include_once ('nav.php');
 ?>
 
-<!-- TODO: remove this line -->
-
 <!-- HEADER -->
 <header id="main-header" class="py-2 bg-primary text-white">
   <div class="container">
