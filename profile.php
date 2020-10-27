@@ -186,7 +186,6 @@
     </div>
   </div>
 </section>
-
 <!-- MODALS -->
 
 <!-- ADD IMAGE MODAL-->
