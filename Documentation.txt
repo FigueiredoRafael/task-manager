@@ -19,6 +19,9 @@ Here we gonna set the bases for this project.
             d. It must have a new table, for the tasks shared* with another colaborator.
         5. Create a page for Sign-up Update
             a. It must contain all informations from the user in a form
+
+        Concluídos
+
         6. Create a page for Registration of New Task
             a. It'll be in a form.
             b. It must contain: Task Title, Conclusion Date, Task Responsible, Task Description, Task Status.
@@ -27,6 +30,13 @@ Here we gonna set the bases for this project.
             e. The Task Description field, must be a textarea.
             f. The Task Status field, must have the following options: Open, In Progress, Finished, Delayed. Open is the standard.
         7. Create a table for vinculated colaborators tasks 
+
+
+        Tasks
+
+            6.1 Define the front-database for tasks with all items from 6.b.
+                files to change: tasks.php (previous post.php).
+                Do through Json.
 
         // COLABORATORS RULES
 
