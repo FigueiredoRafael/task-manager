@@ -29,7 +29,8 @@
         <link  href="js/jquery-cropper-master/docs/css/cropper.css" rel="stylesheet">
         <script src="/js/jquery-cropper-master/docs/js/jquery-cropper.js"></script>
         <script src="js/app.js"></script>
-        <script src="singup.js" type="text/javascript"> </script>
+        <script src="js/singup.js" type="text/javascript"> </script>
+        <script src="js/taskProcessor.js" type="text/javascript"> </script>
         <script>
             // Get the current year for the copyright
         $('#year').text(new Date().getFullYear());

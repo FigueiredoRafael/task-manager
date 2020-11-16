@@ -204,7 +204,8 @@
                 </div>
                 <div class="form-group">
                   <label for="password">Repita sua Senha</label>
-                  <input class="form-control" type="password" name="pwd-repeat" id="pwd-repeat" onkeyup="passwordRepeatValidation(this.value);" placeholder="Repita a mesma senha" required><p class="pwd-repeat-msg"></p>
+                  <input class="form-control" type="password" name="pwd-repeat" id="pwd-repeat" onkeyup="passwordRepeatValidation(this.value);" placeholder="Repita a mesma senha" required>
+                  <p class="pwd-repeat-msg"></p>
                 </div>
                 
                 <button class="btn btn-lg btn-primary btn-block" type="submit" name="signup-submit" id="signup-btn">Cadastrar</button>

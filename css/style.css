@@ -193,3 +193,9 @@ footer {
 
 @media (max-width: 1199px) {
 }
+
+.alerts-position {
+  position: relative;
+  height: 50px;
+  z-index: 10;
+}
