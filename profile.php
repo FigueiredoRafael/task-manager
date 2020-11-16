@@ -20,10 +20,11 @@
     </div>
   </div>
 </header>
-
-<?php 
-  include "includes/update-msgs.inc.php";
-?>
+<div class="alerts-position">
+  <?php 
+    include "includes/update-msgs.inc.php";
+  ?>
+</div>
 
 <!-- ACTIONS -->
 <section id="actions" class="py-4 mb-4 bg-light">

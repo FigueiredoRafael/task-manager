@@ -397,6 +397,7 @@ $(document).ready(function () {
     $("#formulario").fadeIn();
   });
 
+
   $(document).on("click", ".remover", function () {
     //id da linha
     var id = $(this).attr("id");
@@ -417,6 +418,32 @@ $(document).ready(function () {
       }
     });
   });
+
+  $(document).on("click", "#remover-tarefa", function () {
+
+    Swal.fire({
+      title: "Espere!",
+      text: "Tem certeza que deseja deletar esta tarefa?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, quero apagar!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $("#remover-tarefa").removeAttr("onclick");
+        $("#remover-tarefa").click();
+        Swal.fire(
+          'Deletado!',
+          'Sua tarefa foi deletada com ',
+          'sucesso!'
+        )
+        
+      }
+    });
+  });
+
 
   $("#btn-enviar-ajax").click(function () {
     $.ajax({

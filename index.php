@@ -14,20 +14,22 @@
     </div>
   </div>
 </header>
+<div class="alerts-position">
+  <?php 
+    $url = "HTTP://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-<?php 
-  $url = "HTTP://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $loginSuccess    = '<div class="alerts-position col-3 alert alert-success alert-dismissible fade show" role="alert">
+                          <strong>Login</strong> feito com sucesso!
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>';
+    if (strpos($url, "login=success") == true) {
+      echo $loginSuccess;
+    } 
+  ?>
+</div>
 
-  $loginSuccess    = '<div class="col-3 alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Login</strong> feito com sucesso!
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>';
-   if (strpos($url, "login=success") == true) {
-     echo $loginSuccess;
-   } 
-?>
 
 
 <!-- ACTIONS -->
@@ -35,7 +37,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
+        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal">
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
@@ -51,7 +53,7 @@
 <!-- User Tasks -->
 <?php 
 
-include "weekTasks.php";
+include "tasks.php";
 
 
 include "modals.php";
@@ -72,40 +74,23 @@ include "modals.php";
 
               require "includes/dbh.inc.php";
               $sql = "SELECT * FROM users";
-              $result = mysqli_query($conn, $sql);
-              // $row = mysqli_fetch_assoc($result);
-                
-              while ($row = mysqli_fetch_assoc($result)){
-              
-              if (($key = array_search($_SESSION['userId'], $row)) !== false) {
-                unset($row[$key]);
-              } else {  
-              $userId = $row['idUsers'];
-              $sqlimg = "SELECT img_dir FROM profileimg WHERE id='$userId'";
-              $resultimg = mysqli_query($conn, $sqlimg);
-              $rowimg = mysqli_fetch_assoc($resultimg);
+              $result = mysqli_query($conn, $sql); 
+              while ($row = mysqli_fetch_assoc($result)){              
+                if (($key = array_search($_SESSION['userId'], $row)) !== false) {
+                  unset($row[$key]);
+                } else {  
+                $userId = $row['idUsers'];
+                $sqlimg = "SELECT img_dir FROM profileimg WHERE id='$userId'";
+                $resultimg = mysqli_query($conn, $sqlimg);
+                $rowimg = mysqli_fetch_assoc($resultimg);
 
-              echo '<div class="card-body col-md-1 mr-2">
-                      <span><button class="btn"><img src="'.$rowimg['img_dir'].'" class="rounded-circle user-image-circle " alt="Cinque Terre" ><br>'.$row['fnameUsers'].'</button></span>
-                    </div>';
-                    }
+                echo '<div class="card-body col-md-1 mr-2">
+                        <span><button class="btn"><img src="'.$rowimg['img_dir'].'" class="rounded-circle user-image-circle " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" ><br>'.$row['fnameUsers'].'</button></span>
+                      </div>';
+                      }
               }
             
           ?>
-            
-            
-            <!-- <div class="card-body col-md-1 mr-2">
-              <span><button class="btn"><img src="img/users-imgs/marcelo.png" class="rounded-circle user-image-circle" alt="Cinque Terre"><br>Marcelo</button></span>
-            </div>
-            <div class="card-body col-md-1 mr-2">
-              <span><button class="btn"><img src="img/users-imgs/bruno.png" class="rounded-circle user-image-circle" alt="Cinque Terre"><br>Bruno</button></span>
-            </div>
-            <div class="card-body col-md-1 mr-2">
-              <span><button class="btn"><img src="img/users-imgs/jhon.png" class="rounded-circle user-image-circle" alt="Cinque Terre"><br>Jhonatan</button></span>
-            </div>
-            <div class="card-body col-md-1 mr-2">
-              <span><button class="btn"><img src="img/users-imgs/anderson.png" class="rounded-circle user-image-circle" alt="Cinque Terre"><br>Anderson</button></span>
-            </div> -->
           </div>
         </div>
       </div>

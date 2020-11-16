@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Post One</h1>
+        <h1><?php echo "Título Tarefa"; ?></h1>
       </div>
     </div>
   </div>
@@ -21,18 +21,19 @@
     <div class="row">
       <div class="col-md-3">
         <a href="index.php" class="btn btn-light btn-block">
-          <i class="fas fa-arrow-left"></i> Back To Dashboard
+          <i class="fas fa-arrow-left"></i> De volta para tarefas
         </a>
       </div>
       <div class="col-md-3">
-        <a href="index.php" class="btn btn-success btn-block">
-          <i class="fas fa-check"></i> Save Changes
-        </a>
+      <form action="includes/task-processor.inc.php" method="post">
+        <button type="submit" name="task-update-submit" class="btn btn-success btn-block">
+          <i class="fas fa-check"></i> Salvar Mudanças
+        </button>
       </div>
       <div class="col-md-3">
-        <a href="index.php" class="btn btn-danger btn-block text-white">
-          <i class="fas fa-trash"></i> Delete
-        </a>
+        <button type="submit" name="task-delete-submit" class="btn btn-danger btn-block text-white">
+          <i class="fas fa-trash"></i> Deletar Tarefa
+        </button>
       </div>
     </div>
   </div>
@@ -44,34 +45,23 @@
     <div class="row">
       <div class="card">
         <div class="card-header">
-          <h4>Edit Post</h4>
+          <h4>Atualizar Tarefa</h4>
         </div>
         <div class="card-body">
-          <form>
             <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control" value="Post One">
+              <label for="title">Título</label>
+              <input type="text" name="task-title" class="form-control" value="<?php echo $_GET['taskTitle']?>">
+              <input type="hidden" name="task-id" class="form-control" value="<?php echo $_GET['taskId']; ?>">
+              <input type="hidden" name="userId" value="<?php echo $_SESSION['userId'];?>" >
             </div>
             <div class="form-group">
-              <label for="category"></label>
-              <select class="form-control">
-                <option value="" selected>Web Development</option>
-                <option value="">Tech Gadgets</option>
-                <option value="">Business</option>
-                <option value="">Health & Wellness</option>
-              </select>
+              <label for="Data de Conclusão">Data de Conclusão</label>
+              <input type="date" name="conclusion-date" class="form-control" value="<?php echo $_GET['taskConcl']?>">
+              </input>
             </div>
             <div class="form-group">
-              <label for="image">Upload Image</label>
-              <div class="custom-file">
-                <input type="text" class="custom-file-input" id="image">
-                <label for="image" class="custom-file-label">Chose File</label>
-              </div>
-              <small class="form-text text-muted">Max size 3mb</small>
-            </div>
-            <div class="form-group">
-              <label for="body">Body</label>
-              <textarea name="editor1" class="form-control">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dolore quidem aperiam maxime neque perferendis ullam eius ab, rem cupiditate nulla doloribus itaque quibusdam, ad soluta officiis reprehenderit nisi debitis eveniet tempore ducimus molestias. Consequatur iusto, deserunt iure perferendis sed necessitatibus minima maiores. Aliquid doloremque et nemo quia commodi repellat?</textarea>
+              <label for="task-description">Descrição</label>
+              <textarea name="task-description" class="form-control"><?php echo $_GET['taskDescr']?></textarea>
             </div>
           </form>
         </div>
@@ -79,19 +69,6 @@
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
-<footer id="main-footer" class="bg-dark text-white mt-5 p-5">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <p class="lead text-center">
-          copyright &copy; <span id="year"></span> Blogen
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
 
 <!-- MODALS -->
 
