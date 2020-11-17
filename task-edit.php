@@ -49,20 +49,42 @@
         </div>
         <div class="card-body">
             <div class="form-group">
-              <label for="title">Título</label>
+              <label for="title" class="text text-dark">Título</label>
               <input type="text" name="task-title" class="form-control" value="<?php echo $_GET['taskTitle']?>">
               <input type="hidden" name="task-id" class="form-control" value="<?php echo $_GET['taskId']; ?>">
               <input type="hidden" name="userId" value="<?php echo $_SESSION['userId'];?>" >
             </div>
             <div class="form-group">
-              <label for="Data de Conclusão">Data de Conclusão</label>
-              <input type="date" name="conclusion-date" class="form-control" value="<?php echo $_GET['taskConcl']?>">
-              </input>
+              <label for="conclusion-date" class="text text-dark">Data de Conclusão: </label>
+              <?php 
+              echo $_GET['taskConcl'];
+              ?>
+              <br>
+              <input type="date" class="form-control" name="conclusion-date">
+              <label for="task-status" class="text text-dark">Status:</label>
+              <span class="text text-<?php echo $_GET['statColor'] ?>"><?php echo $_GET['taskStat'] ?></span>
             </div>
             <div class="form-group">
-              <label for="task-description">Descrição</label>
+              <label for="task-description" class="text text-dark">Descrição</label>
               <textarea name="task-description" class="form-control"><?php echo $_GET['taskDescr']?></textarea>
             </div>
+          </form>
+            <form action="includes/task-processor.inc.php" method="post">
+            <input type="hidden" name="taskId" class="form-control" value="<?php echo $_GET['taskId']; ?>">
+            <input type="hidden" name="user-action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else { echo "finish"; } ?>">
+            <button type="submit" name="task-user-action" class="btn btn-<?php if ($_GET['taskStat'] == "Aberto") {
+                                            echo 'primary';
+                                          } else {
+                                            echo 'success'; 
+                                          }
+                                    ?>"> 
+                                          <?php 
+                                              if ($_GET['taskStat'] == "Aberto") {
+                                                echo "Começar Tarefa"; 
+                                                } else if ($_GET['taskStat'] == "Atrasado" || $_GET['taskStat'] == "Em Progresso" ) {
+                                                  echo "Concluir Tarefa"; 
+                                                }
+                                          ?></button>
           </form>
         </div>
       </div>

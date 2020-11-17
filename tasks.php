@@ -49,11 +49,38 @@
             if ($result = $conn->query($sql)) {
               while ($row = $result->fetch_assoc()) {
                 $taskId    = $row['taskId'];
+                $taskStat = $row['tasks_stat'];
+                $time = time();
+                $currentDay = date("Y-m-d", $time);
+                $date = $row['tasks_concl'];
+                
+                 if( $taskStat != "Concluido") {                  
+                  if ($date < $currentDay) {
+                    $sqlStat = "SELECT tasks_concl FROM tasks WHERE taskId='$taskId'";
+                    $resultStat = mysqli_query($conn, $sqlStat);
+                      if (mysqli_num_rows($resultStat) > 0) {
+                              $taskStat = "Atrasado";
+                              $sqlStat = "UPDATE tasks SET tasks_stat='$taskStat' WHERE taskId='$taskId'";
+                      }
+                  } else if ($taskStat == "Em Progresso" && ($date == $currentDay || $date > $currentDay)) {
+                    $taskStat = "Em Progresso";
+                  } else if ($date == $currentDay || $date > $currentDay || $taskStat != "Em Progresso") {
+                    $sqlStat = "SELECT tasks_concl FROM tasks WHERE taskId='$taskId'";
+                    $resultStat = mysqli_query($conn, $sqlStat);
+                      if (mysqli_num_rows($resultStat) > 0) {
+                              $taskStat = "Aberto";
+                              $sqlStat = "UPDATE tasks SET tasks_stat='$taskStat' WHERE taskId='$taskId'";
+                      }
+                  }
+                } else if ($taskStat == "Concluido") {
+                  $taskStat = "Concluido";
+                }
+                
                 $taskTitle = $row['tasks_title'];
                 $taskResp  = $_SESSION['userFname'];
-                $taskConcl = $row['tasks_concl'];
+                $date      = $row['tasks_concl'];
+                $taskConcl = date("d/m/Y", strtotime($date));
                 $taskDescr = $row['tasks_descr'];
-                $taskStat = $row['tasks_stat'];
                 if ($taskStat == "Aberto") {
                   $statColor = "warning";
                 } else if ($taskStat == "Em Progresso") {
@@ -72,11 +99,24 @@
                         <td><?php echo $taskTitle; ?></td>
                         <td><?php echo $taskResp; ?></td>
                         <td><?php echo $taskConcl; ?></td>
-                        <td><?php echo "<p class='text text-".$statColor."'>".$taskStat."</p>";?></td>
+                        <td><?php if ($taskStat == "Concluido") { $taskStat = "Concluído"; } 
+                         echo "<p class='text text-".$statColor."'>".$taskStat."</p>";?></td>
                         <td>                       
-                           
-                          <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>' class='btn btn-secondary'>
-                          <i class="fas fa-edit"></i> Editar 
+                          <?php 
+                          
+                            if ($taskStat == "Concluído") {
+
+                              ?> 
+                               <i class="far fa-check-square text-success h3"></i>
+                              
+                              <?php 
+                            } else {
+                          ?>
+                              <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>&statColor=<?php echo $statColor ?>&taskStat=<?php echo $taskStat ?>' class='btn btn-secondary'>
+                              <i class="fas fa-edit"></i> Editar
+                          <?php 
+                            }
+                          ?>
                           <a class='btn btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
                             <i class='fas fa-angle-double-right'></i>Mais..
                           </a>
