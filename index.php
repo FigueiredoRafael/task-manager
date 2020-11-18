@@ -89,7 +89,7 @@ include "modals.php";
               ?>
                 <div class="card-body col-md-1 mr-2">
                         <span><a class="btn" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" ><br><?php echo $row['fnameUsers']; ?></a></span>
-                      </div>;
+                      </div>
             <?php                      
                       }
               }
