@@ -41,10 +41,13 @@
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
-      <div class="col-md-3">
-        <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
-          <i class="fas fa-plus"></i> Adicionar Categoria
-        </a>
+      <div id="search" class="col-md-6 ml-auto">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Procurar tarefas...">
+            <div class="input-group-append">
+              <button class="btn btn-primary">Procurar</button>
+            </div>
+        </div>
       </div>
     </div>
   </div>
