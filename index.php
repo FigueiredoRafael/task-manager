@@ -110,16 +110,6 @@ include "modals.php";
           </div>
         </div>
 
-        <div class="card text-center bg-success text-white float-right user-cards">
-          <div class="card-body">
-          <h4 class=" float-left text-center ml-2">
-              <i class="fas fa-folder mt-1"></i> 4
-            </h4>
-            <h4 class="float-left ml-2">Categorias</h4>
-            <a href="categories.php" class="btn btn-outline-light btn-md float-right sm-btn">View </a>
-          </div>
-        </div>
-
         <div class="card text-center bg-warning text-white float-right user-cards">
           <div class="card-body">
           <h4 class=" float-left text-center ml-2 mt-1">
