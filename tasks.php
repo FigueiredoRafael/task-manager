@@ -31,8 +31,13 @@
             $result = mysqli_query($conn, $sql);
             if ($result = $conn->query($sql)) {
               while ($row = $result->fetch_assoc()) {
-                $taskId    = $row['taskId'];
                 $taskStat = $row['tasks_stat'];
+
+                if ($taskStat != "Concluido"){
+
+                
+                $taskId    = $row['taskId'];
+                
                 $time = time();
                 $currentDay = date("Y-m-d", $time);
                 $date = $row['tasks_concl'];
@@ -114,6 +119,7 @@
                       </tr>
                       
             <?php
+                }
               }
               $result->free();
             }
