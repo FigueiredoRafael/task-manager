@@ -9,7 +9,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1><?php echo "Título Tarefa"; ?></h1>
+        <h1><?php echo "Editor de Tarefas"; ?></h1>
       </div>
     </div>
   </div>
@@ -42,7 +42,8 @@
 <!-- DETAILS -->
 <section id="details">
   <div class="container">
-    <div class="row">
+    <div class="row ">
+      <div class="col-md-12 pl-5 pr-5">
       <div class="card">
         <div class="card-header">
           <h4>Atualizar Tarefa</h4>
@@ -54,7 +55,7 @@
               <input type="hidden" name="task-id" class="form-control" value="<?php echo $_GET['taskId']; ?>">
               <input type="hidden" name="userId" value="<?php echo $_SESSION['userId'];?>" >
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-4">
               <label for="conclusion-date" class="text text-dark">Data de Conclusão: </label>
               <?php 
               echo $_GET['taskConcl'];
@@ -88,6 +89,7 @@
           </form>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>
