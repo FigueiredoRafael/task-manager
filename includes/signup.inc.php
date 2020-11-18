@@ -152,66 +152,118 @@ if (isset($_POST['signup-submit'])) {
         empty($addressStr)
         ) {
 
+            if (isset($_POST['signup-admin-submit'])) {
+                header ("location: ../users.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userTypeArr."&address=".$addressArr);
+                exit();
+            }
+            else{
         header ("location: ../login.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userTypeArr."&address=".$addressArr);
-        exit ();
+        exit ();}
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
 
+        if (isset($_POST['signup-admin-submit'])) {
+            header ("Location: ../users.php?error=emptyfields&invalidmailuid");
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=emptyfields&invalidmailuid");
-        exit ();
+        exit ();}
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (isset($_POST['signup-admin-submit'])) {
+            header ("Location: ../users.php?error=invalidmail&uid=".$username);
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=invalidmail&uid=".$username);
-        exit ();
+        exit ();}
 
     } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        if (isset($_POST['signup-admin-submit'])) {
+            header ("Location: ../users.php?error=invaliduid&mail=".$email);
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=invaliduid&mail=".$email);
-        exit ();
+        exit ();}
         
     } else if ($password !== $passwordRepeat) {
+        if (isset($_POST['signup-admin-submit'])) {
+            header ("Location: ../users.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email);
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email);
-        exit();
+        exit();}
 
     } else if (empty($password) || strlen($password) < 6 || !preg_match("/^[a-zA-Z0-9]*$/", $password)) {
             if ($error = true) {
+                if (isset($_POST['signup-admin-submit'])) {
+                    header ("Location: ../users.php?error=weakpassword");
+                    exit();
+                }
+                else{
                 header ("Location: ../login.php?error=weakpassword");
-                exit();
+                exit();}
             }
     } else {
         $sql = "SELECT uidUsers OR emailUsers OR cpfUsers FROM users WHERE uidUsers=? OR emailUsers=? OR cpfUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
+            if (isset($_POST['signup-admin-submit'])) {
+                header ("Location: ../users.php?error=sqlerror");
+                exit();
+            }
+            else{
             header ("Location: ../login.php?error=sqlerror");
-            exit();
+            exit();}
         } else {
             mysqli_stmt_bind_param($stmt, "sss", $username, $email, $cpf);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt);
             if ($resultCheck > 0) {
+                if (isset($_POST['signup-admin-submit'])) {
+                    header ("Location: ../users.php?error=usertaken=");
+                    exit();
+                }
+                else{
                 header ("Location: ../login.php?error=usertaken=");
-                exit();
+                exit();}
             } else {
                 $sql = "INSERT INTO users (uidUsers, fnameUsers, lnameUsers, emailUsers, cpfUsers, genderUsers, pwdUsers, userType, addressUsers, celularUsers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    if (isset($_POST['signup-admin-submit'])) {
+                        header ("Location: ../users.php?error=sqlerror");
+                        exit();
+                    }
+                    else{
                     header ("Location: ../login.php?error=sqlerror");
-                    exit();
+                    exit();}
                 } else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
                     mysqli_stmt_bind_param($stmt, "ssssssssss", $username, $fname, $lname, $email, $cpf, $gender, $hashedPwd, $userTypeStr, $addressStr, $celular);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
+                    if (isset($_POST['signup-admin-submit'])) {
+                        header ("Location: ../users.php?signup=success");
+                        $signUpSuccessAlert;
+                        exit();
+                    }
+                    else{
                     header ("Location: ../login.php?signup=success");
                     $signUpSuccessAlert;
                     exit();
+                    }
                 }
             }
         }
     }
 
-     
+    
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
     } else {
