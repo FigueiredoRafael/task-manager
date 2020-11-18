@@ -55,9 +55,11 @@
               <input type="hidden" name="userId" value="<?php echo $_SESSION['userId'];?>" >
             </div>
             <div class="form-group">
-              <label for="Data de Conclusão">Data de Conclusão</label>
+              <label for="conclusion-date">Data de Conclusão</label>
               <input type="date" name="conclusion-date" class="form-control" value="<?php echo $_GET['taskConcl']?>">
               </input>
+              <label for="task-status">Status:</label>
+              <p class="text text-<?php echo $_GET['statColor'] ?>"><?php echo $_GET['taskStat'] ?></p>
             </div>
             <div class="form-group">
               <label for="task-description">Descrição</label>
