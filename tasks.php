@@ -227,11 +227,6 @@
                                <i class="far fa-check-square text-success h3"></i>
                               
                               <?php 
-                            } else {
-                          ?>
-                              <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>&statColor=<?php echo $statColor ?>&taskStat=<?php echo $taskStat ?>' class='btn btn-secondary'>
-                              <i class="fas fa-edit"></i> Editar
-                          <?php 
                             }
                           ?>
                           <a class='btn btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
