@@ -15,10 +15,7 @@
           <a href="index.php" class="nav-link">Dashboard</a>
         </li>
         <li class="nav-item px-2">
-          <a href="posts.php" class="nav-link ">Posts</a>
-        </li>
-        <li class="nav-item px-2">
-          <a href="categories.php" class="nav-link ">Categories</a>
+          <a href="posts.php" class="nav-link ">Tarefas</a>
         </li>
         <li class="nav-item px-2">
           <a href="users.php" class="nav-link ">Users</a>
