@@ -200,7 +200,7 @@
                 }
                 
                 $taskTitle = $row['tasks_title'];
-                $taskResp  = $_SESSION['userFname'];
+                $taskResp  = $userFname;
                 $date      = $row['tasks_concl'];
                 $taskConcl = date("d/m/Y", strtotime($date));
                 $taskDescr = $row['tasks_descr'];
