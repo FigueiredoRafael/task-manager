@@ -71,7 +71,7 @@ include "modals.php";
           </div>
           <div class="row">
           <div class="card-body col-md-1 mr-2">
-              <span><button class="btn"><img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre"><br><?php echo $_SESSION['userFname']?></button></span>
+              <span><a href="index.php" class="btn"><img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre"><br><?php echo $_SESSION['userFname']?></a></span>
           </div>
           <?php
 
