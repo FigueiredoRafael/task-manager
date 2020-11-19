@@ -29,6 +29,7 @@
             
             $sql = "SELECT * FROM tasks WHERE tasks_resp='$userId'";
             $result = mysqli_query($conn, $sql);
+
             if ($result = $conn->query($sql)) {
               while ($row = $result->fetch_assoc()) {
                 $taskStat = $row['tasks_stat'];

@@ -80,14 +80,14 @@ if (isset($_POST['task-submit'])) {
         require "dbh.inc.php";
         $action = $_POST['user-action'];
         $taskId = $_POST['taskId'];
-    
+        echo $action;
         if ($action == "start") {
             $sql = "SELECT tasks_stat FROM tasks WHERE taskId='$taskId'";
             $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     $row = mysqli_fetch_assoc($result);
-                    if ($row['tasks_stat'] == "Em Progresso" || $row['tasks_stat'] == "Concluido" ) {
-                        header('Location: ../index.php?updatetask-error=invalid-action');
+                    if ($row['tasks_stat'] == "Em Progresso" || $row['tasks_stat'] == "Concluido") {
+                        header('Location: ../index.php?updatetask-error=invalid-action-start');
                         exit();
                     } else {
                         $taskStat = "Em Progresso";
@@ -109,8 +109,8 @@ if (isset($_POST['task-submit'])) {
                 $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
                         $row = mysqli_fetch_assoc($result);
-                        if ($row['tasks_stat'] == "Aberto" || $row['tasks_stat'] == "Concluido" ) {
-                            header('Location: ../index.php?updatetask-error=invalid-action');
+                        if ($row['tasks_stat'] == "Concluido" ) {
+                            header('Location: ../index.php?updatetask-error=invalid-action-finish'.$row['tasks_stat']);
                             exit();
                         } else {
                             $taskStat = "Concluido";
@@ -127,11 +127,8 @@ if (isset($_POST['task-submit'])) {
                         }
                     }
             
-            } else {
-            header('Location: ../index.php?updatetask-error=noaction-set');
-            exit();
-        }
-        header('Location: ../index.php?addtask-error=notask-added');
+            }
+        header('Location: ../index.php?updatetask-error=noaction-set');
         exit(); 
     
     } else {

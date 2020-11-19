@@ -63,7 +63,7 @@
               <br>
               <input type="date" class="form-control" name="conclusion-date">
               <label for="task-status" class="text text-dark">Status:</label>
-              <span class="text text-<?php echo $_GET['statColor'] ?>"><?php echo $_GET['taskStat'] ?></span>
+              <span class="text text-<?php echo $_GET['statColor'] ?>"><?php $taskStat = $_GET['taskStat']; echo $taskStat; ?></span>
             </div>
             <div class="form-group">
               <label for="task-description" class="text text-dark">Descrição</label>
@@ -71,8 +71,8 @@
             </div>
           </form>
             <form action="includes/task-processor.inc.php" method="post">
-            <input type="hidden" name="taskId" class="form-control" value="<?php echo $_GET['taskId']; ?>">
-            <input type="hidden" name="user-action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else { echo "finish"; } ?>">
+            <input type="hidden" name="taskId" class="form-control" value="<?php $taskId = $_GET['taskId']; echo $taskId;  ?>">
+            <input type="hidden" name="user-action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") { echo "finish"; } ?>">
             <button type="submit" name="task-user-action" class="btn btn-<?php if ($_GET['taskStat'] == "Aberto") {
                                             echo 'primary';
                                           } else {
@@ -86,6 +86,12 @@
                                                   echo "Concluir Tarefa"; 
                                                 }
                                           ?></button>
+                                          <?php 
+                                            require "includes/dbh.inc.php";
+                                            $sql = "SELECT tasks_stat FROM tasks WHERE taskId='$taskId'";
+                                            echo $taskStat ." - ". $taskId."<br>";    
+
+                                          ?>
           </form>
         </div>
       </div>
