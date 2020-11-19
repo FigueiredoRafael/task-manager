@@ -132,8 +132,7 @@ if (isset($_POST['signup-submit'])) {
     $passwordRepeat = $_POST['pwd-repeat'];
     $celular        = $_POST['celular'];
 
-    $userTypeArr    = array($_POST['userType']);
-    $userTypeStr    = serialize($userTypeArr);
+    $userType       = $_POST['userType'];
 
     $addressArr     = array($_POST['address']);
     $addressStr     = serialize($addressArr);
@@ -245,7 +244,7 @@ if (isset($_POST['signup-submit'])) {
                 } else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_param($stmt, "ssssssssss", $username, $fname, $lname, $email, $cpf, $gender, $hashedPwd, $userTypeStr, $addressStr, $celular);
+                    mysqli_stmt_bind_param($stmt, "ssssssssss", $username, $fname, $lname, $email, $cpf, $gender, $hashedPwd, $userType, $addressStr, $celular);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
                     if (isset($_POST['signup-admin-submit'])) {
