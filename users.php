@@ -2,6 +2,10 @@
   require "header.php"; 
   require "includes/session-validation.inc.php";
   include_once ('nav.php');
+
+  if ($_SESSION['userType'] == "admin") {
+
+
 ?>
 
 <!-- HEADER -->
@@ -304,5 +308,10 @@
 
 <!-- FOOTER -->
 <?php
+  } else {
+    header("Location: index.php?unauthorized-credential");
+    exit();
+  }
+
   require 'footer.php';
 ?>
