@@ -38,9 +38,9 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userLname']   = $row['lnameUsers'];
                     $_SESSION['userEmail']   = $row['emailUsers'];
                     $_SESSION['userCelular'] = $row['celularUsers'];
+                    $_SESSION['userType']    = $row['userType'];
 
                     $addressArr = unserialize($row['addressUsers'])[0];
-                    $userTypeArr = unserialize($row['userType'])[0];
 
                     $_SESSION['userCep']     = $addressArr[0];
                     $_SESSION['userStreet']  = $addressArr[1];
