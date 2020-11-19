@@ -48,7 +48,7 @@
           <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
-              <th>#</th>
+            <th>#</th>
               <th>Nome</th>
               <th>Email</th>
               <th>Credencial</th>
@@ -56,50 +56,73 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>John Doe</td>
-              <td>jdoe@gmail.com</td>
-              <td>Administrador </td>
-              <td>
-                <a href="details.php" class="btn btn-secondary">
-                  <i class="fas fa-angle-double-right"></i> Details
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Harry White</td>
-              <td>Harry@gmail.com</td>
-              <td>Usuário </td>
-              <td>
-                <a href="details.php" class="btn btn-secondary">
-                  <i class="fas fa-angle-double-right"></i> Details
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Mary Johnson</td>
-              <td>MaryJ.com</td>
-              <td>Usuário </td>
-              <td>
-                <a href="details.php" class="btn btn-secondary">
-                  <i class="fas fa-angle-double-right"></i> Details
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Rafael Figueiredo</td>
-              <td>Rafa@gmail.com</td>
-              <td>Administrador </td>
-              <td>
-                <a href="details.php" class="btn btn-secondary">
-                  <i class="fas fa-angle-double-right"></i> Details
-                </a>
-              </td>
-            </tr>
+            <?php 
+            require "includes/dbh.inc.php";            
+            
+            $userId = $_SESSION['userId'];
+            
+            
+            $sql = "SELECT * FROM users";
+            $result = mysqli_query($conn, $sql);
+            if ($result = $conn->query($sql)) {
+              while ($row = $result->fetch_assoc()) {
+                $userId    = $row['idUsers'];
+                $userUid = $row['uidUsers'];
+                $userEmail = $row['emailUsers'];
+                $userType = $row['userType'];
+                $userFName = $row['fnameUsers'];       
+                $userLName = $row['lnameUsers'];       
+                $userGender = $row['genderUsers'];       
+                $userCellPhone = $row['celularUsers'];
+                
+                $addressArr = unserialize($row['addressUsers'])[0];
+                
+                $userStreet = $addressArr[1];
+                $userStNumber = $addressArr[2];                       
+                $userStComp = $addressArr[3];                       
+                $userStCep = $addressArr[0];                       
+                
+                include "modals.php";
+                ?>
+                      <tr>
+                      
+                        <td><?php echo $userId; ?></td>
+                        <td><?php echo $userUid; ?></td>
+                        <td><?php echo $userEmail; ?></td>
+                        <td><?php echo $userType; ?></td>
+
+                        
+
+                        <td>                       
+
+                          <a class='btn btn-secondary ml-3' data-toggle='collapse' href='#user-details-<?php echo $userId; ?>' role='button' >
+                            <i class='fas fa-angle-double-right'></i>Mais..
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="5">
+                          <div class='collapse' id='user-details-<?php echo $userId; ?>'>
+                              <div class='card card-body text-align-left'> 
+                              <span class="text-left pb-1"><strong>Nome:</strong> <?php echo $userFName." ".$userLName; ?></span>
+                              <span class="text-left pb-1"><strong>Gênero:</strong> <?php echo $userGender; ?></span>
+                              <span class="text-left pb-1"><strong>Celular: </strong><span class="celular"><?php echo $userCellPhone; ?></span></span>      
+                              <span class="text-left pb-2"><strong>Endereço:</strong> <?php echo $userStreet.", ".$userStNumber.", ".$userStComp." - ";?><span class="cep"><?php echo $userStCep;?></span></span>
+                                  
+                              <form action="includes/users-processor.inc.php" method="POST">
+                              <input name="userId" type="hidden" value="<?php echo $userId;?>">
+                                <button name="user-delete-submit" class="btn-md btn-block btn-danger text-align-right " style="height:35px; border-radius: 3px;" >Remover usuário</button>
+                              </form>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      
+            <?php
+              }
+              $result->free();
+            }            
+            ?>            
           </tbody>
           </table>
         </div>
@@ -107,6 +130,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- ADD USER MODAL-->
 <div class="modal fade" id="addUserModal">
