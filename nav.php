@@ -17,9 +17,15 @@
         <li class="nav-item px-2">
           <a href="posts.php" class="nav-link ">Concluídos</a>
         </li>
+        <?php
+          if($_SESSION['userType'] == "admin") {
+        ?>
         <li class="nav-item px-2">
           <a href="users.php" class="nav-link ">Usuários</a>
         </li>
+        <?php
+          }
+        ?>
       </ul>
 
 
