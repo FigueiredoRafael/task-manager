@@ -102,7 +102,7 @@
                 </div>
                 <div class="form-group">
                   <label for="password">CPF</label>
-                  <input class="form-control" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
+                  <input class="form-control cpf" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
                 </div>
                 <div class="form-group">
                   <label for="gender">Genero:</label><br>
@@ -115,7 +115,7 @@
                   <label for="nome">Celular</label>
                   <input
                     type="text"
-                    class="intem-formulario form-control"
+                    class="celular intem-formulario form-control"
                     name="celular"
                     id="celular"
                     placeholder="Exemplo: (99) 99999-9999"

@@ -111,7 +111,7 @@
                                   
                               <form action="includes/users-processor.inc.php" method="POST">
                               <input name="userId" type="hidden" value="<?php echo $userId;?>">
-                                <button name="user-delete-submit" class="btn-md btn-block btn-danger text-align-right " style="height:35px; border-radius: 3px;" >Remover usuário</button>
+                                <button type="submit" name="user-delete-submit" class="btn-md btn-block btn-danger text-align-right userDeleteBtn " style="height:35px; border-radius: 3px;" onclick="return false" >Remover usuário</button>
                               </form>
                             </div>
                           </div>
@@ -169,7 +169,7 @@
                 </div>
                 <div class="form-group">
                   <label for="password">CPF</label>
-                  <input class="form-control" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
+                  <input class="form-control cpf" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
                 </div>
                 <div class="form-group">
                   <label for="gender">Genero:</label><br>
@@ -182,7 +182,7 @@
                   <label for="nome">Celular</label>
                   <input
                     type="text"
-                    class="intem-formulario form-control"
+                    class="celular intem-formulario form-control"
                     name="celular"
                     id="celular"
                     placeholder="Exemplo: (99) 99999-9999"
@@ -265,9 +265,9 @@
                 </div>
                 <div class="form-group">
                   <label for="nome">Credencial</label>
-                  <select class="custom-select mb-2">
-                    <option value="1">Usuário</option>
-                    <option value="2">Administrador</option>
+                  <select name="userType" class="custom-select mb-2">
+                    <option value="user">Usuário</option>
+                    <option value="admin">Administrador</option>
                   </select> 
                 </div>
                 <input type="hidden" name="userType" value="user">
