@@ -99,11 +99,12 @@ function passwordValidation(password) {
 
 $(document).ready(function () {
   //inserindo mascara nos campos
-  $("#cpf").mask("999.999.999-99");
-  $("#celular").mask("(99) 99999-9999");
+  $(".cpf").mask("999.999.999-99");
+  $(".cep").mask("99999-999");
+  $(".celular").mask("(99) 99999-9999");
   $("#signup-form").submit(function () {
-    $("#cpf").unmask();
-    $("#celular").unmask();
+    $(".cpf").unmask();
+    $(".celular").unmask();
   });
 
   //trabalhando com o formulario
@@ -397,7 +398,6 @@ $(document).ready(function () {
     $("#formulario").fadeIn();
   });
 
-
   $(document).on("click", ".remover", function () {
     //id da linha
     var id = $(this).attr("id");
@@ -420,7 +420,6 @@ $(document).ready(function () {
   });
 
   $(document).on("click", "#remover-tarefa", function () {
-
     Swal.fire({
       title: "Espere!",
       text: "Tem certeza que deseja deletar esta tarefa?",
@@ -434,16 +433,10 @@ $(document).ready(function () {
       if (result.isConfirmed) {
         $("#remover-tarefa").removeAttr("onclick");
         $("#remover-tarefa").click();
-        Swal.fire(
-          'Deletado!',
-          'Sua tarefa foi deletada com ',
-          'sucesso!'
-        )
-        
+        Swal.fire("Deletado!", "Sua tarefa foi deletada com ", "sucesso!");
       }
     });
   });
-
 
   $("#btn-enviar-ajax").click(function () {
     $.ajax({
