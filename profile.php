@@ -182,7 +182,10 @@
                   <i class="fas fa-folder-plus"></i> 
                 </button>
           </div>
-        <button id="userDeleteBtn" type="button" class="btn btn-danger btn-block image-preview__remove-Image">Deletar meu Perfil</button>
+          <form action="includes/users-processor.inc.php" method="POST">
+            <input name="userId" type="hidden" value="<?php echo $_SESSION['userId'];?>">
+            <button type="submit" name="user-delete-submit" class="btn btn-block btn-danger userDeleteBtn " onclick="return false" >Deletar meu Perfil</button>
+          </form>
       </div>
     </div>
   </div>

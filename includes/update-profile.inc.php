@@ -159,4 +159,21 @@ if (isset($_POST['avatarpic-submit'])) {
         exit();
     }
 }
+if (isset($_POST["user-delete-submit"])) {
+
+    require "dbh.inc.php";
+    $userId = $_POST['userId'];
+    
+    $sql = "DELETE FROM users WHERE idUsers='$userId'";
+    if ($conn->query($sql) === TRUE) {
+    header("Location: logout.inc.php?user-removed=success");
+    } else {
+    header("Location: ../profile.php?user-removed=error");
+    }
+    $userRemovedSuccessAlert;
+    exit();
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    
+    }
 ?>
