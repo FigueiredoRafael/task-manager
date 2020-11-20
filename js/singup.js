@@ -537,7 +537,7 @@ $(document).ready(function () {
         Swal.fire("Deleted!", "Usuário deletado com sucesso.", "success").then(
           function () {
             console.log("test");
-            $(".userDeleteBtn").trigger("click");
+            $(".real-delete-user-btn").trigger("click");
             // location.href = "/devplay/Desafio%20Final/task-manager/users.php";
           }
         );
