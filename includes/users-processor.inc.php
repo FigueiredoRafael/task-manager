@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST["real-delete-user-btn"])) {
+if (isset($_POST["delete-user-submit"])) {
 
 require "dbh.inc.php";
 $userId = $_POST['userId'];

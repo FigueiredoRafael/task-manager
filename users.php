@@ -116,7 +116,7 @@
                               <form action="includes/users-processor.inc.php" method="POST">
                               <input name="userId" type="hidden" value="<?php echo $userId;?>">
                                 <button type="button" class="btn-md btn-block btn-danger text-align-right userDeleteBtn " style="height:35px; border-radius: 3px;" >Remover usuário</button>
-                                <button type="submit" name="real-delete-user-btn" class="d-none real-delete-user-btn"></button>
+                                <button type="submit" name="delete-user-btn" class="d-none real-delete-user-btn"></button>
                               </form>
                             </div>
                           </div>
