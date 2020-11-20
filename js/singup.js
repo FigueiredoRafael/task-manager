@@ -521,4 +521,32 @@ $(document).ready(function () {
       });
     }
   });
+
+  $(".userDeleteBtn").click(function () {
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não será capaz de desfazer essas alterações",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, deletar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $(".userDeleteBtn").removeAttr("onclick");
+        Swal.fire("Deleted!", "Usuário deletado com sucesso.", "success").then(
+          function () {
+            console.log("test");
+            $(".userDeleteBtn").trigger("click");
+            // location.href = "/devplay/Desafio%20Final/task-manager/users.php";
+          }
+        );
+      } else {
+        Swal.fire("Cancelado!", "Usuário Não deletado.", "failed");
+        $(".swal2-cancel").onClick(console.log("teste"));
+      }
+    });
+  });
 });
+
+//  https://www.youtube.com/watch?v=-T6nwKoBGNM olhar esse
