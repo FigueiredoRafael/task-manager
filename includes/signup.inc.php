@@ -147,17 +147,17 @@ if (isset($_POST['signup-submit'])) {
         empty($password)       || 
         empty($passwordRepeat) ||
         empty($celular)        ||
-        empty($userTypeArr)    || 
+        empty($userType)    || 
         empty($addressStr)
         ) {
-
             if (isset($_POST['signup-admin-submit'])) {
-                header ("location: ../users.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userTypeArr."&address=".$addressArr);
+                header ("location: ../users.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr);
                 exit();
             }
-            else{
-        header ("location: ../login.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userTypeArr."&address=".$addressArr);
-        exit ();}
+            echo $username;
+        header ("location: ../login.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr);
+        exit ();
+        
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
 
