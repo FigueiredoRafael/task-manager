@@ -182,7 +182,8 @@
                   <i class="fas fa-folder-plus"></i> 
                 </button>
           </div>
-        <button id="userDeleteBtn" type="button" class="btn btn-danger btn-block image-preview__remove-Image">Deletar meu Perfil</button>
+          
+        <button type="button" class="btn btn-danger btn-block image-preview__remove-Image userDeleteBtn">Deletar meu Perfil</button>
       </div>
     </div>
   </div>
