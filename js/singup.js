@@ -523,29 +523,47 @@ $(document).ready(function () {
   });
 
   $(".userDeleteBtn").click(function () {
-    Swal.fire({
-      title: "Você tem certeza?",
-      text: "Você não será capaz de desfazer essas alterações",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sim, deletar!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $(".userDeleteBtn").removeAttr("onclick");
-        Swal.fire("Deleted!", "Usuário deletado com sucesso.", "success").then(
-          function () {
-            console.log("test");
-            $(".real-delete-user-btn").trigger("click");
-            // location.href = "/devplay/Desafio%20Final/task-manager/users.php";
-          }
-        );
-      } else {
-        Swal.fire("Cancelado!", "Usuário Não deletado.", "failed");
-        $(".swal2-cancel").onClick(console.log("teste"));
+    var deleteid = $(this).data('id');
+
+    // alert("click no botão")
+
+    $.ajax({
+      url: '../includes/users-processor.inc.php',
+      type: 'POST',
+      data: { id:deleteid },
+      success: function(response){
+        if(response == 1){
+          alert("alguma coisa");
+          window.location.reload();
+          // Swal.fire("Deleted!", "Usuário deletado com sucesso.", "success").then(
+          //   function () {
+              
+          //   }
+          // );
+        } else {
+          window.location.reload();
+          alert("nada");
+          // Swal.fire("Cancelado!", "Usuário Não deletado.", "failed");
+        }
       }
-    });
+      
+    
+    })
+
+    // Swal.fire({
+    //   title: "Você tem certeza?",
+    //   text: "Você não será capaz de desfazer essas alterações",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Sim, deletar!",
+      
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+        
+    //     }
+    // });
   });
 });
 
