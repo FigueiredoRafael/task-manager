@@ -112,7 +112,7 @@
                               <span class="text-left pb-1"><strong>Gênero:</strong> <?php echo $userGender; ?></span>
                               <span class="text-left pb-1"><strong>Celular: </strong><span class="celular"><?php echo $userCellPhone; ?></span></span>      
                               <span class="text-left pb-2"><strong>Endereço:</strong> <?php echo $userStreet.", ".$userStNumber.", ".$userStComp." - ";?><span class="cep"><?php echo $userStCep;?></span></span>
-                              <button type="button" name="delete-user-btn" class="btn-md btn-block btn-danger text-align-right userDeleteBtn " data-id="<?php echo $userId ?>" style="height:35px; border-radius: 3px;" >Remover usuário</button>
+                              <button type="button" name="id" class="btn-md btn-block btn-danger text-align-right userDeleteBtn " data-id="<?php echo $userId ?>" style="height:35px; border-radius: 3px;" >Remover usuário</button>
                             </div>
                           </div>
                         </td>

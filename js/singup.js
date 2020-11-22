@@ -522,48 +522,78 @@ $(document).ready(function () {
     }
   });
 
+  $(".delete-task").click(function () {
+    let deleteId = $(this).data('id');
+    let submit = $(this).data('submit'); 
+
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não será capaz de desfazer essas alterações",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, deletar!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/task-processor.inc.php',
+          type: 'POST',
+          data: { task_delete_submit: submit,
+                  taskId: deleteId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Excluída!",
+                          text:  "Tarefa excluída com sucesso.",
+                          icon:  "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire({title: "Cancelado!", text: "Não foi possível excluir a Tarefa.", icon: "failed"});
+            }
+          }        
+        })
+        }
+    });
+  });
+
   $(".userDeleteBtn").click(function () {
     var deleteid = $(this).data('id');
 
-    // alert("click no botão")
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não será capaz de desfazer essas alterações",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, deletar!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/users-processor.inc.php',
+          type: 'POST',
+          data: { id:deleteid },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Deleted!",
+                          text: "Usuário deletado com sucesso.",
+                          icon: "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
 
-    $.ajax({
-      url: '../includes/users-processor.inc.php',
-      type: 'POST',
-      data: { id:deleteid },
-      success: function(response){
-        if(response == 1){
-          alert("alguma coisa");
-          window.location.reload();
-          // Swal.fire("Deleted!", "Usuário deletado com sucesso.", "success").then(
-          //   function () {
-              
-          //   }
-          // );
-        } else {
-          window.location.reload();
-          alert("nada");
-          // Swal.fire("Cancelado!", "Usuário Não deletado.", "failed");
+            } else {
+              Swal.fire("Cancelado!", "Usuário Não deletado.", "failed");
+            }
+          }        
+        })
         }
-      }
-      
-    
-    })
-
-    // Swal.fire({
-    //   title: "Você tem certeza?",
-    //   text: "Você não será capaz de desfazer essas alterações",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Sim, deletar!",
-      
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-        
-    //     }
-    // });
+    });
   });
 });
 

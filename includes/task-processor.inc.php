@@ -1,5 +1,25 @@
 <?php
 
+// if (isset($_POST['taskDelete'])) {
+
+//     require "dbh.inc.php";
+//     $taskId = $_POST['taskDelete'];
+
+//     $sql = "DELETE FROM tasks WHERE taskId='$taskId'";
+//     if ($conn->query($sql) === TRUE) {
+//         echo "1";
+//         header("Location: ../index.php?task-remove=success");
+//     } else {
+//         echo "2";
+//         header("Location: ../index.php?task-remove=error");
+//     }
+//     $taskRemovedSuccessAlert;
+//     exit();
+//     mysqli_stmt_close($stmt);
+//     mysqli_close($conn);
+
+
+// } 
 
 
 if (isset($_POST['task-submit'])) {
@@ -60,16 +80,19 @@ if (isset($_POST['task-submit'])) {
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
 
-    } else if (isset($_POST["task-delete-submit"])) {
+    } else if (isset($_POST["task_delete_submit"])) {
 
         require "dbh.inc.php";
-        $taskId = $_POST['task-id'];
+        $taskId = $_POST['taskId'];
 
         $sql = "DELETE FROM tasks WHERE taskId='$taskId'";
         if ($conn->query($sql) === TRUE) {
-        header("Location: ../index.php?task-remove=success");
+            echo "1";
+            exit();
         } else {
-        header("Location: ../index.php?task-remove=error");
+            echo "0";
+            // header("Location: ../index.php?task-remove=error");
+            exit();
         }
         $taskRemovedSuccessAlert;
         exit();

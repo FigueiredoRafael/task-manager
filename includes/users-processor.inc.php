@@ -14,8 +14,7 @@ if ($totalrows > 0) {
     if ($conn->query($sql) === TRUE) {
         echo "1";
         exit();
-        $userRemovedSuccessAlert;
-    }        
+    }
     echo "0";
     exit();
 } else {
