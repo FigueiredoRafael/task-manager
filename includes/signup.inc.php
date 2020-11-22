@@ -234,6 +234,7 @@ if (isset($_POST['signup-submit'])) {
                 $sql = "INSERT INTO users (uidUsers, fnameUsers, lnameUsers, emailUsers, cpfUsers, genderUsers, pwdUsers, userType, addressUsers, celularUsers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
+
                     if (isset($_POST['signup-admin-submit'])) {
                         header ("Location: ../users.php?error=sqlerror");
                         exit();
@@ -241,12 +242,35 @@ if (isset($_POST['signup-submit'])) {
                     else{
                     header ("Location: ../login.php?error=sqlerror");
                     exit();}
+                    
                 } else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
                     mysqli_stmt_bind_param($stmt, "ssssssssss", $username, $fname, $lname, $email, $cpf, $gender, $hashedPwd, $userType, $addressStr, $celular);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
+
+                   // ADD STANDARD AVATAR PICTURE
+                   $sql = "SELECT idUsers FROM users WHERE uidUsers='$username'";
+                   $result = mysqli_query($conn, $sql);
+                   $row = mysqli_fetch_assoc($result);
+                   $userId = $row['idUsers'];
+
+                   $fileSource = "../img/avatar.png";
+                   $fileNameNew = $userId.".png";
+                   $fileDestination = "../img/".$fileNameNew;
+
+                   copy($fileSource, $fileDestination);
+
+                   $fileDestination = "img/".$fileNameNew;
+                   
+                    $sql = "SELECT * FROM profileimg WHERE id='$userId'"; 
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) == 0) {
+                                $sql = "INSERT INTO profileimg (id, name, img_dir) VALUES ('$userId', '$fileNameNew', '$fileDestination')";
+                                mysqli_query($conn, $sql);
+                    }
+
                     if (isset($_POST['signup-admin-submit'])) {
                         header ("Location: ../users.php?signup=success");
                         $signUpSuccessAlert;
