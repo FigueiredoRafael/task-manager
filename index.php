@@ -99,21 +99,67 @@ include "modals.php";
         </div>
       </div>
 
+      <?php 
+            require "includes/dbh.inc.php";            
+            
+            $userId = $_SESSION['userId'];
+            $totalUsers     = 0;
+            $totalTasks     = 0;
+            $totalTasksConc = 0;            
+            
+            $sql = "SELECT * FROM users";
+            $result = mysqli_query($conn, $sql);
+            if ($result = $conn->query($sql)) {
+              while ($row = $result->fetch_assoc()) {
+                $totalUsers++;
+              }
+            }
+
+            $sqlTasks = "SELECT * FROM tasks WHERE tasks_resp='$userId' AND tasks_stat !='Concluido'";
+            $resultTasks = mysqli_query($conn, $sqlTasks);
+            if ($resultTasks = $conn->query($sqlTasks)) {
+              while ($row = $resultTasks->fetch_assoc()) {
+                $totalTasks++;
+              }
+            }
+
+            $sqlTasksConc = "SELECT * FROM tasks WHERE tasks_resp='$userId' AND tasks_stat ='Concluido'";
+            $resultTasks = mysqli_query($conn, $sqlTasksConc);
+            if ($resultTasks = $conn->query($sqlTasksConc)) {
+              while ($row = $resultTasks->fetch_assoc()) {
+                $totalTasksConc++;
+              }
+            }
+
+
+      ?>
+      
+
       <div id="tasks-card" class="col-md-12 text user-cards">
         <div class="card text-center bg-primary text-white float-right user-cards">
           <div class="card-body">
-          <h4 class=" float-left text-center ml-2">
-                <i class="fas fa-pencil-alt"></i> 6 
+          <h4 class=" float-left text-center ml-2" >
+                <i class="fas fa-pencil-alt"></i> <?php echo $totalTasks ?> 
               </h4>
               <h4 class="float-left ml-2">Tarefas</h4>
               <a href="posts.php" class="btn btn-outline-light btn-md float-right ml-4 sm-btn">View </a>
           </div>
         </div>
 
-        <div class="card text-center bg-warning text-white float-right user-cards">
+        <div class="card text-center bg-success text-white float-right user-cards">
           <div class="card-body">
           <h4 class=" float-left text-center ml-2 mt-1">
-              <i class="fas fa-users"></i> 4
+              <i class="fas fa-users"></i> <?php echo $totalTasksConc ?>
+            </h4>
+            <h4 class="float-left ml-2">Conclúidas</h4>
+            <a href="users.php" class="btn btn-outline-light btn-md float-right sm-btn">View </a>
+          </div>
+        </div>
+
+        <div class="card text-center bg-warning text-white float-left user-cards">
+          <div class="card-body">
+          <h4 class=" float-left text-center ml-2 mt-1">
+              <i class="fas fa-users"></i> <?php echo $totalUsers ?>
             </h4>
             <h4 class="float-left ml-2">Usuários</h4>
             <a href="users.php" class="btn btn-outline-light btn-md float-right sm-btn">View </a>
