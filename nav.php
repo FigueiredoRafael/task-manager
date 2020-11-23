@@ -3,7 +3,7 @@
   include "includes/profileImg.inc.php";
 ?>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
   <div class="container">
     <a href="index.php" class="navbar-brand">Gerenciador de Tarefas</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">

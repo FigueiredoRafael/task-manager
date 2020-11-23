@@ -42,12 +42,19 @@ td .btn {
 div.scrollmenu {
   background-color: #f8f9fa;
   max-width: auto;
-  overflow: auto;
+  overflow: scroll;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 
+div.user-scrollmenu {
+  background-color: #f8f9fa;
+  max-width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
 div.scrollmenu tr {
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px;
   text-decoration: none;
@@ -69,6 +76,14 @@ div.scrollmenu tr {
 .user-cards-text {
   font-size: 10px;
   padding-top: 100px;
+}
+
+.user-icons {
+  height: 70px;
+  width: 32%;
+  margin-right: 14px;
+  float: left;
+  display: block;
 }
 
 footer {
@@ -155,7 +170,7 @@ footer {
   .user-cards {
     height: 70px;
     width: 32%;
-    margin-right: 14px;
+    margin-right: 12px;
   }
   footer {
     margin-top: 0px;
@@ -167,6 +182,7 @@ footer {
 @media (min-width: 1200px) {
   body {
     /* background: yellow; */
+    margin-right: 14px;
   }
 }
 

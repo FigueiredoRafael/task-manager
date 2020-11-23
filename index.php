@@ -69,35 +69,47 @@ include "modals.php";
           <div class="card-header">
             <h4>Usuários</h4>
           </div>
-          <div class="row">
-          <div class="card-body col-md-1 mr-2">
-              <span><a href="index.php" class="btn"><img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre"><br><?php echo $_SESSION['userFname']?></a></span>
-          </div>
-          <?php
+          <div class="user-scrollmenu">
+
+          <div>
+            <div class="col" class="user-icons" style="float:left; margin-top:20px; max-height:100px; margin-left:10px; width: 1000px;">
+              <div style="width: 100%; display: table-cell;"> 
+              <span style="float:left;">
+                    <a href="index.php" class="btn">
+                      <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre"><br><?php echo $_SESSION['userFname']?>
+                    </a>
+              </span>              
+                <?php
 
               require "includes/dbh.inc.php";
               $sql = "SELECT * FROM users";
               $result = mysqli_query($conn, $sql); 
               while ($row = mysqli_fetch_assoc($result)){              
-                if (($key = array_search($_SESSION['userId'], $row)) !== false) {
-                  unset($row[$key]);
-                } else {  
-                $userId = $row['idUsers'];
-                $sqlimg = "SELECT img_dir FROM profileimg WHERE id='$userId'";
-                $resultimg = mysqli_query($conn, $sqlimg);
-                $rowimg = mysqli_fetch_assoc($resultimg);
+              if (($key = array_search($_SESSION['userId'], $row)) !== false) {
+                unset($row[$key]);
+              } else {  
+              $userId = $row['idUsers'];
+              $sqlimg = "SELECT img_dir FROM profileimg WHERE id='$userId'";
+              $resultimg = mysqli_query($conn, $sqlimg);
+              $rowimg = mysqli_fetch_assoc($resultimg);
               ?>
-                <div class="card-body col-md-1 mr-2">
-                        <span><a class="btn" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" ><br><?php echo $row['fnameUsers']; ?></a></span>
-                      </div>
-            <?php                      
-                      }
+                      <span style="float:left;">
+                            <a a class="btn" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" ><br><?php echo $row['fnameUsers']; ?>
+                            </a>
+                      </span>
+              <?php                      
+                  }
               }
-            
-          ?>
+              ?>
+              
+            </div>
           </div>
+            </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
       <?php 
             require "includes/dbh.inc.php";            
@@ -134,42 +146,44 @@ include "modals.php";
 
       ?>
       
+      <div class="container">
+      <div class="row">
+        <div id="tasks-card" class="col-md-12 text user-cards">
+          <div class="card text-center bg-primary text-white float-right user-cards">
+            <div class="card-body">
+            <h4 class=" float-left text-center ml-2" >
+                  <i class="fas fa-pencil-alt"></i> <?php echo $totalTasks ?> 
+                </h4>
+                <h4 class="float-left ml-2">Tarefas</h4>
+                <a href="#tarefas" class="btn btn-outline-light btn-md float-right ml-4 sm-btn">Visualizar </a>
+            </div>
+          </div>
 
-      <div id="tasks-card" class="col-md-12 text user-cards">
-        <div class="card text-center bg-primary text-white float-right user-cards">
-          <div class="card-body">
-          <h4 class=" float-left text-center ml-2" >
-                <i class="fas fa-pencil-alt"></i> <?php echo $totalTasks ?> 
+          <div class="card text-center bg-success text-white float-right user-cards">
+            <div class="card-body">
+            <h4 class=" float-left text-center ml-2 mt-1">
+                <i class="fas fa-users"></i> <?php echo $totalTasksConc ?>
               </h4>
-              <h4 class="float-left ml-2">Tarefas</h4>
-              <a href="posts.php" class="btn btn-outline-light btn-md float-right ml-4 sm-btn">View </a>
+              <h4 class="float-left ml-2">Conclúidas</h4>
+              <a href="posts.php" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
+            </div>
           </div>
-        </div>
 
-        <div class="card text-center bg-success text-white float-right user-cards">
-          <div class="card-body">
-          <h4 class=" float-left text-center ml-2 mt-1">
-              <i class="fas fa-users"></i> <?php echo $totalTasksConc ?>
-            </h4>
-            <h4 class="float-left ml-2">Conclúidas</h4>
-            <a href="users.php" class="btn btn-outline-light btn-md float-right sm-btn">View </a>
+          <div class="card text-center bg-warning text-white float-left user-cards">
+            <div class="card-body">
+            <h4 class=" float-left text-center ml-2 mt-1">
+                <i class="fas fa-users"></i> <?php echo $totalUsers ?>
+              </h4>
+              <h4 class="float-left ml-2">Usuários</h4>
+              <a href="users.php" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
+            </div>
           </div>
-        </div>
 
-        <div class="card text-center bg-warning text-white float-left user-cards">
-          <div class="card-body">
-          <h4 class=" float-left text-center ml-2 mt-1">
-              <i class="fas fa-users"></i> <?php echo $totalUsers ?>
-            </h4>
-            <h4 class="float-left ml-2">Usuários</h4>
-            <a href="users.php" class="btn btn-outline-light btn-md float-right sm-btn">View </a>
-          </div>
-        </div>
 
-      </div>
-</div>
+        </div>
   </div>
-
+</div>
+</div>
 
 <!-- FOOTER -->
 <footer>

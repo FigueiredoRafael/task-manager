@@ -4,7 +4,10 @@
     <div class="row">
       <div class="col">
         <p class="lead text-center">
-          copyright &copy; <span id="year"></span> Blogen
+          copyright &copy; <span id="year"></span> TaskManager
+        <br>
+        <p class="text-muted">
+        Feito por: Hector Lutero <br> Rafael Negreiros
         </p>
       </div>
     </div>

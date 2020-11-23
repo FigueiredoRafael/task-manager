@@ -24,6 +24,11 @@
   <div class="container">
     <div class="row">
     <div class="col-md-3">
+        <a href="index.php" class="btn btn-light btn-block">
+          <i class="fas fa-arrow-left"></i> De volta para tarefas
+        </a>
+      </div>
+    <div class="col-md-3">
         <a href="#" class="btn btn-warning btn-block text-white" data-toggle="modal" data-target="#addUserModal">
           <i class="fas fa-plus"></i> Adicionar Usuários
         </a>
@@ -49,6 +54,7 @@
           <div class="card-header">
             <h4>Lista de Usuários</h4>
           </div>
+          <div class="scrollmenu">
           <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -125,6 +131,7 @@
             ?>            
           </tbody>
           </table>
+          </div>
         </div>
       </div>
     </div>

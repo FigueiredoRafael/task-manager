@@ -3,10 +3,11 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <div class="card">
-          <div class="card-header">
+      <div class="card-header" id="tarefas">
             <h4>Minhas Tarefas</h4>
           </div>
+        <div class="card scrollmenu">
+
           <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -112,6 +113,9 @@
                           <a class='btn-sm btn-danger ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' >
                             <i class="far fa-trash-alt"></i>
                           </a>
+                          <a class='btn-sm btn-success ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                            <i class="far fa-check-square"></i>
+                          </a>
                           
                         </td>
                       </tr>
@@ -143,7 +147,7 @@
             
 
           ?>
-
+        </div>
           <!-- TAREFAS VINCULADAS -->
           <div class="card-header">
             <h4>Tarefas de <?php 
@@ -157,6 +161,7 @@
             
             ?></h4>
           </div>
+          <div class="card scrollmenu">
           <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
