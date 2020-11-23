@@ -196,7 +196,7 @@
                   />
                   <br style="clear: both" />
                 </div>
-                <input type="hidden" name="userType" value="user">
+                <input type="hidden" name="userType" value="admin">
                 <div class="form-group">
                   <label for="email">Senha</label>
                   <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Password" />

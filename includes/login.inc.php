@@ -50,8 +50,6 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userCity']    = $addressArr[5];
                     $_SESSION['userState']   = $addressArr[6];
 
-                    $_SESSION['userCredential'] = $userTypeArr[0];
-
                     $sql = "SELECT * FROM users WHERE idUsers='$userId'";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {

@@ -1,6 +1,6 @@
 <?php
 
-// if (isset($_POST["delete-user-submit"])) {
+if (isset($_POST["id"])) {
 
 require "dbh.inc.php";
 $userId = $_POST['id'];
@@ -21,10 +21,32 @@ if ($totalrows > 0) {
     echo "0";
     exit();
 }
-
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
+}
 
+
+
+if (isset($_POST['promote'])) {
+    require "dbh.inc.php";
+    $userId = $_POST['promote'];
+
+    $sql = "SELECT * FROM users WHERE idUsers='$userId'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $sql = "UPDATE users SET userType='admin' WHERE idUsers='$userId'";
+        if ($conn->query($sql) === TRUE) {
+            echo "1";
+            exit();
+        } else {
+            echo "0";
+            exit();
+        }
+    } else {
+        echo "2";
+        exit();
+    }
+}
 // }
 
 // TODO Create a promotion button in users.php
