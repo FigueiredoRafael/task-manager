@@ -154,7 +154,8 @@ footer {
   }
   .user-cards {
     height: 70px;
-    width: 33.33%;
+    width: 32%;
+    margin-right: 14px;
   }
   footer {
     margin-top: 0px;
