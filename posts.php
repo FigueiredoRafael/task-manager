@@ -133,13 +133,16 @@
                               <?php 
                             } else {
                           ?>
-                              <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>&statColor=<?php echo $statColor ?>&taskStat=<?php echo $taskStat ?>' class='btn btn-secondary'>
+                              <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>&statColor=<?php echo $statColor ?>&taskStat=<?php echo $taskStat ?>' class='btn-sm btn-secondary'>
                               <i class="fas fa-edit"></i> Editar
                           <?php 
                             }
                           ?>
-                          <a class='btn btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
+                          <a class='btn-sm btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
                             <i class='fas fa-angle-double-right'></i>Mais..
+                          </a>
+                          <a class='btn-sm btn-danger ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                            <i class="far fa-trash-alt"></i>
                           </a>
                         </td>
                       </tr>

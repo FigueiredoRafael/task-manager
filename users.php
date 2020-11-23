@@ -112,12 +112,7 @@
                               <span class="text-left pb-1"><strong>Gênero:</strong> <?php echo $userGender; ?></span>
                               <span class="text-left pb-1"><strong>Celular: </strong><span class="celular"><?php echo $userCellPhone; ?></span></span>      
                               <span class="text-left pb-2"><strong>Endereço:</strong> <?php echo $userStreet.", ".$userStNumber.", ".$userStComp." - ";?><span class="cep"><?php echo $userStCep;?></span></span>
-                                  
-                              <form action="includes/users-processor.inc.php" method="POST">
-                              <input name="userId" type="hidden" value="<?php echo $userId;?>">
-                                <button type="button" class="btn-md btn-block btn-danger text-align-right userDeleteBtn " style="height:35px; border-radius: 3px;" >Remover usuário</button>
-                                <button type="submit" name="delete-user-btn" class="d-none real-delete-user-btn"></button>
-                              </form>
+                              <button type="button" name="id" class="btn-md btn-block btn-danger text-align-right userDeleteBtn " data-id="<?php echo $userId ?>" style="height:35px; border-radius: 3px;" >Remover usuário</button>
                             </div>
                           </div>
                         </td>

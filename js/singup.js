@@ -522,7 +522,10 @@ $(document).ready(function () {
     }
   });
 
-  $(".userDeleteBtn").click(function () {
+  $(".delete-task").click(function () {
+    let deleteId = $(this).data('id');
+    let submit = $(this).data('submit'); 
+
     Swal.fire({
       title: "Você tem certeza?",
       text: "Você não será capaz de desfazer essas alterações",
@@ -531,20 +534,65 @@ $(document).ready(function () {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Sim, deletar!",
+      
     }).then((result) => {
       if (result.isConfirmed) {
-        $(".userDeleteBtn").removeAttr("onclick");
-        Swal.fire("Deleted!", "Usuário deletado com sucesso.", "success").then(
-          function () {
-            console.log("test");
-            $(".real-delete-user-btn").trigger("click");
-            // location.href = "/devplay/Desafio%20Final/task-manager/users.php";
-          }
-        );
-      } else {
-        Swal.fire("Cancelado!", "Usuário Não deletado.", "failed");
-        $(".swal2-cancel").onClick(console.log("teste"));
-      }
+        $.ajax({
+          url: 'includes/task-processor.inc.php',
+          type: 'POST',
+          data: { task_delete_submit: submit,
+                  taskId: deleteId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Excluída!",
+                          text:  "Tarefa excluída com sucesso.",
+                          icon:  "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire({title: "Cancelado!", text: "Não foi possível excluir a Tarefa.", icon: "failed"});
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".userDeleteBtn").click(function () {
+    var deleteid = $(this).data('id');
+
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não será capaz de desfazer essas alterações",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, deletar!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/users-processor.inc.php',
+          type: 'POST',
+          data: { id:deleteid },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Deleted!",
+                          text: "Usuário deletado com sucesso.",
+                          icon: "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire("Cancelado!", "Usuário Não deletado.", "failed");
+            }
+          }        
+        })
+        }
     });
   });
 });
