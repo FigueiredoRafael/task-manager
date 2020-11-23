@@ -19,6 +19,16 @@
 <section id="search" class="py-4 mb-4 bg-light">
   <div class="container">
     <div class="row">
+    <div class="col-md-3">
+        <a href="index.php" class="btn btn-light btn-block">
+          <i class="fas fa-arrow-left"></i> De volta para tarefas
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal">
+          <i class="fas fa-plus"></i> Adicionar Tarefa
+        </a>
+      </div>
       <div class="col-md-6 ml-auto">
         <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Posts...">
@@ -40,6 +50,8 @@
           <div class="card-header">
             <h4>Tarefas Concluídas</h4>
           </div>
+          <div class="scrollmenu">
+
           <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -164,6 +176,7 @@
             
           </tbody>
           </table>
+          </div>
 
           <!-- PAGINATION -->
           <nav class="ml-4">
