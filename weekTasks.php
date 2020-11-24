@@ -24,13 +24,13 @@
             <tbody id="morning-shift">
               <tr>
                     <td style="background-color: #CE93D8;">Setor 1</td>
-                    <td><button class="btn btn-sm btn-light text-muted " style="width:100%;"><i class="far fa-plus-square"></i></button></td>
-                    <td><button class="btn btn-sm btn-light text-muted " style="width:100%;"><i class="far fa-plus-square"></i></button></td>
-                    <td><button class="btn btn-sm btn-light text-muted " style="width:100%;"><i class="far fa-plus-square"></i></button></td>
-                    <td><button class="btn btn-sm btn-light" style="width:100%;">Rafael</button></td>
-                    <td><button class="btn btn-sm btn-light text-muted " style="width:100%;"><i class="far fa-plus-square"></i></button></td>
-                    <td><button class="btn btn-sm btn-light text-muted " style="width:100%;"><i class="far fa-plus-square"></i></button></td>
-                    <td><button class="btn btn-sm btn-light text-muted " style="width:100%;"><i class="far fa-plus-square"></i></button></td>
+                    <td><button class="btn btn-sm btn-light text-muted" style="width:100%;"><i class="far fa-plus-square"></i></button></td>
+                    <td><button class="btn btn-sm btn-light text-muted" style="width:100%;" onclick="taskProcessor(tueS1MShift);"><i class="far fa-plus-square"></i></button></td>
+                    <td><button class="btn btn-sm btn-light text-muted" style="width:100%;" onclick="taskProcessor(wenS1MShift);"><i class="far fa-plus-square"></i></button></td>
+                    <td><button class="btn btn-sm btn-light" style="width:100%;" onclick="taskProcessor(thuS1MShift);">Rafael</button></td>
+                    <td><button class="btn btn-sm btn-light text-muted" style="width:100%;" onclick="taskProcessor(friS1MShift);"><i class="far fa-plus-square"></i></button></td>
+                    <td><button class="btn btn-sm btn-light text-muted" style="width:100%;" onclick="taskProcessor(satS1MShift);"><i class="far fa-plus-square"></i></button></td>
+                    <td><button class="btn btn-sm btn-light text-muted" style="width:100%;" onclick="taskProcessor(sunS1MShift);"><i class="far fa-plus-square"></i></button></td>
               </tr>
               <tr>
               <td style="background-color: #CE93D8;">Setor 2</td>
@@ -156,8 +156,9 @@
             <div>
               <div class="card mt-4" style="height: 490px;">
                   <div class="text-center mt-4"><i class="fab fa-readme fa-5x img-fluid"></i></div>
-                  <div class="card-body">
+                  <div class="card-body task-details">
                       <h4 class="card-title mt-2">Selecione uma Tarefa para ver mais detalhes</h4>
+                      <div class="task-info"></div>
                   </div>
               </div>
           </div>
@@ -166,3 +167,5 @@
     </div>
   </div>
 </section>
+
+<script ></script>

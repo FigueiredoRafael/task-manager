@@ -99,11 +99,12 @@ function passwordValidation(password) {
 
 $(document).ready(function () {
   //inserindo mascara nos campos
-  $("#cpf").mask("999.999.999-99");
-  $("#celular").mask("(99) 99999-9999");
+  $(".cpf").mask("999.999.999-99");
+  $(".cep").mask("99999-999");
+  $(".celular").mask("(99) 99999-9999");
   $("#signup-form").submit(function () {
-    $("#cpf").unmask();
-    $("#celular").unmask();
+    $(".cpf").unmask();
+    $(".celular").unmask();
   });
 
   //trabalhando com o formulario
@@ -418,6 +419,25 @@ $(document).ready(function () {
     });
   });
 
+  $(document).on("click", "#remover-tarefa", function () {
+    Swal.fire({
+      title: "Espere!",
+      text: "Tem certeza que deseja deletar esta tarefa?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, quero apagar!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $("#remover-tarefa").removeAttr("onclick");
+        $("#remover-tarefa").click();
+        Swal.fire("Deletado!", "Sua tarefa foi deletada com ", "sucesso!");
+      }
+    });
+  });
+
   $("#btn-enviar-ajax").click(function () {
     $.ajax({
       type: "post",
@@ -501,4 +521,199 @@ $(document).ready(function () {
       });
     }
   });
+
+  $(".delete-task").click(function () {
+    let deleteId = $(this).data('id');
+    let submit = $(this).data('submit'); 
+
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não será capaz de desfazer essas alterações",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, deletar!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/task-processor.inc.php',
+          type: 'POST',
+          data: { task_delete_submit: submit,
+                  taskId: deleteId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Excluída!",
+                          text:  "Tarefa excluída com sucesso.",
+                          icon:  "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire({title: "Cancelado!", text: response, icon: "failed"});
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".finish-task").click(function () {
+    let deleteId = $(this).data('id');
+    let action = $(this).data('action');
+    let submit = $(this).data('submit'); 
+
+    Swal.fire({
+      title: "Você deseja concluir esta tarefa?",
+      text: "Você não será capaz de desfazer essas alterações.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, Concluir!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/task-processor.inc.php',
+          type: 'POST',
+          data: { task_user_action: submit,
+                  action: action,
+                  taskId: deleteId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Concluída!",
+                          text:  "Tarefa concluída com sucesso.",
+                          icon:  "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire({title: "Cancelado!", text: response, icon: "failed"});
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".start-task").click(function () {
+    let deleteId = $(this).data('id');
+    let action = $(this).data('action');
+    let submit = $(this).data('submit');     
+
+    Swal.fire({
+      title: "Você deseja iniciar esta tarefa?",
+      text: "O Status desta tarefa estará como \"Em Progresso\".",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, Concluir!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/task-processor.inc.php',
+          type: 'POST',
+          data: { task_user_action: submit,
+                  action: action,
+                  taskId: deleteId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Iniciada!",
+                          text:  "Tarefa iniciada com sucesso.",
+                          icon:  "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire({title: "Cancelado!", text: response, icon: "failed"});
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".userDeleteBtn").click(function () {
+    var deleteid = $(this).data('id');
+
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não será capaz de desfazer essas alterações",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, deletar!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/users-processor.inc.php',
+          type: 'POST',
+          data: { id:deleteid },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Deleted!",
+                          text: "Usuário deletado com sucesso.",
+                          icon: "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire("Cancelado!", " "+response+" ", "failed");
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".user-to-admin").click(function () {
+    let userId = $(this).data('promote');
+
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você deseja promover este usuário a Administrador?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, promover!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/users-processor.inc.php',
+          type: 'POST',
+          data: { promote:userId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Deleted!",
+                          text: "Usuário promovido a Administrador com sucesso.",
+                          icon: "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else if (response == "2"){
+              Swal.fire("Cancelado!", "Não foi possivel encontrar o usuário.", "failed");
+            } else if (response == "0") {
+              Swal.fire("Cancelado!", "Não foi possível alterar os dados do usuário.", "failed");
+            }
+          }        
+        })
+        }
+    });
+  });
+
 });
+
+//  https://www.youtube.com/watch?v=-T6nwKoBGNM olhar esse

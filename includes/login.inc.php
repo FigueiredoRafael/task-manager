@@ -38,9 +38,9 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userLname']   = $row['lnameUsers'];
                     $_SESSION['userEmail']   = $row['emailUsers'];
                     $_SESSION['userCelular'] = $row['celularUsers'];
+                    $_SESSION['userType']    = $row['userType'];
 
                     $addressArr = unserialize($row['addressUsers'])[0];
-                    $userTypeArr = unserialize($row['userType'])[0];
 
                     $_SESSION['userCep']     = $addressArr[0];
                     $_SESSION['userStreet']  = $addressArr[1];
@@ -49,8 +49,6 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userNeighb']  = $addressArr[4];
                     $_SESSION['userCity']    = $addressArr[5];
                     $_SESSION['userState']   = $addressArr[6];
-
-                    $_SESSION['userCredential'] = $userTypeArr[0];
 
                     $sql = "SELECT * FROM users WHERE idUsers='$userId'";
                     $result = mysqli_query($conn, $sql);

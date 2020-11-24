@@ -19,15 +19,16 @@ realFileBtn.addEventListener("change", function () {
   if (file != null) {
     this.setAttribute("data-toggle", "modal");
     this.setAttribute("data-target", "#changePasswordModal");
-
+    
     const reader = new FileReader();
 
     previewDefaultText.style.display = "none";
     previewImage.style.display = "block";
 
     reader.addEventListener("load", function () {
-      console.log(this);
+      
       previewImage.setAttribute("src", this.result);
+    
     });
 
     reader.readAsDataURL(file);

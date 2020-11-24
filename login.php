@@ -102,7 +102,7 @@
                 </div>
                 <div class="form-group">
                   <label for="password">CPF</label>
-                  <input class="form-control" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
+                  <input class="form-control cpf" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
                 </div>
                 <div class="form-group">
                   <label for="gender">Genero:</label><br>
@@ -115,7 +115,7 @@
                   <label for="nome">Celular</label>
                   <input
                     type="text"
-                    class="intem-formulario form-control"
+                    class="celular intem-formulario form-control"
                     name="celular"
                     id="celular"
                     placeholder="Exemplo: (99) 99999-9999"
@@ -196,7 +196,7 @@
                   />
                   <br style="clear: both" />
                 </div>
-                <input type="hidden" name="userType" value="user">
+                <input type="hidden" name="userType" value="admin">
                 <div class="form-group">
                   <label for="email">Senha</label>
                   <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Password" />
@@ -204,7 +204,8 @@
                 </div>
                 <div class="form-group">
                   <label for="password">Repita sua Senha</label>
-                  <input class="form-control" type="password" name="pwd-repeat" id="pwd-repeat" onkeyup="passwordRepeatValidation(this.value);" placeholder="Repita a mesma senha" required><p class="pwd-repeat-msg"></p>
+                  <input class="form-control" type="password" name="pwd-repeat" id="pwd-repeat" onkeyup="passwordRepeatValidation(this.value);" placeholder="Repita a mesma senha" required>
+                  <p class="pwd-repeat-msg"></p>
                 </div>
                 
                 <button class="btn btn-lg btn-primary btn-block" type="submit" name="signup-submit" id="signup-btn">Cadastrar</button>

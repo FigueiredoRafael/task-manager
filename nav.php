@@ -3,27 +3,31 @@
   include "includes/profileImg.inc.php";
 ?>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
   <div class="container">
-    <a href="index.php" class="navbar-brand">Blogen</a>
+    <a href="index.php" class="navbar-brand">Gerenciador de Tarefas</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav">
         <li class="nav-item px-2 active">
-          <a href="index.php" class="nav-link">Dashboard</a>
+          <a href="index.php" class="nav-link">Tabela de Tarefas</a>
         </li>
         <li class="nav-item px-2">
-          <a href="posts.php" class="nav-link ">Posts</a>
+          <a href="posts.php" class="nav-link ">Concluídos</a>
         </li>
+        <?php
+          if($_SESSION['userType'] == "admin") {
+        ?>
         <li class="nav-item px-2">
-          <a href="categories.php" class="nav-link ">Categories</a>
+          <a href="users.php" class="nav-link ">Usuários</a>
         </li>
-        <li class="nav-item px-2">
-          <a href="users.php" class="nav-link ">Users</a>
-        </li>
+        <?php
+          }
+        ?>
       </ul>
+
 
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown mr-3">

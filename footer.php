@@ -4,7 +4,10 @@
     <div class="row">
       <div class="col">
         <p class="lead text-center">
-          copyright &copy; <span id="year"></span> Blogen
+          copyright &copy; <span id="year"></span> TaskManager
+        <br>
+        <p class="text-muted">
+        Feito por: Hector Lutero <br> Rafael Negreiros
         </p>
       </div>
     </div>
@@ -26,6 +29,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="js/busca-endereco.js"></script>
         <script src="js/app.js"></script>
+<<<<<<< HEAD
         <script src="singup.js" type="text/javascript"> </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>       
@@ -33,6 +37,10 @@
         <script src="https://unpkg.com/cropperjs"></script>		
         <script src="js/cropper.js"></script>
         
+=======
+        <script src="js/singup.js" type="text/javascript"> </script>
+        <script src="js/taskProcessor.js" type="text/javascript"> </script>
+>>>>>>> master
         <script>
             // Get the current year for the copyright
         $('#year').text(new Date().getFullYear());

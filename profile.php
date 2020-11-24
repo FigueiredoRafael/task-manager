@@ -20,10 +20,11 @@
     </div>
   </div>
 </header>
-
-<?php 
-  include "includes/update-msgs.inc.php";
-?>
+<div class="alerts-position">
+  <?php 
+    include "includes/update-msgs.inc.php";
+  ?>
+</div>
 
 <!-- ACTIONS -->
 <section id="actions" class="py-4 mb-4 bg-light">
@@ -172,13 +173,27 @@
         </div>
       </div>
       <div class="col-md-3">
+<<<<<<< HEAD
   <?php include_once 'cropper.php'?>
 
+=======
+      <form action="includes/update-profile.inc.php" method="post" enctype="multipart/form-data">
+        <img id="profile-image" src="<?php echo $_SESSION['profileImg']; ?>" alt="" class="d-block img-fluid">        
+        <input class="form-control d-none" type="text" name="userId" value="<?php echo $_SESSION['userId'];?>" >
+          <div id="upload-photo-div" class="mb-2">
+              <input type="file" id="real-file" accept="image/*" class="inputfile" name="avatarpic" hidden="hidden">
+                <button src="#" class="btn" id="upload-photo" type="button" data-toggle="modal" data-target="#addImageModal">
+                  <i class="fas fa-folder-plus"></i> 
+                </button>
+          </div>
+          <input name="userId" type="hidden" value="<?php echo $_SESSION['userId'];?>">
+          <button type="button" class="btn btn-danger userDeleteBtn" >Remover usuário</button>
+          <button type="submit" name="selfdelete-user-submit" class="d-none real-delete-user-btn" ></button>
+>>>>>>> master
       </div>
     </div>
   </div>
 </section>
-
 <!-- MODALS -->
 
 <!-- ADD IMAGE MODAL-->

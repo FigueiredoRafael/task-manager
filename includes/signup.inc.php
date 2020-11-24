@@ -121,7 +121,7 @@ if(isset($_GET['uid']) || isset($_GET['mail']) || isset($_GET['cpf']) || isset($
 if (isset($_POST['signup-submit'])) {
 
     require 'dbh.inc.php';
-
+    $fromUsersPage  = $_POST['from-users-page'];
     $username       = $_POST['uid'];
     $fname          = $_POST['fname'];
     $lname          = $_POST['lname'];
@@ -132,8 +132,7 @@ if (isset($_POST['signup-submit'])) {
     $passwordRepeat = $_POST['pwd-repeat'];
     $celular        = $_POST['celular'];
 
-    $userTypeArr    = array($_POST['userType']);
-    $userTypeStr    = serialize($userTypeArr);
+    $userType       = $_POST['userType'];
 
     $addressArr     = array($_POST['address']);
     $addressStr     = serialize($addressArr);
@@ -148,70 +147,146 @@ if (isset($_POST['signup-submit'])) {
         empty($password)       || 
         empty($passwordRepeat) ||
         empty($celular)        ||
-        empty($userTypeArr)    || 
+        empty($userType)    || 
         empty($addressStr)
         ) {
-
-        header ("location: ../login.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userTypeArr."&address=".$addressArr);
+            if (isset($_POST['from-users-page'])) {
+                header ("location: ../users.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr);
+                exit();
+            }
+            echo $username;
+        header ("location: ../login.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr);
         exit ();
+        
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
 
+        if (isset($_POST['from-users-page'])) {
+            header ("Location: ../users.php?error=emptyfields&invalidmailuid");
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=emptyfields&invalidmailuid");
-        exit ();
+        exit ();}
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (isset($_POST['from-users-page'])) {
+            header ("Location: ../users.php?error=invalidmail&uid=".$username);
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=invalidmail&uid=".$username);
-        exit ();
+        exit ();}
 
     } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        if (isset($_POST['from-users-page'])) {
+            header ("Location: ../users.php?error=invaliduid&mail=".$email);
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=invaliduid&mail=".$email);
-        exit ();
+        exit ();}
         
     } else if ($password !== $passwordRepeat) {
+        if (isset($_POST['from-users-page'])) {
+            header ("Location: ../users.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email);
+            exit();
+        }
+        else{
         header ("Location: ../login.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email);
-        exit();
+        exit();}
 
     } else if (empty($password) || strlen($password) < 6 || !preg_match("/^[a-zA-Z0-9]*$/", $password)) {
             if ($error = true) {
+                if (isset($_POST['from-users-page'])) {
+                    header ("Location: ../users.php?error=weakpassword");
+                    exit();
+                }
+                else{
                 header ("Location: ../login.php?error=weakpassword");
-                exit();
+                exit();}
             }
     } else {
         $sql = "SELECT uidUsers OR emailUsers OR cpfUsers FROM users WHERE uidUsers=? OR emailUsers=? OR cpfUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
+            if (isset($_POST['from-users-page'])) {
+                header ("Location: ../users.php?error=sqlerror");
+                exit();
+            }
+            else{
             header ("Location: ../login.php?error=sqlerror");
-            exit();
+            exit();}
         } else {
             mysqli_stmt_bind_param($stmt, "sss", $username, $email, $cpf);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt);
             if ($resultCheck > 0) {
+                if (isset($_POST['from-users-page'])) {
+                    header ("Location: ../users.php?error=usertaken=");
+                    exit();
+                }
+                else{
                 header ("Location: ../login.php?error=usertaken=");
-                exit();
+                exit();}
             } else {
                 $sql = "INSERT INTO users (uidUsers, fnameUsers, lnameUsers, emailUsers, cpfUsers, genderUsers, pwdUsers, userType, addressUsers, celularUsers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
+
+                    if (isset($_POST['from-users-page'])) {
+                        header ("Location: ../users.php?error=sqlerror");
+                        exit();
+                    }
+                    else{
                     header ("Location: ../login.php?error=sqlerror");
-                    exit();
+                    exit();}
+                    
                 } else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_param($stmt, "ssssssssss", $username, $fname, $lname, $email, $cpf, $gender, $hashedPwd, $userTypeStr, $addressStr, $celular);
+                    mysqli_stmt_bind_param($stmt, "ssssssssss", $username, $fname, $lname, $email, $cpf, $gender, $hashedPwd, $userType, $addressStr, $celular);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_store_result($stmt);
+
+                   // ADD STANDARD AVATAR PICTURE
+                   $sql = "SELECT idUsers FROM users WHERE uidUsers='$username'";
+                   $result = mysqli_query($conn, $sql);
+                   $row = mysqli_fetch_assoc($result);
+                   $userId = $row['idUsers'];
+
+                   $fileSource = "../img/avatar.png";
+                   $fileNameNew = $userId.".png";
+                   $fileDestination = "../img/".$fileNameNew;
+
+                   copy($fileSource, $fileDestination);
+
+                   $fileDestination = "img/".$fileNameNew;
+                   
+                    $sql = "SELECT * FROM profileimg WHERE id='$userId'"; 
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) == 0) {
+                                $sql = "INSERT INTO profileimg (id, name, img_dir) VALUES ('$userId', '$fileNameNew', '$fileDestination')";
+                                mysqli_query($conn, $sql);
+                    }
+
+                    if (isset($_POST['from-users-page'])) {
+                        header ("Location: ../users.php?signup=success");
+                        $signUpSuccessAlert;
+                        exit();
+                    }
+                    else{
                     header ("Location: ../login.php?signup=success");
                     $signUpSuccessAlert;
                     exit();
+                    }
                 }
             }
         }
     }
 
-     
+    
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
     } else {
