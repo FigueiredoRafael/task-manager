@@ -121,7 +121,7 @@ if(isset($_GET['uid']) || isset($_GET['mail']) || isset($_GET['cpf']) || isset($
 if (isset($_POST['signup-submit'])) {
 
     require 'dbh.inc.php';
-
+    $fromUsersPage  = $_POST['from-users-page'];
     $username       = $_POST['uid'];
     $fname          = $_POST['fname'];
     $lname          = $_POST['lname'];
@@ -150,7 +150,7 @@ if (isset($_POST['signup-submit'])) {
         empty($userType)    || 
         empty($addressStr)
         ) {
-            if (isset($_POST['signup-admin-submit'])) {
+            if (isset($_POST['from-users-page'])) {
                 header ("location: ../users.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr);
                 exit();
             }
@@ -161,7 +161,7 @@ if (isset($_POST['signup-submit'])) {
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
 
-        if (isset($_POST['signup-admin-submit'])) {
+        if (isset($_POST['from-users-page'])) {
             header ("Location: ../users.php?error=emptyfields&invalidmailuid");
             exit();
         }
@@ -170,7 +170,7 @@ if (isset($_POST['signup-submit'])) {
         exit ();}
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        if (isset($_POST['signup-admin-submit'])) {
+        if (isset($_POST['from-users-page'])) {
             header ("Location: ../users.php?error=invalidmail&uid=".$username);
             exit();
         }
@@ -179,7 +179,7 @@ if (isset($_POST['signup-submit'])) {
         exit ();}
 
     } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-        if (isset($_POST['signup-admin-submit'])) {
+        if (isset($_POST['from-users-page'])) {
             header ("Location: ../users.php?error=invaliduid&mail=".$email);
             exit();
         }
@@ -188,7 +188,7 @@ if (isset($_POST['signup-submit'])) {
         exit ();}
         
     } else if ($password !== $passwordRepeat) {
-        if (isset($_POST['signup-admin-submit'])) {
+        if (isset($_POST['from-users-page'])) {
             header ("Location: ../users.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email);
             exit();
         }
@@ -198,7 +198,7 @@ if (isset($_POST['signup-submit'])) {
 
     } else if (empty($password) || strlen($password) < 6 || !preg_match("/^[a-zA-Z0-9]*$/", $password)) {
             if ($error = true) {
-                if (isset($_POST['signup-admin-submit'])) {
+                if (isset($_POST['from-users-page'])) {
                     header ("Location: ../users.php?error=weakpassword");
                     exit();
                 }
@@ -210,7 +210,7 @@ if (isset($_POST['signup-submit'])) {
         $sql = "SELECT uidUsers OR emailUsers OR cpfUsers FROM users WHERE uidUsers=? OR emailUsers=? OR cpfUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            if (isset($_POST['signup-admin-submit'])) {
+            if (isset($_POST['from-users-page'])) {
                 header ("Location: ../users.php?error=sqlerror");
                 exit();
             }
@@ -223,7 +223,7 @@ if (isset($_POST['signup-submit'])) {
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt);
             if ($resultCheck > 0) {
-                if (isset($_POST['signup-admin-submit'])) {
+                if (isset($_POST['from-users-page'])) {
                     header ("Location: ../users.php?error=usertaken=");
                     exit();
                 }
@@ -235,7 +235,7 @@ if (isset($_POST['signup-submit'])) {
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
 
-                    if (isset($_POST['signup-admin-submit'])) {
+                    if (isset($_POST['from-users-page'])) {
                         header ("Location: ../users.php?error=sqlerror");
                         exit();
                     }
@@ -271,7 +271,7 @@ if (isset($_POST['signup-submit'])) {
                                 mysqli_query($conn, $sql);
                     }
 
-                    if (isset($_POST['signup-admin-submit'])) {
+                    if (isset($_POST['from-users-page'])) {
                         header ("Location: ../users.php?signup=success");
                         $signUpSuccessAlert;
                         exit();

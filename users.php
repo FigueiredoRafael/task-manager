@@ -103,8 +103,16 @@
 
                         
 
-                        <td>                       
-
+                        <td>
+                          <?php 
+                            if ($userType == "user") {
+                          ?>
+                          <a class='btn-sm btn-dark ml-3 user-to-admin' href='#' data-promote="<?php echo $userId; ?>" role='button' >
+                            <i class='fas fa-user-tie'></i>
+                          </a>
+                          <?php
+                            }                          
+                          ?>
                           <a class='btn btn-secondary ml-3' data-toggle='collapse' href='#user-details-<?php echo $userId; ?>' role='button' >
                             <i class='fas fa-angle-double-right'></i>Mais..
                           </a>
@@ -118,7 +126,13 @@
                               <span class="text-left pb-1"><strong>Gênero:</strong> <?php echo $userGender; ?></span>
                               <span class="text-left pb-1"><strong>Celular: </strong><span class="celular"><?php echo $userCellPhone; ?></span></span>      
                               <span class="text-left pb-2"><strong>Endereço:</strong> <?php echo $userStreet.", ".$userStNumber.", ".$userStComp." - ";?><span class="cep"><?php echo $userStCep;?></span></span>
+                              <?php 
+                                if ($userType == "user") {
+                              ?>
                               <button type="button" name="id" class="btn-md btn-block btn-danger text-align-right userDeleteBtn " data-id="<?php echo $userId ?>" style="height:35px; border-radius: 3px;" >Remover usuário</button>
+                              <?php
+                                }                          
+                              ?>
                             </div>
                           </div>
                         </td>
@@ -160,6 +174,7 @@
               <div class="card-body">
                 <div class="form-group">
                 <div class="form-group">
+                  <input type="hidden" name="from-users-page">
                   <label for="name">Nome</label>
                   <input class="form-control" type="text" name="fname" placeholder="João" id="first-name" required>
                 </div>
@@ -277,7 +292,6 @@
                     <option value="admin">Administrador</option>
                   </select> 
                 </div>
-                <input type="hidden" name="userType" value="user">
                 <div class="form-group">
                   <label for="email">Senha</label>
                   <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Password" />
@@ -290,9 +304,7 @@
                 </div>
               </div>
               <div class="row card-footer">
-                <form action="includes/signup.inc.php" method="POST">
-                <input type="hidden" name="signup-admin-submit">
-                  <button class="btn btn-lg btn-primary col-md-7 mr-2" type="submit" name="signup-submit" id="signup-btn">Cadastrar</button>
+                <button class="btn btn-lg btn-primary col-md-7 mr-2" type="submit" name="signup-submit" id="signup-btn">Cadastrar</button>
                 </form>
                 <button class="btn btn-danger text-white col-md-4" data-dismiss="modal">Cancelar</button>
                 </div>

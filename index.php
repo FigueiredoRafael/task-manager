@@ -169,6 +169,11 @@ include "modals.php";
             </div>
           </div>
 
+          <?php
+          if ($_SESSION['userType'] == "admin" ) {
+
+          ?>  
+
           <div class="card text-center bg-warning text-white float-left user-cards">
             <div class="card-body">
             <h4 class=" float-left text-center ml-2 mt-1">
@@ -179,7 +184,9 @@ include "modals.php";
             </div>
           </div>
 
-
+          <?php
+          }
+          ?>
         </div>
   </div>
 </div>

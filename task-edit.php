@@ -30,10 +30,16 @@
           <i class="fas fa-check"></i> Salvar Mudanças
         </button>
       </div>
+      <?php
+        if ($_SESSION['userType'] == "admin") {
+      ?>
       <div class="col-md-3">        
       <button type="submit" id="remover-tarefa" name="task-delete-submit" onclick="return false" class="btn btn-danger btn-block text-white remover">
           <i class="fas fa-trash"></i> Deletar Tarefa
         </button>
+      <?php
+        }
+      ?>  
       </div>
     </div>
   </div>
@@ -55,30 +61,36 @@
               <input type="hidden" name="task-id" class="form-control" value="<?php echo $_GET['taskId']; ?>">
               <input type="hidden" name="userId" value="<?php echo $_SESSION['userId'];?>" >
             </div>
-            <div class="form-group col-md-4">
               <label for="conclusion-date" class="text text-dark">Data de Conclusão: </label>
               <?php 
-              echo $_GET['taskConcl'];
+              $date = $_GET['taskConcl'];
+              $newDate = str_replace('/', '-', $date);
+              echo date('Y/m/d', strtotime($newDate));
               ?>
               <br>
-              <input type="date" class="form-control" name="conclusion-date">
+              <input type="date" class="form-control col-4" name="conclusion-date" value="<?php echo date('Y-m-d', strtotime($newDate)); ?>">
+              <br>
               <label for="task-status" class="text text-dark">Status:</label>
-              <span class="text text-<?php echo $_GET['statColor'] ?>"><?php $taskStat = $_GET['taskStat']; echo $taskStat; ?></span>
-            </div>
+              <span class="text text-<?php echo $_GET['statColor'] ?>">
+              <?php $taskStat = $_GET['taskStat']; echo $taskStat; ?>
+              </span>
+              <br>
+              <br>
             <div class="form-group">
               <label for="task-description" class="text text-dark">Descrição</label>
               <textarea name="task-description" class="form-control"><?php echo $_GET['taskDescr']?></textarea>
             </div>
           </form>
             <form action="includes/task-processor.inc.php" method="post">
-            <input type="hidden" name="taskId" class="form-control" value="<?php $taskId = $_GET['taskId']; echo $taskId;  ?>">
-            <input type="hidden" name="user-action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") { echo "finish"; } ?>">
-            <button type="submit" name="task-user-action" class="btn btn-<?php if ($_GET['taskStat'] == "Aberto") {
+            <input type="hidden" name="taskId" value="<?php $taskId = $_GET['taskId']; echo $taskId;  ?>">
+            <input type="hidden" name="action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") { echo "finish"; } ?>">
+            <input type="hidden" name="from-taskdetails" value="">
+            <button type="submit" name="task_user_action" class="btn btn-<?php if ($_GET['taskStat'] == "Aberto") {
                                             echo 'primary';
                                           } else {
                                             echo 'success'; 
                                           }
-                                    ?>"> 
+                                          ?>"> 
                                           <?php 
                                               if ($_GET['taskStat'] == "Aberto") {
                                                 echo "Começar Tarefa"; 
@@ -86,12 +98,6 @@
                                                   echo "Concluir Tarefa"; 
                                                 }
                                           ?></button>
-                                          <?php 
-                                            require "includes/dbh.inc.php";
-                                            $sql = "SELECT tasks_stat FROM tasks WHERE taskId='$taskId'";
-                                            echo $taskStat ." - ". $taskId."<br>";    
-
-                                          ?>
           </form>
         </div>
       </div>
