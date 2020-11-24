@@ -82,9 +82,10 @@
             </div>
           </form>
             <form action="includes/task-processor.inc.php" method="post">
-            <input type="hidden" name="taskId" class="form-control" value="<?php $taskId = $_GET['taskId']; echo $taskId;  ?>">
-            <input type="hidden" name="user-action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") { echo "finish"; } ?>">
-            <button type="submit" name="task-user-action" class="btn btn-<?php if ($_GET['taskStat'] == "Aberto") {
+            <input type="hidden" name="taskId" value="<?php $taskId = $_GET['taskId']; echo $taskId;  ?>">
+            <input type="hidden" name="action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") { echo "finish"; } ?>">
+            <input type="hidden" name="from-taskdetails" value="">
+            <button type="submit" name="task_user_action" class="btn btn-<?php if ($_GET['taskStat'] == "Aberto") {
                                             echo 'primary';
                                           } else {
                                             echo 'success'; 

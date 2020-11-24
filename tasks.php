@@ -25,7 +25,7 @@
             
             
             $userId = $_SESSION['userId'];
-
+            $userType = $_SESSION['userType'];
             
             
             $sql = "SELECT * FROM tasks WHERE tasks_resp='$userId'";
@@ -110,13 +110,37 @@
                           <a class='btn-sm btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
                             <i class='fas fa-angle-double-right'></i>Mais..
                           </a>
+                          <?php
+
+                          if ($userType == "admin") {
+
+                          ?>
                           <a class='btn-sm btn-danger ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' >
                             <i class="far fa-trash-alt"></i>
                           </a>
-                          <a class='btn-sm btn-success ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                          <?php
+                          }
+                          ?>
+                          <?php 
+                          if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") {
+                          
+                          ?>
+                          <a class='btn-sm btn-success ml-3 finish-task' data-action="finish" data-submit="task_user_action" data-id="<?php echo $taskId; ?>" href="#" role='button' >
                             <i class="far fa-check-square"></i>
                           </a>
+                          <?php
+                          }
+                          ?>
+                          <?php 
+                          if ($taskStat == "Aberto") {
                           
+                          ?>
+                          <a class='btn-sm btn-primary ml-3 start-task' data-action="start" data-submit="task_user_action" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                            <i class="fas fa-play"></i>
+                          </a>
+                          <?php
+                          }
+                          ?>
                         </td>
                       </tr>
                       <tr>

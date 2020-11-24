@@ -552,7 +552,87 @@ $(document).ready(function () {
                                   });
 
             } else {
-              Swal.fire({title: "Cancelado!", text: "Não foi possível excluir a Tarefa.", icon: "failed"});
+              Swal.fire({title: "Cancelado!", text: response, icon: "failed"});
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".finish-task").click(function () {
+    let deleteId = $(this).data('id');
+    let action = $(this).data('action');
+    let submit = $(this).data('submit'); 
+
+    Swal.fire({
+      title: "Você deseja concluir esta tarefa?",
+      text: "Você não será capaz de desfazer essas alterações.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, Concluir!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/task-processor.inc.php',
+          type: 'POST',
+          data: { task_user_action: submit,
+                  action: action,
+                  taskId: deleteId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Concluída!",
+                          text:  "Tarefa concluída com sucesso.",
+                          icon:  "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire({title: "Cancelado!", text: response, icon: "failed"});
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".start-task").click(function () {
+    let deleteId = $(this).data('id');
+    let action = $(this).data('action');
+    let submit = $(this).data('submit');     
+
+    Swal.fire({
+      title: "Você deseja iniciar esta tarefa?",
+      text: "O Status desta tarefa estará como \"Em Progresso\".",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, Concluir!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/task-processor.inc.php',
+          type: 'POST',
+          data: { task_user_action: submit,
+                  action: action,
+                  taskId: deleteId },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Iniciada!",
+                          text:  "Tarefa iniciada com sucesso.",
+                          icon:  "success"
+                        }).then(  function () {
+                                    location.reload();
+                                  });
+
+            } else {
+              Swal.fire({title: "Cancelado!", text: response, icon: "failed"});
             }
           }        
         })
