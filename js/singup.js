@@ -642,6 +642,7 @@ $(document).ready(function () {
 
   $(".userDeleteBtn").click(function () {
     var deleteid = $(this).data('id');
+    var selfdelete = $(this).data('selfdelete')
 
     Swal.fire({
       title: "Você tem certeza?",
@@ -657,7 +658,8 @@ $(document).ready(function () {
         $.ajax({
           url: 'includes/users-processor.inc.php',
           type: 'POST',
-          data: { id:deleteid },
+          data: { id:deleteid,
+                  selfdelete:selfdelete },
           success: function(response){
             if(response == "1"){
               Swal.fire({ title: "Deleted!",
@@ -666,7 +668,6 @@ $(document).ready(function () {
                         }).then(  function () {
                                     location.reload();
                                   });
-
             } else {
               Swal.fire("Cancelado!", " "+response+" ", "failed");
             }

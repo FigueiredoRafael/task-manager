@@ -14,17 +14,7 @@
 </header>
 
 <?php 
-  $url = "HTTP://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-  $loginFailed    = '<div class="col-3 alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Usuário ou senha</strong> está incorreto.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>';
-   if (strpos($url, "error=emptyfields") == true || strpos($url, "error=wrongpassword") == true || strpos($url, "error=nouser") == true) {
-     echo $loginFailed;
-   } 
+  require "includes/update-msgs.inc.php";
 ?>
 
 <!-- ACTIONS -->
@@ -196,7 +186,7 @@
                   />
                   <br style="clear: both" />
                 </div>
-                <input type="hidden" name="userType" value="admin">
+                <input type="hidden" name="userType" value="user">
                 <div class="form-group">
                   <label for="email">Senha</label>
                   <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Password" />

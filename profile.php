@@ -20,11 +20,10 @@
     </div>
   </div>
 </header>
-<div class="alerts-position">
-  <?php 
-    include "includes/update-msgs.inc.php";
-  ?>
-</div>
+<?php
+  require "includes/update-msgs.inc.php";
+?>
+
 
 <!-- ACTIONS -->
 <section id="actions" class="py-4 mb-4 bg-light">
@@ -183,8 +182,7 @@
                 </button>
           </div>
           <input name="userId" type="hidden" value="<?php echo $_SESSION['userId'];?>">
-          <button type="button" class="btn btn-danger userDeleteBtn" >Remover usuário</button>
-          <button type="submit" name="selfdelete-user-submit" class="d-none real-delete-user-btn" ></button>
+          <button type="button" class="btn btn-danger userDeleteBtn" data-selfdelete="selfdelete" data-id="<?php echo $_SESSION['userId'];?>" >Remover usuário</button>
       </div>
     </div>
   </div>

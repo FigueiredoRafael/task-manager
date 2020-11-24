@@ -16,17 +16,7 @@
 </header>
 <div class="alerts-position">
   <?php 
-    $url = "HTTP://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-    $loginSuccess    = '<div class="alerts-position col-3 alert alert-success alert-dismissible fade show" role="alert">
-                          <strong>Login</strong> feito com sucesso!
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>';
-    if (strpos($url, "login=success") == true) {
-      echo $loginSuccess;
-    } 
+    require "includes/update-msgs.inc.php";
   ?>
 </div>
 
