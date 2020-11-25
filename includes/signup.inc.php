@@ -144,66 +144,63 @@ if (isset($_POST['signup-submit'])) {
         empty($email)          || 
         empty($cpf)            || 
         empty($gender)         || 
-        empty($password)       || 
-        empty($passwordRepeat) ||
         empty($celular)        ||
-        empty($userType)    || 
         empty($addressStr)
         ) {
             if (isset($_POST['from-users-page'])) {
-                header ("location: ../users.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr);
+                
+                header ("location: ../users.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr."&msgElement=emptyfields");
                 exit();
-            }
-            echo $username;
-        header ("location: ../login.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr);
+            }    
+        header ("location: ../login.php?error=emptyfields&uid=".$username."&email=".$email."&credencial=".$userType."&address=".$addressArr."&msgElement=emptyfields");
         exit ();
         
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
 
         if (isset($_POST['from-users-page'])) {
-            header ("Location: ../users.php?error=emptyfields&invalidmailuid");
+            header ("Location: ../users.php?error=emptyfields&invalidmailuid&msgElement=invalidEmailnUid");
             exit();
         }
         else{
-        header ("Location: ../login.php?error=emptyfields&invalidmailuid");
+        header ("Location: ../login.php?error=emptyfields&invalidmailuid&msgElement=invalidEmailnUid");
         exit ();}
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         if (isset($_POST['from-users-page'])) {
-            header ("Location: ../users.php?error=invalidmail&uid=".$username);
+            header ("Location: ../users.php?error=invalidmail&uid=".$username."&msgElement=invalidEmail");
             exit();
         }
         else{
-        header ("Location: ../login.php?error=invalidmail&uid=".$username);
+        header ("Location: ../login.php?error=invalidmail&uid=".$username."&msgElement=invalidEmail");
         exit ();}
 
     } else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         if (isset($_POST['from-users-page'])) {
-            header ("Location: ../users.php?error=invaliduid&mail=".$email);
+            header ("Location: ../users.php?error=invaliduid&mail=".$email."&msgElement=invalidUid");
             exit();
         }
         else{
-        header ("Location: ../login.php?error=invaliduid&mail=".$email);
+        header ("Location: ../login.php?error=invaliduid&mail=".$email."&msgElement=invalidUid");
         exit ();}
         
     } else if ($password !== $passwordRepeat) {
         if (isset($_POST['from-users-page'])) {
-            header ("Location: ../users.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email);
+            header ("Location: ../users.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email."&msgElement=pwdNotSame");
             exit();
         }
         else{
-        header ("Location: ../login.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email);
+        header ("Location: ../login.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email."&msgElement=pwdNotSame");
         exit();}
 
     } else if (empty($password) || strlen($password) < 6 || !preg_match("/^[a-zA-Z0-9]*$/", $password)) {
             if ($error = true) {
                 if (isset($_POST['from-users-page'])) {
-                    header ("Location: ../users.php?error=weakpassword");
+                    header ("Location: ../users.php?error=weakpassword&msgElement=weakPwd");
                     exit();
                 }
                 else{
-                header ("Location: ../login.php?error=weakpassword");
+                header ("Location: ../login.php?error=weakpassword&msgElement=weakPwd");
                 exit();}
             }
     } else {
@@ -224,11 +221,11 @@ if (isset($_POST['signup-submit'])) {
             $resultCheck = mysqli_stmt_num_rows($stmt);
             if ($resultCheck > 0) {
                 if (isset($_POST['from-users-page'])) {
-                    header ("Location: ../users.php?error=usertaken=");
+                    header ("Location: ../users.php?error=usertaken&msgElement=userTaken");
                     exit();
                 }
                 else{
-                header ("Location: ../login.php?error=usertaken=");
+                header ("Location: ../login.php?error=usertaken&msgElement=userTaken");
                 exit();}
             } else {
                 $sql = "INSERT INTO users (uidUsers, fnameUsers, lnameUsers, emailUsers, cpfUsers, genderUsers, pwdUsers, userType, addressUsers, celularUsers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -272,12 +269,12 @@ if (isset($_POST['signup-submit'])) {
                     }
 
                     if (isset($_POST['from-users-page'])) {
-                        header ("Location: ../users.php?signup=success");
+                        header ("Location: ../users.php?signup=success&msgElement=signupSuccess");
                         $signUpSuccessAlert;
                         exit();
                     }
                     else{
-                    header ("Location: ../login.php?signup=success");
+                    header ("Location: ../login.php?signup=success&msgElement=signupSuccess");
                     $signUpSuccessAlert;
                     exit();
                     }

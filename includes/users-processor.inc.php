@@ -12,8 +12,13 @@ $totalrows = mysqli_num_rows($result);
 if ($totalrows > 0) {
     $sql = "DELETE FROM users WHERE idUsers='$userId'";
     if ($conn->query($sql) === TRUE) {
+        if (isset($_POST["selfdelete"]) == "") {
+            echo "2";
+            exit();
+        } else {
         echo "1";
         exit();
+        }
     }
     echo "0";
     exit();

@@ -12,16 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav">
         <li class="nav-item px-2 active">
-          <a href="index.php" class="nav-link">Tabela de Tarefas</a>
+          <a href="index.php" class="nav-link" data-toggle="tooltip" title="Ver tarefas em andamento">Tabela de Tarefas</a>
         </li>
         <li class="nav-item px-2">
-          <a href="posts.php" class="nav-link ">Concluídos</a>
+          <a href="posts.php" class="nav-link" data-toggle="tooltip" title="Ver tarefas concluídas">Concluídos</a>
         </li>
         <?php
           if($_SESSION['userType'] == "admin") {
         ?>
         <li class="nav-item px-2">
-          <a href="users.php" class="nav-link ">Usuários</a>
+          <a href="users.php" class="nav-link" data-toggle="tooltip" title="Ver tabela de usuários">Usuários</a>
         </li>
         <?php
           }
@@ -35,15 +35,15 @@
             <i class="fas fa-user"></i> Olá <?php echo $_SESSION['userFname'];?> 
           </a>
           <div class="dropdown-menu">
-            <a href="profile.php" class="dropdown-item"><i class="fas fa-user-circle"></i> Perfil
+            <a href="profile.php" class="dropdown-item"><i class="fas fa-user-circle" data-toggle="tooltip" title="Ver perfil"></i> Perfil
             </a>
-            <a href="settings.php" class="dropdown-item"><i class="fas fa-cog"></i> Configurações
+            <a href="settings.php" class="dropdown-item"><i class="fas fa-cog" data-toggle="tooltip" title="Configurações da conta"></i> Configurações
             </a>
           </div>
         </li>
         <li class="nav-item">
           <form action="includes/logout.inc.php" method="post">
-                <button class="btn btn-dark" type="submit" name="logout-submit"><i class="fas fa-user-times"> Logout</i></button>
+                <button class="btn btn-dark" type="submit" name="logout-submit" data-toggle="tooltip" title="Fazer logout sua conta"><i class="fas fa-user-times"> Logout</i></button>
             </form>
         </li>
       </ul>

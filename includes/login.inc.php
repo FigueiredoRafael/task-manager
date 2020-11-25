@@ -8,13 +8,13 @@ if (isset($_POST['login-submit'])) {
     $password = $_POST['pwd'];
 
     if (empty($mailuid) || empty($password)) {
-        header ("Location: ../index.php?error=emptyfields");
+        header ("Location: ../index.php?error=emptyfields&msgElement=emptyfields");
         exit ();
     } else {
         $sql = "SELECT * FROM users WHERE uidUsers=? OR emailUsers=? OR cpfUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header ("Location: ../index.php?error=emptyfields");
+            header ("Location: ../index.php?error=connection-database");
             exit ();
         } else {
             mysqli_stmt_bind_param($stmt, "sss", $mailuid, $mailuid, $mailuid);
@@ -25,7 +25,7 @@ if (isset($_POST['login-submit'])) {
                 if ($pwdCheck == false) {
 
                     $loginFailed = "Você não logou!"; 
-                    header ("Location: ../login.php?error=wrongpassword");
+                    header ("Location: ../login.php?error=wrongpassword&msgElement=wrongPwd");
                     exit ();
                 } else if ($pwdCheck == true) {
 
@@ -67,17 +67,17 @@ if (isset($_POST['login-submit'])) {
                         }
                     }
                     
-                    header ("Location: ../index.php?login=success");
+                    header ("Location: ../index.php?login=success&msgElement=loginSuccess");
                     exit ();
                     
                 } else {
                     $errorPassword = 'password';
-                    header ("Location: ../login.php?error=wrongpassword");
+                    header ("Location: ../login.php?error=wrongpassword&msgElement=wrongPwd");
                     exit ();
                 }
             } else {
                 $errorUser = 'user';
-                header ("Location: ../login.php?error=nouser");
+                header ("Location: ../login.php?error=nouser&msgElement=loginFail");
                 exit ();
             }
         }

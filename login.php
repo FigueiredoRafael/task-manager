@@ -14,17 +14,7 @@
 </header>
 
 <?php 
-  $url = "HTTP://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-  $loginFailed    = '<div class="col-3 alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Usuário ou senha</strong> está incorreto.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>';
-   if (strpos($url, "error=emptyfields") == true || strpos($url, "error=wrongpassword") == true || strpos($url, "error=nouser") == true) {
-     echo $loginFailed;
-   } 
+  require "includes/update-msgs.inc.php";
 ?>
 
 <!-- ACTIONS -->
@@ -48,15 +38,16 @@
             <form action="includes/login.inc.php" method="post">
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" id="username-login" class="form-control" name="mailuid" required>
+                <input type="text" id="username-login" class="form-control" name="mailuid" data-toggle="tooltip" href="#" title="Username, Email ou CPF" required>
                 <!-- <span class="text-danger"  style="display: <?php echo $errorUsername ? '': 'none' ?>;" >Email incorreto</span> -->
               </div>
               <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" id="pwd-login" class="form-control" name="pwd">
+                <input type="password" id="pwd-login" class="form-control" name="pwd" data-toggle="tooltip" href="#" title="Senha de acesso">
                 <!-- <span class="text-danger" style= <script> </script> "display: <?php echo $errorPassword ? '': 'none' ?>;" >Senha incorreta</span> -->
               </div>
               <input type="submit" name="login-submit" id="login-btn" class="btn btn-primary btn-block" required>
+              <!-- <input type="checkbox" class="form-control">Lembrar-me -->
             </form>
           </div>
         </div>
@@ -66,8 +57,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 mx-auto" style="text-align: center;">
-      <a class="mt-2 mr-2 underlineHover" href="#reset-password" id="showResetPwd">Esqueceu a senha?</a>
-        <a class="mt-2 underlineHover" href="#signup" id="showSingUp">Cadastrar</a>
+      <a class="mt-2 mr-2 underlineHover" href="#reset-password" id="showResetPwd" data-toggle="tooltip" href="#" title="Recupere por email">Esqueceu a senha?</a>
+        <a class="mt-2 underlineHover" href="#signup" id="showSingUp" data-toggle="tooltip" href="#" title="Faça parte!">Cadastrar</a>
       </div>
     </div>
   </div>
@@ -87,18 +78,18 @@
                 <div class="form-group">
                 <div class="form-group">
                   <label for="name">Nome</label>
-                  <input class="form-control" type="text" name="fname" placeholder="João" id="first-name" required>
+                  <input class="form-control" type="text" name="fname" placeholder="João" id="first-name" data-toggle="tooltip" href="#" title="Primeiro nome somente" required>
                 </div>
                 <div class="form-group">
                   <label for="lastName">Sobrenome</label>
-                  <input class="form-control" type="text" name="lname" placeholder="Alexandre Roberto" id="last-name" required>
+                  <input class="form-control" type="text" name="lname" placeholder="Alexandre Roberto" id="last-name" data-toggle="tooltip" href="#" title="Seu sobrenome" required>
                 </div>
                   <label for="email">Usuário</label>
-                  <input class="form-control" type="text" name="uid" placeholder="Remover esse campo" id="uid" required>
+                  <input class="form-control" type="text" name="uid" placeholder="Remover esse campo" id="uid" data-toggle="tooltip" href="#" title="Email" required>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input class="form-control" type="text" name="mail" id="mail" placeholder="E-mail" required>
+                  <input class="form-control" type="text" name="mail" id="mail" placeholder="E-mail" data-toggle="tooltip" href="#" title="Username, Email ou CPF" required>
                 </div>
                 <div class="form-group">
                   <label for="password">CPF</label>
@@ -196,7 +187,7 @@
                   />
                   <br style="clear: both" />
                 </div>
-                <input type="hidden" name="userType" value="admin">
+                <input type="hidden" name="userType" value="user">
                 <div class="form-group">
                   <label for="email">Senha</label>
                   <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Password" />

@@ -20,18 +20,18 @@
   <div class="container">
     <div class="row">
     <div class="col-md-3">
-        <a href="index.php" class="btn btn-light btn-block">
+        <a href="index.php" class="btn btn-light btn-block" data-toggle="tooltip" title="Voltar para tabela de tarefas">
           <i class="fas fa-arrow-left"></i> De volta para tarefas
         </a>
       </div>
       <div class="col-md-3">
-        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal">
+        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal" data-toggle="tooltip" title="Adicione uma tarefa">
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
       <div class="col-md-6 ml-auto">
         <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Posts...">
+        <input type="text" class="form-control" placeholder="Search Posts..." data-toggle="tooltip" title="Pesquise pela sua tarefa">
           <div class="input-group-append">
           <button class="btn btn-primary">Search</button>
           </div>
@@ -134,26 +134,12 @@
                         <td><?php echo $taskConcl; ?></td>
                         <td><?php if ($taskStat == "Concluido") { $taskStat = "Concluído"; } 
                          echo "<p class='text text-".$statColor."'>".$taskStat."</p>";?></td>
-                        <td>                       
-                          <?php 
-                          
-                            if ($taskStat == "Concluído") {
-
-                              ?> 
-                               <i class="far fa-check-square text-success h3"></i>
-                              
-                              <?php 
-                            } else {
-                          ?>
-                              <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>&statColor=<?php echo $statColor ?>&taskStat=<?php echo $taskStat ?>' class='btn-sm btn-secondary'>
-                              <i class="fas fa-edit"></i> Editar
-                          <?php 
-                            }
-                          ?>
-                          <a class='btn-sm btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
+                        <td>                         
+                            <i class="far fa-check-square text-success h3" data-toggle="tooltip" title="Tarefa concluída"></i>
+                          <a class='btn-sm btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' data-toggle="tooltip" title="Ver descrição da tarefa">
                             <i class='fas fa-angle-double-right'></i>Mais..
                           </a>
-                          <a class='btn-sm btn-danger ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                          <a class='btn-sm btn-danger ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' data-toggle="tooltip" title="Deletar Tarefa">
                             <i class="far fa-trash-alt"></i>
                           </a>
                         </td>

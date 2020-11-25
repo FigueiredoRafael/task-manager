@@ -18,19 +18,19 @@ if (isset($_POST['update-submit'])) {
        header ("Location: ../profile.php?update-profile=conn-error");
        exit();
     } else if (empty($fname) || empty($lname)) {
-        header ("Location: ../profile.php?update-profile=empty-name-fields");
+        header ("Location: ../profile.php?update-profile=empty-name-fields&msgElement=emptyfields");
         exit();
     } else if (empty($celular)) {
-        header ("Location: ../profile.php?update-profile=empty-cel-field");
+        header ("Location: ../profile.php?update-profile=empty-cel-field&msgElement=emptyCelField");
         exit();
     } else if (empty($_POST['address'])) {
-        header ("Location: ../profile.php?update-profile=empty-address-fields");
+        header ("Location: ../profile.php?update-profile=empty-address-fields&msgElement=emptyAddressFields");
         exit();
     } else {
-        $sql = "UPDATE users SET fnameUsers='$fname', lnameUsers='$lname', celularUsers='$celular', addressUsers='$addressStr' WHERE idUsers='$idUser'";
+        $sql = "UPDATE users SET fnameUsers='$fname', lnameUsers='$lname', celularUsers='$celular', addressUsers='$addressStr' WHERE idUsers='$idUser'&msgElement=emptyCelField";
     
         if ($conn->query($sql) === TRUE) {
-            header("Location: ../profile.php?update-profile=success");
+            header("Location: ../profile.php?update-profile=success&msgElement=profileUpdateSuccess");
             exit();
         } else {
             header("Location: ../profile.php?update=error");
@@ -53,7 +53,7 @@ if (isset($_POST['newpwd-submit'])) {
     $sql = "SELECT * FROM users WHERE idUsers=?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("Location: ../profile.php?error=connection-");
+        header("Location: ../profile.php?error=connection");
         exit();
     } else {
         mysqli_stmt_bind_param($stmt, "s", $userId);
@@ -62,20 +62,20 @@ if (isset($_POST['newpwd-submit'])) {
         if ($row = mysqli_fetch_assoc($result)) {
             $pwdCheck = password_verify($currentPwd, $row['pwdUsers']);
             if ($pwdCheck == false) {
-                header ("Location: ../profile.php?error=wrongpwd");
+                header ("Location: ../profile.php?error=wrongpwd&msgElement=wrongPwd");
                 exit ();
             } else if ($pwdCheck == true) {
                 if ($password !== $passwordRepeat) {
-                    header ("Location: ../profile.php?error=pwd-not-same");
+                    header ("Location: ../profile.php?error=pwd-not-same&msgElement=pwdNotSame");
                     exit();
                 } else if (empty($password) || strlen($password) < 6) {
-                    header ("Location: ../profile.php?error=weakpwd");
+                    header ("Location: ../profile.php?error=weakpwd&msgElement=weakPwd");
                     exit();
                 } else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                     $sql = "UPDATE users SET pwdUsers='$hashedPwd' WHERE idUsers='$userId'";
                     if ($conn->query($sql) === TRUE) {
-                        header("Location: ../profile.php?pwd-update=success");
+                        header("Location: ../profile.php?pwd-update=success&msgElement=pwdUpdateSuccess");
                         exit();
                     } else {
                         header("Location: ../profile.php?pwd-update=error");
@@ -129,12 +129,12 @@ if (isset($_POST['avatarpic-submit'])) {
                             $sql = "INSERT INTO profileimg (id, name, img_dir) VALUES ('$uid', '$fileNameNew', '$fileDestination')";
                             mysqli_query($conn, $sql);
 
-                            header("Location: ../profile.php?profileimg-insert=success");
+                            header("Location: ../profile.php?profileimg-insert=success&msgElement=emptyCelField");
                             exit();
                         } else {
                             $sql = "UPDATE profileimg SET name='$fileNameNew', img_dir='$fileDestination' WHERE id='$userId'";
                             if ($conn->query($sql) === TRUE) {
-                                header("Location: ../profile.php?profileimg-update=success");
+                                header("Location: ../profile.php?profileimg-update=success&msgElement=insertImgSuccess");
                                 exit();
                             } else {
                                 header("Location: ../profile.php?profileimg-update=error");
@@ -144,7 +144,7 @@ if (isset($_POST['avatarpic-submit'])) {
                     }
                 }
            } else {
-                header ("Location: ../profile.php?profileimg=big-file");
+                header ("Location: ../profile.php?profileimg=big-file&msgElement=fileTooBig");
                 echo "your file is too big";
                 exit();
            }
@@ -154,7 +154,7 @@ if (isset($_POST['avatarpic-submit'])) {
            exit();
        }
     } else {
-        header ("Location: ../profile.php?profileimg=invalid-format");
+        header ("Location: ../profile.php?profileimg=invalid-format&msgElement=imgInvalidFormat");
         echo "not allowed image picture file.";
         exit();
     }
@@ -167,9 +167,9 @@ if (isset($_POST["selfdelete-user-submit"])) {
     
     $sql = "DELETE FROM users WHERE idUsers='$userId'";
     if ($conn->query($sql) === TRUE) {
-    header("Location: ../login.php?user-removed=success");
+    header("Location: ../login.php?user-removed=success&msgElement=emptyCelField");
     } else {
-    header("Location: ../users.php?user-removed=error");
+    header("Location: ../users.php?user-removed=error&msgElement=emptyCelField");
     }
     $userRemovedSuccessAlert;
     exit();

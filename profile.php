@@ -15,29 +15,28 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1><i class="fas fa-cog"></i> Editar Perfil</h1>
+        <h1 data-toggle="tooltip" title="Editar seu perfil"><i class="fas fa-cog"></i> Editar Perfil</h1>
       </div>
     </div>
   </div>
 </header>
-<div class="alerts-position">
-  <?php 
-    include "includes/update-msgs.inc.php";
-  ?>
-</div>
+<?php
+  require "includes/update-msgs.inc.php";
+?>
+
 
 <!-- ACTIONS -->
 <section id="actions" class="py-4 mb-4 bg-light">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <a href="index.php" class="btn btn-light btn-block">
-          <i class="fas fa-arrow-left"></i> Voltar para o Dashboard
+        <a href="index.php" class="btn btn-light btn-block" data-toggle="tooltip" title="Volte para a tabela de tarefas">
+          <i class="fas fa-arrow-left"></i> Voltar para tarefas
         </a>
       </div>
       <div class="col-md-3">
         
-        <a href="" class="btn btn-success btn-block" data-toggle="modal" data-target="#changePasswordModal">
+        <a href="" class="btn btn-success btn-block" data-toggle="modal" data-target="#changePasswordModal" data-toggle="tooltip" title="Atualize sua senha">
           <i class="fas fa-lock"></i> Mudar Senha
         </a>
       </div>
@@ -178,13 +177,12 @@
         <input class="form-control d-none" type="text" name="userId" value="<?php echo $_SESSION['userId'];?>" >
           <div id="upload-photo-div" class="mb-2">
               <input type="file" id="real-file" accept="image/*" class="inputfile" name="avatarpic" hidden="hidden">
-                <button src="#" class="btn" id="upload-photo" type="button" data-toggle="modal" data-target="#addImageModal">
+                <button src="#" class="btn" id="upload-photo" type="button" data-toggle="modal" data-target="#addImageModal" data-toggle="tooltip" title="Atualize sua foto de perfil">
                   <i class="fas fa-folder-plus"></i> 
                 </button>
           </div>
           <input name="userId" type="hidden" value="<?php echo $_SESSION['userId'];?>">
-          <button type="button" class="btn btn-danger userDeleteBtn" >Remover usuário</button>
-          <button type="submit" name="selfdelete-user-submit" class="d-none real-delete-user-btn" ></button>
+          <button type="button" class="btn btn-danger userDeleteBtn" data-toggle="tooltip" title="Remover sua conta" data-selfdelete="selfdelete" data-id="<?php echo $_SESSION['userId'];?>" >Remover usuário</button>
       </div>
     </div>
   </div>

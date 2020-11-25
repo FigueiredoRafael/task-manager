@@ -16,17 +16,7 @@
 </header>
 <div class="alerts-position">
   <?php 
-    $url = "HTTP://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-    $loginSuccess    = '<div class="alerts-position col-3 alert alert-success alert-dismissible fade show" role="alert">
-                          <strong>Login</strong> feito com sucesso!
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>';
-    if (strpos($url, "login=success") == true) {
-      echo $loginSuccess;
-    } 
+    require "includes/update-msgs.inc.php";
   ?>
 </div>
 
@@ -36,8 +26,8 @@
 <section id="actions" class="py-4 mb-4 bg-light">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal">
+      <div class="col-md-3" >
+        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal" data-toggle="tooltip" href="#" title="Adicione a sua Tarefa." >
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
@@ -45,7 +35,7 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Procurar tarefas...">
             <div class="input-group-append">
-              <button class="btn btn-primary">Procurar</button>
+              <button class="btn btn-primary" data-toggle="tooltip" title="Procure pela sua Tarefa">Procurar</button>
             </div>
         </div>
       </div>
@@ -70,12 +60,10 @@ include "modals.php";
             <h4>Usuários</h4>
           </div>
           <div class="card-body-users card-body">
-
           <div class="scrollmenu">
-            
-                    <a href="index.php" style="color:black;">
-                      <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre"><br><?php echo $_SESSION['userFname']?>
-                    </a>
+            <a href="index.php" style="color:black;">
+              <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre" data-toggle="tooltip" title="<?php echo $_SESSION['userFname']?>"><br><?php echo $_SESSION['userFname']?>
+            </a>
                 <?php
 
               require "includes/dbh.inc.php";
@@ -90,8 +78,8 @@ include "modals.php";
               $resultimg = mysqli_query($conn, $sqlimg);
               $rowimg = mysqli_fetch_assoc($resultimg);
               ?>
-                            <a style="color:black;" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" ><br><?php echo $row['fnameUsers']; ?>
-                            </a>
+            <a style="color:black;" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $row['fnameUsers']; ?>"><br><?php echo $row['fnameUsers']; ?>
+            </a>
               <?php                      
                   }
               }

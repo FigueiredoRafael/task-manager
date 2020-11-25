@@ -26,9 +26,6 @@ div.scrollmenu a:hover {
   background-color: #777;
 }
 
-.card-body-users {
-}
-
 .squares {
   padding: 60px 0 0 0;
 }
@@ -214,18 +211,10 @@ footer {
   width: 100%;
 }
 
-@media (min-width: 576px) {
-  body {
-    /* background: red; */
-  }
-}
 
 /* Medium devices (tablets) */
 
 @media (min-width: 768px) {
-  // body {
-  //   background: blue;
-  // }
   #details-card {
     display: block;
     width: auto;
@@ -235,9 +224,6 @@ footer {
 /* Large devices (desktops) */
 
 @media (min-width: 992px) {
-  body {
-    /* background: green; */
-  }
   .user-cards {
     height: 70px;
     width: 32%;
@@ -287,3 +273,4 @@ footer {
   height: 50px;
   z-index: 10;
 }
+

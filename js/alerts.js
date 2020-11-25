@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+
 function showError(error) {
   document.getElementById("results").style.display = "none";
 

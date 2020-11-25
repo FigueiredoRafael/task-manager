@@ -102,12 +102,12 @@
                               <?php 
                             } else {
                           ?>
-                              <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>&statColor=<?php echo $statColor ?>&taskStat=<?php echo $taskStat ?>' class='btn-sm btn-secondary'>
+                              <a href='task-edit.php?taskId=<?php echo $taskId; ?>&taskTitle=<?php echo $taskTitle; ?>&taskResp=<?php echo $taskResp; ?>&taskConcl=<?php echo $taskConcl; ?>&taskDescr=<?php echo $taskDescr; ?>&statColor=<?php echo $statColor ?>&taskStat=<?php echo $taskStat ?>' class='btn-sm btn-secondary link-tags' style="text-decoration: none;" data-toggle="tooltip" title="Editar sua Tarefa">
                               <i class="fas fa-edit"></i> Editar
                           <?php 
                             }
                           ?>
-                          <a class='btn-sm btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
+                          <a class='btn-sm btn-secondary ml-3 link-tags' style="text-decoration: none;" data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' data-toggle="tooltip" title="Ver descrição da Tarefa">
                             <i class='fas fa-angle-double-right'></i>Mais..
                           </a>
                           <?php
@@ -115,7 +115,7 @@
                           if ($userType == "admin") {
 
                           ?>
-                          <a class='btn-sm btn-danger ml-3 delete-task' data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                          <a class='btn-sm btn-danger ml-3 delete-task' style="text-decoration: none;" data-submit="task_delete_submit" data-id="<?php echo $taskId; ?>" href="#" role='button' data-toggle="tooltip" title="Apagar Tarefa">
                             <i class="far fa-trash-alt"></i>
                           </a>
                           <?php
@@ -125,7 +125,7 @@
                           if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") {
                           
                           ?>
-                          <a class='btn-sm btn-success ml-3 finish-task' data-action="finish" data-submit="task_user_action" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                          <a class='btn-sm btn-success ml-3 finish-task' style="text-decoration: none;" data-action="finish" data-submit="task_user_action" data-id="<?php echo $taskId; ?>" href="#" role='button' data-toggle="tooltip" title="Concluir Tarefa">
                             <i class="far fa-check-square"></i>
                           </a>
                           <?php
@@ -135,7 +135,7 @@
                           if ($taskStat == "Aberto") {
                           
                           ?>
-                          <a class='btn-sm btn-primary ml-3 start-task' data-action="start" data-submit="task_user_action" data-id="<?php echo $taskId; ?>" href="#" role='button' >
+                          <a class='btn-sm btn-primary ml-3 start-task' data-action="start" data-submit="task_user_action" data-id="<?php echo $taskId; ?>" href="#" role='button' data-toggle="tooltip" title="Iniciar Tarefa">
                             <i class="fas fa-play"></i>
                           </a>
                           <?php
@@ -269,7 +269,7 @@
                               <?php 
                             }
                           ?>
-                          <a class='btn btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' >
+                          <a class='btn btn-secondary ml-3' data-toggle='collapse' href='#task-details-<?php echo $taskId; ?>' role='button' data-toggle="tooltip" title="Ver descrição da Tarefa">
                             <i class='fas fa-angle-double-right'></i>Mais..
                           </a>
                         </td>
