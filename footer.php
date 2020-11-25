@@ -7,7 +7,7 @@
           copyright &copy; <span id="year"></span> TaskManager
         <br>
         <p class="text-muted">
-        Feito por: Hector Lutero <br> Rafael Negreiros
+        Desenvolvido por: <br><br> Hector Lutero | Rafael Negreiros
         </p>
       </div>
     </div>
@@ -38,6 +38,8 @@
             // Get the current year for the copyright
         $('#year').text(new Date().getFullYear());
         </script>
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+
 
 </body>
 </html>

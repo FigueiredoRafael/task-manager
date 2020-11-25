@@ -26,8 +26,8 @@
 <section id="actions" class="py-4 mb-4 bg-light">
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal">
+      <div class="col-md-3" >
+        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal" data-toggle="tooltip" href="#" title="Adicione a sua Tarefa." >
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
@@ -35,7 +35,7 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Procurar tarefas...">
             <div class="input-group-append">
-              <button class="btn btn-primary">Procurar</button>
+              <button class="btn btn-primary" data-toggle="tooltip" title="Procure pela sua Tarefa">Procurar</button>
             </div>
         </div>
       </div>
@@ -66,7 +66,7 @@ include "modals.php";
               <div style="width: 100%; display: table-cell;"> 
               <span style="float:left;">
                     <a href="index.php" class="btn">
-                      <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre"><br><?php echo $_SESSION['userFname']?>
+                      <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $_SESSION['userFname']?>"><br><?php echo $_SESSION['userFname']?>
                     </a>
               </span>              
                 <?php
@@ -84,7 +84,8 @@ include "modals.php";
               $rowimg = mysqli_fetch_assoc($resultimg);
               ?>
                       <span style="float:left;">
-                            <a a class="btn" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" ><br><?php echo $row['fnameUsers']; ?>
+                            <a a class="btn" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $row['fnameUsers']; ?>" >
+                            <br><?php echo $row['fnameUsers']; ?>
                             </a>
                       </span>
               <?php                      
