@@ -61,9 +61,9 @@ include "modals.php";
           </div>
           <div class="card-body-users card-body">
           <div class="scrollmenu">
-                    <a href="index.php" style="color:black;">
-                      <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre" data-toggle="tooltip" title="<?php echo $_SESSION['userFname']?>"><br><?php echo $_SESSION['userFname']?>
-                    </a>
+            <a href="index.php" style="color:black;">
+              <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre" data-toggle="tooltip" title="<?php echo $_SESSION['userFname']?>"><br><?php echo $_SESSION['userFname']?>
+            </a>
                 <?php
 
               require "includes/dbh.inc.php";
@@ -78,8 +78,8 @@ include "modals.php";
               $resultimg = mysqli_query($conn, $sqlimg);
               $rowimg = mysqli_fetch_assoc($resultimg);
               ?>
-                      <a style="color:black;" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $row['fnameUsers']; ?>"><br><?php echo $row['fnameUsers']; ?>
-                      </a>
+            <a style="color:black;" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $row['fnameUsers']; ?>"><br><?php echo $row['fnameUsers']; ?>
+            </a>
               <?php                      
                   }
               }
