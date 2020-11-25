@@ -4,6 +4,74 @@ body {
   font-family: "Alata", sans-serif;
 }
 
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  text-align: center;
+  color: blue;
+
+  padding: 14px;
+  text-decoration: none;
+}
+
+.users-a {
+  color: blue;
+}
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+.squares {
+  padding: 60px 0 0 0;
+}
+
+.squares > div {
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+}
+
+.rectangles {
+  top: 100px;
+  padding: 100px 0 0 0;
+}
+.rectangles > div {
+  width: 140px;
+  height: 60px;
+  margin: 50px 10px;
+  padding: 5px;
+  background: #cab;
+  transform: rotate(90deg) translateY(80px);
+  transform-origin: right top;
+}
+
+//@at-root
+
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+//@at-root
+
 body table {
   width: 100%;
   margin-top: 10px;
@@ -147,7 +215,6 @@ footer {
 /* Medium devices (tablets) */
 
 @media (min-width: 768px) {
-
   #details-card {
     display: block;
     width: auto;

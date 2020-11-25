@@ -59,16 +59,11 @@ include "modals.php";
           <div class="card-header">
             <h4>Usuários</h4>
           </div>
-          <div class="user-scrollmenu">
-
-          <div>
-            <div class="col" class="user-icons" style="float:left; margin-top:20px; max-height:100px; margin-left:10px; width: 1000px;">
-              <div style="width: 100%; display: table-cell;"> 
-              <span style="float:left;">
-                    <a href="index.php" class="btn">
-                      <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $_SESSION['userFname']?>"><br><?php echo $_SESSION['userFname']?>
+          <div class="card-body-users card-body">
+          <div class="scrollmenu">
+                    <a href="index.php" style="color:black;">
+                      <img src="<?php echo $_SESSION['profileImg']?>" class="rounded-circle user-image-circle active-circle" alt="Cinque Terre" data-toggle="tooltip" title="<?php echo $_SESSION['userFname']?>"><br><?php echo $_SESSION['userFname']?>
                     </a>
-              </span>              
                 <?php
 
               require "includes/dbh.inc.php";
@@ -83,11 +78,8 @@ include "modals.php";
               $resultimg = mysqli_query($conn, $sqlimg);
               $rowimg = mysqli_fetch_assoc($resultimg);
               ?>
-                      <span style="float:left;">
-                            <a a class="btn" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $row['fnameUsers']; ?>" >
-                            <br><?php echo $row['fnameUsers']; ?>
-                            </a>
-                      </span>
+                      <a style="color:black;" href="index.php?other-userId=<?php echo $userId;?>"><img src="<?php echo $rowimg['img_dir']; ?>" class="rounded-circle user-image-circle <?php if (isset($_GET['other-userId']) && $userId == $_GET['other-userId']) { echo "active-circle";} ?> " style="border-radius: 100px; height: 200px; width: 200px" alt="Cinque Terre" data-toggle="tooltip" href="#" title="<?php echo $row['fnameUsers']; ?>"><br><?php echo $row['fnameUsers']; ?>
+                      </a>
               <?php                      
                   }
               }
@@ -95,7 +87,7 @@ include "modals.php";
               
             </div>
           </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
