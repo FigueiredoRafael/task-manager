@@ -173,16 +173,20 @@
       </div>
       <div class="col-md-3">
       <form action="includes/update-profile.inc.php" method="post" enctype="multipart/form-data">
-        <img id="profile-image" src="<?php echo $_SESSION['profileImg']; ?>" alt="" class="d-block img-fluid">        
-        <input class="form-control d-none" type="text" name="userId" value="<?php echo $_SESSION['userId'];?>" >
+        
           <div id="upload-photo-div" class="mb-2">
-              <input type="file" id="real-file" accept="image/*" class="inputfile" name="avatarpic" hidden="hidden">
-                <button src="#" class="btn" id="upload-photo" type="button" data-toggle="modal" data-target="#addImageModal" data-toggle="tooltip" title="Atualize sua foto de perfil">
+              <img id="profile-image" data-toggle="tooltip" title="Foto de perfil: <?php echo $_SESSION['userFname']?>" style="height: 200px; width: 200px;" src="<?php echo $_SESSION['profileImg']; ?>" alt="" class="d-block img-fluid">        
+              <div class="mt-2">
+                <input class="form-control d-none" type="text" name="userId" value="<?php echo $_SESSION['userId'];?>" >
+                <input type="file" id="real-file" accept="image/*" class="inputfile" name="avatarpic" hidden="hidden">
+                <button src="#" class="btn ml-4 " id="upload-photo" type="button" data-toggle="modal" data-target="#addImageModal" data-toggle="tooltip" title="Atualize sua foto de perfil">
                   <i class="fas fa-folder-plus"></i> 
                 </button>
+                <input name="userId" type="hidden" value="<?php echo $_SESSION['userId'];?>">
+                <button type="button" class="btn btn-danger userDeleteBtn ml-4" data-toggle="tooltip" title="Remover sua conta" data-selfdelete="selfdelete" data-id="<?php echo $_SESSION['userId'];?>" >Remover usuário</button>
+              <div>
           </div>
-          <input name="userId" type="hidden" value="<?php echo $_SESSION['userId'];?>">
-          <button type="button" class="btn btn-danger userDeleteBtn" data-toggle="tooltip" title="Remover sua conta" data-selfdelete="selfdelete" data-id="<?php echo $_SESSION['userId'];?>" >Remover usuário</button>
+          
       </div>
     </div>
   </div>
