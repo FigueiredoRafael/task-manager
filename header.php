@@ -1,5 +1,12 @@
 <?php
     session_start();
+    if(isset($_SESSION['remember'])) {
+      $username = $_SESSION['userUid'];
+      setcookie('username',$username, time()+ (10 * 365 * 24 * 60 * 60));
+    } else {
+      setcookie('username',"", time()+ (10 * 365 * 24 * 60 * 60));
+
+    }
 ?>
 
 <!DOCTYPE html>

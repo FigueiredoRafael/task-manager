@@ -38,16 +38,18 @@
             <form action="includes/login.inc.php" method="post">
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" id="username-login" class="form-control" name="mailuid" data-toggle="tooltip" href="#" title="Username, Email ou CPF" required>
-                <!-- <span class="text-danger"  style="display: <?php echo $errorUsername ? '': 'none' ?>;" >Email incorreto</span> -->
+                <input type="text" id="username-login" class="form-control" name="mailuid" data-toggle="tooltip" title="Username, Email ou CPF" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE['username']; }?>" required>
               </div>
               <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" id="pwd-login" class="form-control" name="pwd" data-toggle="tooltip" href="#" title="Senha de acesso">
-                <!-- <span class="text-danger" style= <script> </script> "display: <?php echo $errorPassword ? '': 'none' ?>;" >Senha incorreta</span> -->
+                <input type="password" id="pwd-login" class="form-control" name="pwd" data-toggle="tooltip" title="Senha de acesso">
+              </div>
+              <div class="field-group">
+                <div>
+                  <input type="checkbox" name="remember" id="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> />
+                <label for="remember-me">Lembrar-me</label>
               </div>
               <input type="submit" name="login-submit" id="login-btn" class="btn btn-primary btn-block" required>
-              <!-- <input type="checkbox" class="form-control">Lembrar-me -->
             </form>
           </div>
         </div>

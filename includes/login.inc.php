@@ -39,6 +39,9 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userEmail']   = $row['emailUsers'];
                     $_SESSION['userCelular'] = $row['celularUsers'];
                     $_SESSION['userType']    = $row['userType'];
+                    if(isset($_POST['remember'])) {
+                        $_SESSION['remember'] = "remember";
+                    }
 
                     $addressArr = unserialize($row['addressUsers'])[0];
 
