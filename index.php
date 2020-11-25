@@ -148,7 +148,7 @@ include "modals.php";
                 <i class="fas fa-users"></i> <?php echo $totalTasksConc ?>
               </h4>
               <h4 class="float-left ml-2">Conclúidas</h4>
-              <a href="posts.php" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
+              <a href="finished.php" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
             </div>
           </div>
 
