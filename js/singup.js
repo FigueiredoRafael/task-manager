@@ -697,7 +697,7 @@ $(document).ready(function () {
           data: { promote:userId },
           success: function(response){
             if(response == "1"){
-              Swal.fire({ title: "Deleted!",
+              Swal.fire({ title: "Promovido!",
                           text: "Usuário promovido a Administrador com sucesso.",
                           icon: "success"
                         }).then(  function () {
