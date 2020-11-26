@@ -1,6 +1,6 @@
 <?php
-  require "header.php"; 
   require "includes/session-validation.inc.php";
+  require "header.php"; 
   include_once ('nav.php');
 
   if ($_SESSION['userType'] == "admin") {
