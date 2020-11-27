@@ -1,6 +1,6 @@
 <?php
-  require "includes/session-validation.inc.php";
-  require "header.php"; 
+  require "header.php";
+  require "includes/session-validation.inc.php"; 
   require "includes/update-profile.inc.php";
   require "includes/dbh.inc.php";
   include_once "nav.php";
