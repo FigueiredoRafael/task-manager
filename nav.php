@@ -15,7 +15,7 @@
           <a href="index.php" class="nav-link" data-toggle="tooltip" title="Ver tarefas em andamento">Tabela de Tarefas</a>
         </li>
         <li class="nav-item px-2">
-          <a href="posts.php" class="nav-link" data-toggle="tooltip" title="Ver tarefas concluídas">Concluídos</a>
+          <a href="finished.php" class="nav-link" data-toggle="tooltip" title="Ver tarefas concluídas">Concluídos</a>
         </li>
         <?php
           if($_SESSION['userType'] == "admin") {

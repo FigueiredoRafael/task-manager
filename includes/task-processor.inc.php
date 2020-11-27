@@ -115,7 +115,7 @@ if (isset($_POST['task-submit'])) {
                         $taskStat = "Em Progresso";
                         $sql = "UPDATE tasks SET tasks_stat='$taskStat' WHERE taskId='$taskId'";
                         if ($conn->query($sql) === TRUE) {
-                            if(isset($POST['from-taskdetails'])) {
+                            if(isset($POST['from-taskdetails']) == "") {
                                 header("Location: ../index.php?task-update=success");
                                 exit();
                             } else {
@@ -123,7 +123,7 @@ if (isset($_POST['task-submit'])) {
                             exit();
                             }
                         } else {
-                            if(isset($POST['from-taskdetails'] )) {
+                            if(isset($POST['from-taskdetails'] ) == "") {
                                 header("Location: ../index.php?task-update=error");
                                 exit();
                             } else {
@@ -150,7 +150,7 @@ if (isset($_POST['task-submit'])) {
                             $taskStat = "Concluido";
                             $sql = "UPDATE tasks SET tasks_stat='$taskStat' WHERE taskId='$taskId'";
                             if ($conn->query($sql) === TRUE) {
-                                if(isset($POST['from-taskdetails'])) {
+                                if(isset($POST['from-taskdetails']) == "") {
                                     header("Location: ../index.php?task-update=success");
                                     exit();
                                 } else {
@@ -158,7 +158,7 @@ if (isset($_POST['task-submit'])) {
                                     exit();
                                 }
                             } else {
-                                if(isset($POST['from-taskdetails'])) {
+                                if(isset($POST['from-taskdetails']) == "") {
                                     header("Location: ../index.php?task-update=error");
                                     exit();
                                 } else {
