@@ -192,7 +192,7 @@
                 <input type="hidden" name="userType" value="user">
                 <div class="form-group">
                   <label for="email">Senha</label>
-                  <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Password" />
+                  <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Senha" />
                   <p class="pwd-msg"></p>
                 </div>
                 <div class="form-group">

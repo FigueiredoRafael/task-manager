@@ -1,27 +1,5 @@
 <?php
 
-// if (isset($_POST['taskDelete'])) {
-
-//     require "dbh.inc.php";
-//     $taskId = $_POST['taskDelete'];
-
-//     $sql = "DELETE FROM tasks WHERE taskId='$taskId'";
-//     if ($conn->query($sql) === TRUE) {
-//         echo "1";
-//         header("Location: ../index.php?task-remove=success");
-//     } else {
-//         echo "2";
-//         header("Location: ../index.php?task-remove=error");
-//     }
-//     $taskRemovedSuccessAlert;
-//     exit();
-//     mysqli_stmt_close($stmt);
-//     mysqli_close($conn);
-
-
-// } 
-
-
 if (isset($_POST['task-submit'])) {
     require "dbh.inc.php";
     
@@ -33,18 +11,17 @@ if (isset($_POST['task-submit'])) {
     
     
     if (empty($taskTitle)) {
-        header('Location: ../index.php?addtask-error=empty-title');
+        header('Location: ../index.php?addtask-error=empty-title&msgElement=missing-task-title');
         exit();
     } elseif (empty($taskDescription)) {
-        header('Location: ../index.php?addtask-error=empty-description');
+        header('Location: ../index.php?addtask-error=empty-description&msgElement=missing-task-description');
         exit();
     } else {
         
         $sql = "INSERT INTO tasks (tasks_title, tasks_resp, tasks_concl, tasks_descr) VALUES ('$taskTitle', '$taskResponsible', '$taskConclusionDate', '$taskDescription')";
         mysqli_query($conn, $sql);
         
-        header ("Location: ../index.php?addtask=success");
-        $taskAddedSuccessAlert;
+        header ("Location: ../index.php?addtask=success&msgElement=task-added");
         exit();
         }
         mysqli_stmt_close($stmt);
@@ -62,25 +39,24 @@ if (isset($_POST['task-submit'])) {
         
         
         if (empty($taskTitle)) {
-            header('Location: ../index.php?updatetask-error=empty-title');
+            header('Location: ../index.php?updatetask-error=empty-title&msgElement=missing-task-title');
             exit();
         } elseif (empty($taskDescription)) {
-            header('Location: ../index.php?updatetask-error=empty-description');
+            header('Location: ../index.php?updatetask-error=empty-description&msgElement=missing-task-description');
             exit();
         } else {
             $sql = "UPDATE tasks SET tasks_title='$taskTitle', tasks_concl='$taskConclusionDate', tasks_descr='$taskDescription' WHERE taskId='$taskId'";
             if ($conn->query($sql) === TRUE) {
-            header("Location: ../index.php?task-update=success");
+            header("Location: ../index.php?task-update=success&msgElement=task-updated");
             } else {
-            header("Location: ../index.php?task-update=error");
+            header("Location: ../index.php?task-update=error&msgElement=task-not-updated");
             }
-            $taskUpdatedSuccessAlert;
             exit();
             }
             mysqli_stmt_close($stmt);
             mysqli_close($conn);
 
-    } else if (isset($_POST["task_delete_submit"])) {
+    } else if  (isset($_POST["task_delete_submit"])) {
 
         require "dbh.inc.php";
         $taskId = $_POST['taskId'];
@@ -91,11 +67,8 @@ if (isset($_POST['task-submit'])) {
             exit();
         } else {
             echo "0";
-            // header("Location: ../index.php?task-remove=error");
             exit();
         }
-        $taskRemovedSuccessAlert;
-        exit();
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
 
@@ -115,24 +88,12 @@ if (isset($_POST['task-submit'])) {
                         $taskStat = "Em Progresso";
                         $sql = "UPDATE tasks SET tasks_stat='$taskStat' WHERE taskId='$taskId'";
                         if ($conn->query($sql) === TRUE) {
-                            if(isset($POST['from-taskdetails']) == "") {
-                                header("Location: ../index.php?task-update=success");
-                                exit();
-                            } else {
                             echo "1";
                             exit();
-                            }
                         } else {
-                            if(isset($POST['from-taskdetails'] ) == "") {
-                                header("Location: ../index.php?task-update=error");
-                                exit();
-                            } else {
-                                echo "0";
-                                exit();
-                            }
+                            echo "0";
+                            exit();
                         }
-                        $taskUpdatedSuccessAlert;
-                        exit();
                         mysqli_stmt_close($stmt);
                         mysqli_close($conn);
                     }
@@ -150,24 +111,12 @@ if (isset($_POST['task-submit'])) {
                             $taskStat = "Concluido";
                             $sql = "UPDATE tasks SET tasks_stat='$taskStat' WHERE taskId='$taskId'";
                             if ($conn->query($sql) === TRUE) {
-                                if(isset($POST['from-taskdetails']) == "") {
-                                    header("Location: ../index.php?task-update=success");
-                                    exit();
-                                } else {
-                                    echo "1";
-                                    exit();
-                                }
+                                echo "1";
+                                exit();
                             } else {
-                                if(isset($POST['from-taskdetails']) == "") {
-                                    header("Location: ../index.php?task-update=error");
-                                    exit();
-                                } else {
-                                    echo "0";
-                                    exit();
-                                }
+                                echo "0";
+                                exit();
                             }
-                            $taskUpdatedSuccessAlert;
-                            exit();
                             mysqli_stmt_close($stmt);
                             mysqli_close($conn);
                         }
@@ -178,7 +127,7 @@ if (isset($_POST['task-submit'])) {
         exit(); 
     
     } else {
-        header('Location: ../index.php?updatetask-error=notask-updated');
+        header('Location: ../index.php?updatetask-error=notask-updated&msgElement=task-not-updated');
         exit();
     }
     

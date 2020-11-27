@@ -13,7 +13,7 @@
         $selector = bin2hex(random_bytes(8));
         $token = random_bytes(32);
 
-        $url = "http://localhost/devplay/Desafio%20Final/taskManager/create-new-password.php?selector=".$selector."&&validator=".bin2hex($token);
+        $url = "http://taskmanager.hectorsimandomain.com.br/create-new-password.php?selector=".$selector."&&validator=".bin2hex($token);
 
         $expires = date("U") + 1800;
 
@@ -21,20 +21,20 @@
 
         $userEmail = $_POST["email"];
 
-        $sql = "DELETE FROM pwdReset WHERE pwdResetEmail=?";
+        $sql = "DELETE FROM pwdreset WHERE pwdResetEmail='$userEmail'";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            echo "There was an error!";
+            echo "There was an error! 1";
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "s", $userEmail);
             mysqli_stmt_execute($stmt);
         }
 
-        $sql = "INSERT INTO pwdReset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?);";
+        $sql = "INSERT INTO pwdreset (pwdResetEmail, pwdResetSelector, pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?);";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            echo "There was an error!";
+            echo "There was an error! 2";
             exit();
         } else {
             $hashedToken = password_hash($token, PASSWORD_DEFAULT);
@@ -57,17 +57,19 @@
 
         mail($to, $subject, $body, $headers);
 
-        
-        $mail = new PHPMailer(true);
+        $mail = new PHPMailer(true); //defaults to using php "mail()"; the true param means it will throw exceptions on errors, which we need to catch
+
         try{
             // SET MAILER TO USE SMTP
-            $mail->isSMTP();
+            $mail->IsSMTP();
+            // $mail->SMTPDebug = 2;
+            // $mail->Debugoutput = 'html';
             // DEFINE SMTP HOST
             $mail->Host = "smtp.gmail.com";
             // ENABLE SMTP AUTHENTICATION
             $mail->SMTPAuth = "true";
             // SET TYPE OF ENCRYPTION (SSL/TLS)
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->SMTPSecure = 'PHPMailer::ENCRYPTION_STARTTLS';
             // SET PORT TO CONNECT SMTP
             $mail->Port = "587";
             // SET GMAIL USERNAME
@@ -79,19 +81,20 @@
             // EMAIL BODY
             $mail->Body = $message;
             // SET SENDER EMAIL
-            $mail->setFrom("hectormailserver@gmail.com");
+            $mail->SetFrom("hectormailserver@gmail.com");
             // ADD RECIPIENT
-            $mail->addAddress($userEmail);
+            $mail->AddAddress($userEmail);
             // SEND EMAIL
             $mail->Send();
+
         } catch (exception $e) {
-            echo "error";
+            echo $e->getMessage();
         }
         // CLOSE SMTP CONNECTION
         $mail->smtpClose();
 
         
-        header("location: ../login.php?reset=success");
+        header("location: ../login.php?msgElement=new-pwd-request");
 
     } else {
         header ("Location: ../login.php");

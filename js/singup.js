@@ -602,8 +602,9 @@ $(document).ready(function () {
 
   $(".start-task").click(function () {
     let deleteId = $(this).data('id');
-    let action = $(this).data('action');
-    let submit = $(this).data('submit');     
+    let action   = $(this).data('action');
+    let submit   = $(this).data('submit');
+    let from     = $(this).data('from');      
 
     Swal.fire({
       title: "Você deseja iniciar esta tarefa?",
@@ -612,7 +613,7 @@ $(document).ready(function () {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sim, Concluir!",
+      confirmButtonText: "Sim, Iniciar!",
       
     }).then((result) => {
       if (result.isConfirmed) {
@@ -620,8 +621,10 @@ $(document).ready(function () {
           url: 'includes/task-processor.inc.php',
           type: 'POST',
           data: { task_user_action: submit,
-                  action: action,
-                  taskId: deleteId },
+                  action:           action,
+                  taskId:           deleteId, 
+                  task_edit:        from
+                },
           success: function(response){
             if(response == "1"){
               Swal.fire({ title: "Iniciada!",

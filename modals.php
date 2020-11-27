@@ -26,7 +26,7 @@ require "includes/dbh.inc.php";
           </div>
           <div class="form-group">
             <label for="Data de Conclusão">Data de Conclusão</label>
-            <input type="date" name="conclusion-date" class="form-control">
+            <input type="date" name="conclusion-date" class="form-control" value="<?php echo date('Y-m-d', time());?>">
             </input>
           </div>
           <div class="form-group">

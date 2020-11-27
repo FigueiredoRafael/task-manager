@@ -232,11 +232,13 @@
                 } else if ($taskStat == "Concluido") {
                   $taskStat = "Concluido";
                 }
+
                 
                 $taskTitle = $row['tasks_title'];
                 $taskResp  = $userFname;
                 $date      = $row['tasks_concl'];
                 $taskConcl = date("d/m/Y", strtotime($date));
+                $newDate   = str_replace('/', '-', $date);
                 $taskDescr = $row['tasks_descr'];
                 if ($taskStat == "Aberto") {
                   $statColor = "warning";

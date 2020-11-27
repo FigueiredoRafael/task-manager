@@ -3,8 +3,9 @@
 if (isset($_SESSION['userId'])) {
 
   } else {
-      header("location: login.php?session=close");
-      exit();
+    ?>
+      <script>window.location.href="login.php?session=closed";</script>
+    <?php
 }
 
 ?>

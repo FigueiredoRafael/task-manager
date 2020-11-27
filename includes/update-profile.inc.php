@@ -27,7 +27,7 @@ if (isset($_POST['update-submit'])) {
         header ("Location: ../profile.php?update-profile=empty-address-fields&msgElement=emptyAddressFields");
         exit();
     } else {
-        $sql = "UPDATE users SET fnameUsers='$fname', lnameUsers='$lname', celularUsers='$celular', addressUsers='$addressStr' WHERE idUsers='$idUser'&msgElement=emptyCelField";
+        $sql = "UPDATE users SET fnameUsers='$fname', lnameUsers='$lname', celularUsers='$celular', addressUsers='$addressStr' WHERE idUsers='$idUser'";
     
         if ($conn->query($sql) === TRUE) {
             header("Location: ../profile.php?update-profile=success&msgElement=profileUpdateSuccess");

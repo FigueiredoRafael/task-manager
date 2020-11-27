@@ -26,20 +26,10 @@
       </div>
       <div class="col-md-3">
       <form action="includes/task-processor.inc.php" method="post">
-        <button type="submit" name="task-update-submit" class="btn btn-success btn-block">
+        <button type="submit" name="task_update_submit" class="btn btn-success btn-block">
           <i class="fas fa-check"></i> Salvar Mudanças
         </button>
-      </div>
-      <?php
-        if ($_SESSION['userType'] == "admin") {
-      ?>
-      <div class="col-md-3">        
-      <button type="submit" id="remover-tarefa" name="task-delete-submit" onclick="return false" class="btn btn-danger btn-block text-white remover">
-          <i class="fas fa-trash"></i> Deletar Tarefa
-        </button>
-      <?php
-        }
-      ?>  
+      </div>  
       </div>
     </div>
   </div>
@@ -65,7 +55,6 @@
               <?php 
               $date = $_GET['taskConcl'];
               $newDate = str_replace('/', '-', $date);
-              echo date('Y/m/d', strtotime($newDate));
               ?>
               <br>
               <input type="date" class="form-control col-4" name="conclusion-date" value="<?php echo date('Y-m-d', strtotime($newDate)); ?>">
@@ -80,24 +69,6 @@
               <label for="task-description" class="text text-dark">Descrição</label>
               <textarea name="task-description" class="form-control"><?php echo $_GET['taskDescr']?></textarea>
             </div>
-          </form>
-            <form action="includes/task-processor.inc.php" method="post">
-            <input type="hidden" name="taskId" value="<?php $taskId = $_GET['taskId']; echo $taskId;  ?>">
-            <input type="hidden" name="action" value="<?php if ($_GET['taskStat'] == "Aberto") { echo "start"; } else if ($taskStat == "Em Progresso" || $taskStat == "Atrasado") { echo "finish"; } ?>">
-            <input type="hidden" name="from-taskdetails" value="">
-            <button type="submit" name="task_user_action" class="btn btn-<?php if ($_GET['taskStat'] == "Aberto") {
-                                            echo 'primary';
-                                          } else {
-                                            echo 'success'; 
-                                          }
-                                          ?>"> 
-                                          <?php 
-                                              if ($_GET['taskStat'] == "Aberto") {
-                                                echo "Começar Tarefa"; 
-                                                } else if ($_GET['taskStat'] == "Atrasado" || $_GET['taskStat'] == "Em Progresso" ) {
-                                                  echo "Concluir Tarefa"; 
-                                                }
-                                          ?></button>
           </form>
         </div>
       </div>
