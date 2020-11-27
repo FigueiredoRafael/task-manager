@@ -29,14 +29,14 @@
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
-      <div class="col-md-6 ml-auto">
+      <!-- <div class="col-md-6 ml-auto">
         <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Posts..." data-toggle="tooltip" title="Pesquise pela sua tarefa">
           <div class="input-group-append">
           <button class="btn btn-primary">Search</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
@@ -165,25 +165,25 @@
           </div>
 
           <!-- PAGINATION -->
-          <nav class="ml-4">
-            <ul class="pagination">
-              <li class="page-item disabled">
-                <a href="#" class="page-link">Previous</a>
-              </li>
-              <li class="page-item active">
-                <a href="#" class="page-link">1</a>
-              </li>
-              <li class="page-item">
-                <a href="#" class="page-link">2</a>
-              </li>
-              <li class="page-item">
-                <a href="#" class="page-link">3</a>
-              </li>
-              <li class="page-item">
-                <a href="#" class="page-link">Next</a>
-              </li>
-            </ul>
-          </nav>
+            <!-- <nav class="ml-4">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a href="#" class="page-link">Previous</a>
+                </li>
+                <li class="page-item active">
+                  <a href="#" class="page-link">1</a>
+                </li>
+                <li class="page-item">
+                  <a href="#" class="page-link">2</a>
+                </li>
+                <li class="page-item">
+                  <a href="#" class="page-link">3</a>
+                </li>
+                <li class="page-item">
+                  <a href="#" class="page-link">Next</a>
+                </li>
+              </ul>
+            </nav> -->
 
         </div>
       </div>

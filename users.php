@@ -33,14 +33,14 @@
           <i class="fas fa-plus"></i> Adicionar Usuários
         </a>
       </div>
-      <div class="col-md-6 ml-auto">
+      <!-- <div class="col-md-6 ml-auto">
         <div class="input-group">
         <input type="text" class="form-control" placeholder="Procurar Usuário...">
           <div class="input-group-append">
           <button class="btn btn-warning">Procurar...</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
