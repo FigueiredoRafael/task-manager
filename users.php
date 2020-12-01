@@ -18,6 +18,11 @@
     </div>
   </div>
 </header>
+<div class="alerts-position">
+  <?php 
+    require "includes/update-msgs.inc.php";
+  ?>
+</div>
 
 <!-- SEARCH -->
 <section id="search" class="py-4 mb-4 bg-light">
@@ -33,14 +38,6 @@
           <i class="fas fa-plus"></i> Adicionar Usuários
         </a>
       </div>
-      <!-- <div class="col-md-6 ml-auto">
-        <div class="input-group">
-        <input type="text" class="form-control" placeholder="Procurar Usuário...">
-          <div class="input-group-append">
-          <button class="btn btn-warning">Procurar...</button>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </section>
@@ -175,33 +172,33 @@
                 <div class="form-group">
                 <div class="form-group">
                   <input type="hidden" name="from-users-page">
-                  <label for="name">Nome</label>
+                  <label class="text text-danger" for="name" class="text text-danger">Nome*</label>
                   <input class="form-control" type="text" name="fname" placeholder="João" id="first-name" required>
                 </div>
                 <div class="form-group">
-                  <label for="lastName">Sobrenome</label>
+                  <label for="lastName" class="text text-danger">Sobrenome*</label>
                   <input class="form-control" type="text" name="lname" placeholder="Alexandre Roberto" id="last-name" required>
                 </div>
-                  <label for="email">Usuário</label>
+                  <label class="text text-danger" for="email">Usuário*</label>
                   <input class="form-control" type="text" name="uid" placeholder="Remover esse campo" id="uid" required>
                 </div>
                 <div class="form-group">
-                  <label for="email">Email</label>
+                  <label class="text text-danger" for="email">Email*</label>
                   <input class="form-control" type="text" name="mail" id="mail" placeholder="E-mail" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">CPF</label>
+                  <label class="text text-danger" for="password">CPF*</label>
                   <input class="form-control cpf" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
                 </div>
                 <div class="form-group">
-                  <label for="gender">Genero:</label><br>
+                  <label class="text text-danger" for="gender">Genero*:</label><br>
                   <input type="radio" id="male" name="gender" value="masculino">
                   <label class="mr-2"for="masculino">Masculino</label>
                   <input type="radio" id="female" name="gender" value="feminino">
                   <label class="mr-2" for="feminino">Feminino</label>
                 </div>
                 <div class="form-group">
-                  <label for="nome">Celular</label>
+                  <label class="text text-danger" for="nome">Celular/Telefone*</label>
                   <input
                     type="text"
                     class="celular intem-formulario form-control"
@@ -213,7 +210,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group">
-                  <label for="nome">CEP</label>
+                  <label class="text text-danger" for="nome">CEP*</label>
                   <input
                     type="text"
                     name="address[0]"
@@ -225,7 +222,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group endereco">
-                  <label for="nome">Endereço</label>
+                  <label class="text text-danger" for="nome">Endereço*</label>
                   <input
                     type="text"
                     name="address[1]"
@@ -237,7 +234,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group  endereco">
-                  <label for="nome">Número</label>
+                  <label class="text text-danger" for="nome">Número*</label>
                   <input type="text" name="address[2]" id="numero" placeholder="Número" class="form-control"/>
                   <br style="clear: both" />
                 </div>
@@ -253,7 +250,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group endereco">
-                  <label for="nome">Bairro</label>
+                  <label class="text text-danger" for="nome">Bairro*</label>
                   <input
                     type="text"
                     name="address[4]"
@@ -264,7 +261,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group endereco">
-                  <label for="nome">Cidade</label>
+                  <label class="text text-danger" for="nome">Cidade*</label>
                   <input
                     type="text"
                     name="address[5]"
@@ -275,7 +272,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group endereco">
-                  <label for="nome">Estado</label>
+                  <label class="text text-danger" for="nome">Estado*</label>
                   <input
                     type="text"
                     name="address[6]"
@@ -293,16 +290,17 @@
                   </select> 
                 </div>
                 <div class="form-group">
-                  <label for="email">Senha</label>
+                  <label class="text text-danger" for="email">Senha*</label>
                   <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Password" />
                   <p class="pwd-msg"></p>
                 </div>
                 <div class="form-group">
-                  <label for="password">Repita sua Senha</label>
+                  <label class="text text-danger" for="password">Repita sua Senha</label>
                   <input class="form-control" type="password" name="pwd-repeat" id="pwd-repeat" onkeyup="passwordRepeatValidation(this.value);" placeholder="Repita a mesma senha" required>
                   <p class="pwd-repeat-msg"></p>
                 </div>
               </div>
+              <div class="text text-muted h6">*campos obrigatórios</div>
               <div class="row card-footer">
                 <button class="btn btn-lg btn-primary col-md-7 mr-2" type="submit" name="signup-submit" id="signup-btn">Cadastrar</button>
                 </form>

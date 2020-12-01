@@ -14,6 +14,11 @@
     </div>
   </div>
 </header>
+<div class="alerts-position">
+  <?php 
+    require "includes/update-msgs.inc.php";
+  ?>
+</div>
 
 <!-- ACTIONS -->
 <section id="actions" class="py-4 mb-4 bg-light">

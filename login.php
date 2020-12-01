@@ -37,7 +37,7 @@
           <div class="card-body">
             <form action="includes/login.inc.php" method="post">
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email, Username ou CPF</label>
                 <input type="text" id="username-login" class="form-control" name="mailuid" data-toggle="tooltip" title="Username, Email ou CPF" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE['username']; }?>" required>
               </div>
               <div class="form-group">
@@ -79,33 +79,33 @@
               <form class="form" id="signup-form" action="includes/signup.inc.php" method="post">
                 <div class="form-group">
                 <div class="form-group">
-                  <label for="name">Nome</label>
+                  <label class="text text-danger" for="name">Nome*</label>
                   <input class="form-control" type="text" name="fname" placeholder="João" id="first-name" data-toggle="tooltip" href="#" title="Primeiro nome somente" required>
                 </div>
                 <div class="form-group">
-                  <label for="lastName">Sobrenome</label>
+                  <label class="text text-danger" for="lastName">Sobrenome*</label>
                   <input class="form-control" type="text" name="lname" placeholder="Alexandre Roberto" id="last-name" data-toggle="tooltip" href="#" title="Seu sobrenome" required>
                 </div>
-                  <label for="email">Usuário</label>
+                  <label class="text text-danger" for="email">Usuário*</label>
                   <input class="form-control" type="text" name="uid" placeholder="Remover esse campo" id="uid" data-toggle="tooltip" href="#" title="Email" required>
                 </div>
                 <div class="form-group">
-                  <label for="email">Email</label>
+                  <label class="text text-danger" for="email">Email*</label>
                   <input class="form-control" type="text" name="mail" id="mail" placeholder="E-mail" data-toggle="tooltip" href="#" title="Username, Email ou CPF" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">CPF</label>
+                  <label class="text text-danger" for="password">CPF*</label>
                   <input class="form-control cpf" type="text" id="cpf" name="cpf" placeholder="Insira o seu CPF" required>
                 </div>
                 <div class="form-group">
-                  <label for="gender">Genero:</label><br>
+                  <label class="text text-danger" for="gender">Genero*:</label><br>
                   <input type="radio" id="male" name="gender" value="masculino">
                   <label class="mr-2"for="masculino">Masculino</label>
                   <input type="radio" id="female" name="gender" value="feminino">
                   <label class="mr-2" for="feminino">Feminino</label>
                 </div>
                 <div class="form-group">
-                  <label for="nome">Celular</label>
+                  <label class="text text-danger" for="nome">Celular/Telefone*</label>
                   <input
                     type="text"
                     class="celular intem-formulario form-control"
@@ -117,7 +117,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group">
-                  <label for="nome">CEP</label>
+                  <label class="text text-danger" for="nome">CEP*</label>
                   <input
                     type="text"
                     name="address[0]"
@@ -129,7 +129,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group endereco">
-                  <label for="nome">Endereço</label>
+                  <label class="text text-danger" for="nome">Endereço*</label>
                   <input
                     type="text"
                     name="address[1]"
@@ -141,7 +141,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group  endereco">
-                  <label for="nome">Número</label>
+                  <label class="text text-danger" for="nome">Número*</label>
                   <input type="text" name="address[2]" id="numero" placeholder="Número" class="form-control"/>
                   <br style="clear: both" />
                 </div>
@@ -157,7 +157,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group  endereco">
-                  <label for="nome">Bairro</label>
+                  <label class="text text-danger" for="nome">Bairro*</label>
                   <input
                     type="text"
                     name="address[4]"
@@ -168,7 +168,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group  endereco">
-                  <label for="nome">Cidade</label>
+                  <label class="text text-danger" for="nome">Cidade*</label>
                   <input
                     type="text"
                     name="address[5]"
@@ -179,7 +179,7 @@
                   <br style="clear: both" />
                 </div>
                 <div class="form-group endereco">
-                  <label for="nome">Estado</label>
+                  <label class="text text-danger" for="nome">Estado*</label>
                   <input
                     type="text"
                     name="address[6]"
@@ -191,12 +191,12 @@
                 </div>
                 <input type="hidden" name="userType" value="user">
                 <div class="form-group">
-                  <label for="email">Senha</label>
+                  <label class="text text-danger" for="email">Senha*</label>
                   <input class="form-control" type="password" name="pwd" id="pwd" onkeyup="passwordValidation(this.value);" placeholder="Senha" />
                   <p class="pwd-msg"></p>
                 </div>
                 <div class="form-group">
-                  <label for="password">Repita sua Senha</label>
+                  <label class="text text-danger" for="password">Repita sua Senha*</label>
                   <input class="form-control" type="password" name="pwd-repeat" id="pwd-repeat" onkeyup="passwordRepeatValidation(this.value);" placeholder="Repita a mesma senha" required>
                   <p class="pwd-repeat-msg"></p>
                 </div>
@@ -204,6 +204,7 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit" name="signup-submit" id="signup-btn">Cadastrar</button>
               </form>
             </div>
+            <div class="text text-muted h6">*campos obrigatórios</div>
           </div>
         </div>
       </div>

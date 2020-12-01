@@ -107,6 +107,7 @@ $(document).ready(function () {
     $(".celular").unmask();
   });
 
+
   //trabalhando com o formulario
 
   let usernameError = false;

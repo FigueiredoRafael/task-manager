@@ -193,7 +193,7 @@ if (isset($_POST['signup-submit'])) {
         header ("Location: ../login.php?error=emptyfields&passwordcheck&mail=".$username."&mail=".$email."&msgElement=pwdNotSame");
         exit();}
 
-    } else if (empty($password) || strlen($password) < 6 || !preg_match("/^[a-zA-Z0-9]*$/", $password)) {
+    } else if (empty($password) || strlen($password) < 6 || preg_match("/^[a-z]*$/", $password) || preg_match("/^[0-9]*$/", $password)) {
             if ($error = true) {
                 if (isset($_POST['from-users-page'])) {
                     header ("Location: ../users.php?error=weakpassword&msgElement=weakPwd");
@@ -203,7 +203,12 @@ if (isset($_POST['signup-submit'])) {
                 header ("Location: ../login.php?error=weakpassword&msgElement=weakPwd");
                 exit();}
             }
+        
     } else {
+        if (preg_match("/\D/", $cpf)) {
+            $cpf = str_replace(".", "", $cpf);
+            $cpf = str_replace("-", "", $cpf);
+        }
         $sql = "SELECT uidUsers OR emailUsers OR cpfUsers FROM users WHERE uidUsers=? OR emailUsers=? OR cpfUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
