@@ -30,7 +30,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <a href="index.php" class="btn btn-light btn-block" data-toggle="tooltip" title="Volte para a tabela de tarefas">
+        <a href="index.php?index-page=true" class="btn btn-light btn-block" data-toggle="tooltip" title="Volte para a tabela de tarefas">
           <i class="fas fa-arrow-left"></i> Voltar para tarefas
         </a>
       </div>
@@ -183,7 +183,7 @@
                   <i class="fas fa-folder-plus"></i> 
                 </button>
                 <input name="userId" type="hidden" value="<?php echo $_SESSION['userId'];?>">
-                <button type="button" class="btn btn-danger userDeleteBtn ml-4" data-toggle="tooltip" title="Remover sua conta" data-selfdelete="selfdelete" data-id="<?php echo $_SESSION['userId'];?>" >Remover usuário</button>
+                <button type="button" class="btn btn-danger self-delete ml-4" data-toggle="tooltip" title="Remover sua conta" data-selfid="<?php echo $_SESSION['userId'];?>" >Remover usuário</button>
               <div>
           </div>
           

@@ -45,11 +45,9 @@
 
 <!-- User Tasks -->
 <?php 
+include "modals.php";
 
 include "tasks.php";
-
-
-include "modals.php";
 ?>
 
 <div class="container">
@@ -138,7 +136,7 @@ include "modals.php";
                   <i class="fas fa-pencil-alt"></i> <?php echo $totalTasks ?> 
                 </h4>
                 <h4 class="float-left ml-2">Tarefas</h4>
-                <a href="#tarefas" class="btn btn-outline-light btn-md float-right ml-4 sm-btn">Visualizar </a>
+                <a href="index.php?index-page=true" class="btn btn-outline-light btn-md float-right ml-4 sm-btn">Visualizar </a>
             </div>
           </div>
 
@@ -148,7 +146,7 @@ include "modals.php";
                 <i class="fas fa-users"></i> <?php echo $totalTasksConc ?>
               </h4>
               <h4 class="float-left ml-2">Conclúidas</h4>
-              <a href="finished.php" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
+              <a href="finished.php?finished-page=true" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
             </div>
           </div>
 
@@ -163,7 +161,7 @@ include "modals.php";
                 <i class="fas fa-users"></i> <?php echo $totalUsers ?>
               </h4>
               <h4 class="float-left ml-2">Usuários</h4>
-              <a href="users.php" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
+              <a href="users.php?users-page=true" class="btn btn-outline-light btn-md float-right sm-btn">Visualizar </a>
             </div>
           </div>
 

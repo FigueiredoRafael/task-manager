@@ -16,6 +16,9 @@ if (isset($_POST['task-submit'])) {
     } elseif (empty($taskDescription)) {
         header('Location: ../index.php?addtask-error=empty-description&msgElement=missing-task-description');
         exit();
+    } elseif (empty($taskResponsible)) {
+        header('Location: ../index.php?addtask-error=empty-responsible&msgElement=missing-task-responsible');
+        exit();
     } else {
         
         $sql = "INSERT INTO tasks (tasks_title, tasks_resp, tasks_concl, tasks_descr) VALUES ('$taskTitle', '$taskResponsible', '$taskConclusionDate', '$taskDescription')";
@@ -44,8 +47,11 @@ if (isset($_POST['task-submit'])) {
         } elseif (empty($taskDescription)) {
             header('Location: ../index.php?updatetask-error=empty-description&msgElement=missing-task-description');
             exit();
+        } elseif (empty($taskResponsible)) {
+            header('Location: ../index.php?updatetask-error=empty-responsible&msgElement=missing-task-responsible');
+            exit();
         } else {
-            $sql = "UPDATE tasks SET tasks_title='$taskTitle', tasks_concl='$taskConclusionDate', tasks_descr='$taskDescription' WHERE taskId='$taskId'";
+            $sql = "UPDATE tasks SET tasks_title='$taskTitle', tasks_resp='$taskResponsible', tasks_concl='$taskConclusionDate', tasks_descr='$taskDescription' WHERE taskId='$taskId'";
             if ($conn->query($sql) === TRUE) {
             header("Location: ../index.php?task-update=success&msgElement=task-updated");
             } else {

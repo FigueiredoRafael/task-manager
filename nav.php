@@ -11,17 +11,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav">
-        <li class="nav-item px-2 active">
-          <a href="index.php" class="nav-link" data-toggle="tooltip" title="Ver tarefas em andamento">Tabela de Tarefas</a>
+        <li class="nav-item px-2 <?php if ($_GET['index-page'] == true){echo "active";}?>">
+          <a href="index.php?index-page=true" class="nav-link" data-toggle="tooltip" title="Ver tarefas em andamento">Tabela de Tarefas</a>
         </li>
-        <li class="nav-item px-2">
-          <a href="finished.php" class="nav-link" data-toggle="tooltip" title="Ver tarefas concluídas">Concluídos</a>
+        <li class="nav-item px-2 <?php if ($_GET['finished-page']  == true){echo "active";}?>">
+          <a href="finished.php?finished-page=true" class="nav-link" data-toggle="tooltip" title="Ver tarefas concluídas">Concluídos</a>
         </li>
         <?php
           if($_SESSION['userType'] == "admin") {
         ?>
-        <li class="nav-item px-2">
-          <a href="users.php" class="nav-link" data-toggle="tooltip" title="Ver tabela de usuários">Usuários</a>
+        <li class="nav-item px-2 <?php if ($_GET['users-page']  == true){echo "active";}?>">
+          <a href="users.php?users-page=true" class="nav-link" data-toggle="tooltip" title="Ver tabela de usuários">Usuários</a>
         </li>
         <?php
           }

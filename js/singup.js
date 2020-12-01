@@ -670,7 +670,42 @@ $(document).ready(function () {
                           text: "Usuário deletado com sucesso.",
                           icon: "success"
                         }).then(  function () {
-                                    location.reload();
+                                    window.location.href="users.php?user-delete=success&msgElement=user-deleted";
+                                  });
+            } else {
+              Swal.fire("Cancelado!", " "+response+" ", "failed");
+            }
+          }        
+        })
+        }
+    });
+  });
+
+  $(".self-delete").click(function () {
+    var deleteid = $(this).data('selfid');
+
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Você não será capaz de desfazer essas alterações",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, deletar!",
+      
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: 'includes/users-processor.inc.php',
+          type: 'POST',
+          data: { selfid:deleteid },
+          success: function(response){
+            if(response == "1"){
+              Swal.fire({ title: "Deleted!",
+                          text: "Usuário deletado com sucesso.",
+                          icon: "success"
+                        }).then(  function () {
+                                    window.location.href="login.php?session=closed&msgElement=user-deleted";
                                   });
             } else {
               Swal.fire("Cancelado!", " "+response+" ", "failed");
@@ -705,7 +740,7 @@ $(document).ready(function () {
                           text: "Usuário promovido a Administrador com sucesso.",
                           icon: "success"
                         }).then(  function () {
-                                    location.reload();
+                                    window.location.href="users.php?user-promotion=success&msgElement=user-promoted";
                                   });
 
             } else if (response == "2"){

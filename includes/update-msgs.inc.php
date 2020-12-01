@@ -83,11 +83,17 @@
 
     "missing-task-description" => new Msgs ("alert-danger", "Campo de <strong>Descrição</strong> da tarefa vazio."),
 
+    "missing-task-responsible" => new Msgs ("alert-danger", "Não foi designado um <strong>Responsável</strong> para a tarefa."),
+
     "task-added" => new Msgs ("alert-success", "Tarefa <strong>cadastrada</strong> com sucesso!"),
 
     "task-updated" => new Msgs ("alert-success", "Tarefa <strong>atualizada</strong> com sucesso!"),
 
-    "task-not-updated" => new Msgs ("alert-danger", "Tarefa não pôde ser <strong>atualizada</strong>.")
+    "task-not-updated" => new Msgs ("alert-danger", "Tarefa não pôde ser <strong>atualizada</strong>."),
+
+    "user-deleted" => new Msgs ("alert-success", "Usuário <strong>deletado</strong> com sucesso!"),
+
+    "user-promoted" => new Msgs ("alert-success", "Usuário <strong>promovido</strong> com sucesso!")
 );
 
 

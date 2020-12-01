@@ -13,7 +13,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1><i class="fas fa-users"></i> Users</h1>
+        <h1><i class="fas fa-users"></i> Usuários</h1>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
   <div class="container">
     <div class="row">
     <div class="col-md-3">
-        <a href="index.php" class="btn btn-light btn-block">
+        <a href="index.php?index-page=true" class="btn btn-light btn-block">
           <i class="fas fa-arrow-left"></i> De volta para tarefas
         </a>
       </div>
@@ -89,7 +89,6 @@
                 $userStComp = $addressArr[3];                       
                 $userStCep = $addressArr[0];                       
                 
-                include "modals.php";
                 ?>
                       <tr>
                       

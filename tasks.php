@@ -80,8 +80,6 @@
                 } else if ($taskStat == "Concluido") {
                   $statColor = "success";
                 }
-                
-                include "modals.php";
                  ?>
                       <tr>
                       
@@ -249,8 +247,6 @@
                 } else if ($taskStat == "Concluido") {
                   $statColor = "success";
                 }
-                
-                include "modals.php";
                  ?>
                       <tr>
                       

@@ -25,7 +25,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <a href="index.php" class="btn btn-light btn-block">
+        <a href="index.php?index-page=true" class="btn btn-light btn-block">
           <i class="fas fa-arrow-left"></i> De volta para tarefas
         </a>
       </div>
@@ -54,7 +54,30 @@
               <label for="title" class="text text-dark">Título</label>
               <input type="text" name="task-title" class="form-control" value="<?php echo $_GET['taskTitle']?>">
               <input type="hidden" name="task-id" class="form-control" value="<?php echo $_GET['taskId']; ?>">
-              <input type="hidden" name="userId" value="<?php echo $_SESSION['userId'];?>" >
+            </div>
+            <div class="form-group">
+              <label for="task-responsible">Responsável:</label>
+              <select class="form-control" type="text" name="userId">
+                <option value="<?php echo $_SESSION['userId'];?>"><?php echo $_SESSION['userFname']. " ". $_SESSION['userLname']; ?></option>
+                <?php
+                require "includes/dbh.inc.php";
+                $sql = "SELECT * FROM users";
+                $result = mysqli_query($conn, $sql);
+                if ($result = $conn->query($sql)) {
+                  while ($row = $result->fetch_assoc()) {
+                    $userId    = $row['idUsers'];
+                    $userFname = $row['fnameUsers'];
+                    $userLname = $row['lnameUsers'];
+
+                ?>
+                  <option value="<?php echo $userId;?>">
+                  <?php echo $userFname ." ". $userLname; ?>
+                </option>
+                <?php
+                  }
+                }    
+                ?>
+              </select>
             </div>
               <label for="conclusion-date" class="text text-dark">Data de Conclusão: </label>
               <?php 
@@ -72,7 +95,7 @@
               <br>
             <div class="form-group">
               <label for="task-description" class="text text-dark">Descrição</label>
-              <textarea name="task-description" class="form-control"><?php echo $_GET['taskDescr']?></textarea>
+              <textarea name="task-description" class="form-control"><?php echo $_GET['taskDescr'] ?></textarea>
             </div>
           </form>
         </div>
