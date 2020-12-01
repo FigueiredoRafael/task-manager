@@ -37,8 +37,8 @@
           <div class="dropdown-menu">
             <a href="profile.php" class="dropdown-item"><i class="fas fa-user-circle" data-toggle="tooltip" title="Ver perfil"></i> Perfil
             </a>
-            <a href="settings.php" class="dropdown-item"><i class="fas fa-cog" data-toggle="tooltip" title="Configurações da conta"></i> Configurações
-            </a>
+            <!-- <a href="settings.php" class="dropdown-item"><i class="fas fa-cog" data-toggle="tooltip" title="Configurações da conta"></i> Configurações
+            </a> -->
           </div>
         </li>
         <li class="nav-item">
