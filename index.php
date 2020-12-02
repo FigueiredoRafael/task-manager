@@ -31,14 +31,6 @@
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
-      <!-- <div id="search" class="col-md-6 ml-auto">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Procurar tarefas...">
-            <div class="input-group-append">
-              <button class="btn btn-primary" data-toggle="tooltip" title="Procure pela sua Tarefa">Procurar</button>
-            </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </section>

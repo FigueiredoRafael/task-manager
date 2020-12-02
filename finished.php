@@ -29,8 +29,8 @@
           <i class="fas fa-arrow-left"></i> De volta para tarefas
         </a>
       </div>
-      <div class="col-md-3">
-        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal" data-toggle="tooltip" title="Adicione uma tarefa">
+      <div class="col-md-3" >
+        <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addTaskModal" data-toggle="tooltip" href="#" title="Adicione a sua Tarefa." >
           <i class="fas fa-plus"></i> Adicionar Tarefa
         </a>
       </div>
@@ -167,5 +167,6 @@
 </section>
 
 <?php
+  include 'modals.php';
   require 'footer.php';
 ?>
